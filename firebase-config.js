@@ -3,11 +3,11 @@
 // step-by-step guide (takes about 5 minutes, completely free).
 // ============================================================
 window.FIREBASE_CONFIG = {
-  apiKey: "PASTE_YOUR_API_KEY_HERE",
-  authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://PASTE_YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "PASTE_YOUR_PROJECT",
-  storageBucket: "PASTE_YOUR_PROJECT.appspot.com",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyBKkTAGWosmMwrz3qcDWT0-upSzhdZedB0",
+  authDomain: "aurabot-project.firebaseapp.com",
+  databaseURL: "https://aurabot-project-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "aurabot-project",
+  storageBucket: "aurabot-project.firebasestorage.app",
+  messagingSenderId: "92411038332",
+  appId: "1:92411038332:web:d141dc1bdd2530fcf8d7f9"
 };
