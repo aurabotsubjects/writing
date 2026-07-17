@@ -84,9 +84,9 @@ team choices and scores, and rooms are disposable/short-lived).
 The app is a set of static files, so any static web host works. The easiest free option:
 
 - **GitHub Pages**: create a GitHub repo, upload all the files (including `host.html`,
-  `student.html`, `quiz-data.js`, `firebase-config.js`, `qrcode.min.js`,
-  `live-quiz-theme.css`), then turn on Pages in the repo's Settings. You'll get a URL like
-  `https://yourname.github.io/writing-warmup/`.
+  `student.html`, `quiz-data.js`, `firebase-config.js`, `firebase-bundle.js`,
+  `qrcode.min.js`, `live-quiz-theme.css`), then turn on Pages in the repo's Settings.
+  You'll get a URL like `https://yourname.github.io/writing-warmup/`.
 - Alternatively, any existing web host/school server that can serve static files works too.
 
 The iPads and the teacher's screen just need normal internet access — no app installs, no
@@ -111,6 +111,11 @@ accounts.
 
 ## Notes
 
+- Everything the app needs (the QR code generator and the Firebase SDK itself) is bundled
+  locally in the app files — nothing is pulled from a CDN at runtime. The **only** external
+  connection the iPads and teacher screen make is to your own Firebase database
+  (`*.firebaseio.com`), which is unavoidable since that's what keeps everyone in sync. If
+  your school's wifi filters outbound traffic, that domain is the one to allow.
 - Each room code is single-use and short-lived — create a fresh one each Friday.
 - If a student's iPad refreshes or drops connection mid-quiz, reopening the same link picks
   up right where they left off (their name/team/progress are remembered on that device).

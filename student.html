@@ -135,10 +135,10 @@
 <script src="firebase-config.js"></script>
 <script src="quiz-data.js"></script>
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { initializeApp } from "./firebase-bundle.js";
 import {
   getDatabase, ref, set, update, onValue, get
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+} from "./firebase-bundle.js";
 
 const views = ["view-config-error","view-join","view-waiting","view-question","view-done","view-results"];
 function show(id){ views.forEach(v => document.getElementById(v).classList.toggle("hidden", v!==id)); }
