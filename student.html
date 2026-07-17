@@ -97,7 +97,7 @@
   <div id="view-question" class="card hidden">
     <div id="qHeader">
       <span id="qCounter"></span>
-      <span id="qTimerNum" class="muted" style="font-family:var(--font-display);font-size:1.1rem">15</span>
+      <span id="qTimerNum" class="muted" style="font-family:var(--font-display);font-size:1.1rem">30</span>
     </div>
     <div class="timer-wrap"><div id="timerBar"></div></div>
     <div id="qText"></div>
@@ -151,7 +151,7 @@ const db = getDatabase(app);
 
 const KIWI = { key: "kiwi", label: "Team Kiwi 🥝", color: "#3b82f6" };
 const TUI  = { key: "tui",  label: "Team Tui 🐦",  color: "#f97316" };
-const QUESTION_TIME = 15; // seconds
+const QUESTION_TIME = 30; // seconds
 
 const params = new URLSearchParams(window.location.search);
 let roomCode = (params.get("room") || "").toUpperCase();
