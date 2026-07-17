@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<title>Writing Warm-Up — Live Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="live-quiz-theme.css" />
+<style>
+  body{padding:1rem}
+  .logo{font-family:var(--font-display);font-size:1.4rem;letter-spacing:.03em;margin-bottom:1.25rem;text-align:center}
+  .logo span{color:var(--gold)}
+  .hidden{display:none !important}
+  label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:.4rem}
+  .field{margin-bottom:1.1rem}
+  .team-choice{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.25rem}
+  .team-btn{
+    border-radius:12px;padding:1.5rem 1rem;text-align:center;cursor:pointer;
+    border:2px solid var(--border);background:var(--bg-surface);transition:all .15s;
+  }
+  .team-btn .emoji{font-size:2.2rem;display:block;margin-bottom:.3rem}
+  .team-btn .lbl{font-weight:700;font-size:.95rem}
+  .team-btn.kiwi.selected{border-color:var(--kiwi);background:rgba(59,130,246,.14);box-shadow:0 0 0 1px var(--kiwi)}
+  .team-btn.tui.selected{border-color:var(--tui);background:rgba(249,115,22,.14);box-shadow:0 0 0 1px var(--tui)}
+  .waiting-icon{font-size:2.5rem;margin-bottom:1rem}
+  #qHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+  #qCounter{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+  .timer-wrap{width:100%;height:10px;background:var(--bg-surface);border-radius:6px;overflow:hidden;margin-bottom:1.25rem}
+  #timerBar{height:100%;background:var(--gold);width:100%;transition:width .1s linear,background .3s}
+  #qText{font-size:1.3rem;font-weight:600;line-height:1.4;margin-bottom:1.25rem}
+  .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  .opt-btn{
+    background:var(--bg-card);border:2px solid var(--border);border-radius:10px;padding:1.1rem .9rem;
+    text-align:left;font-family:var(--font-body);font-size:1rem;font-weight:500;color:var(--text);
+    cursor:pointer;display:flex;align-items:center;gap:.65rem;transition:all .15s;
+  }
+  .opt-letter{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.95rem;flex-shrink:0}
+  .opt-btn.correct{border-color:var(--green);background:rgba(16,185,129,.15)}
+  .opt-btn.wrong{border-color:var(--red);background:rgba(230,57,70,.15)}
+  .opt-btn:disabled{cursor:default}
+  .feedback-flash{position:fixed;inset:0;pointer-events:none;z-index:50;transition:opacity .3s}
+  .feedback-flash.correct{background:rgba(16,185,129,.18)}
+  .feedback-flash.wrong{background:rgba(230,57,70,.22)}
+  .points-toast{
+    font-family:var(--font-display);font-size:2.2rem;text-align:center;margin:.5rem 0 0;
+  }
+  .points-toast.zero{color:var(--red)}
+  .points-toast.earn{color:var(--green)}
+  .score-track{margin-top:1.5rem;text-align:center}
+  .score-track .big{font-family:var(--font-display);font-size:3rem;color:var(--gold)}
+  .rank-line{text-align:center;font-family:var(--font-display);font-size:1.6rem;margin:.5rem 0}
+  .winner-banner{font-family:var(--font-display);font-size:clamp(1.8rem,8vw,2.6rem);text-align:center;color:var(--gold);margin-bottom:.25rem}
+  .team-final{display:flex;gap:.75rem;justify-content:center;margin:1.25rem 0}
+  .team-final .box{flex:1;max-width:180px;background:var(--bg-surface);border-radius:10px;padding:1rem;text-align:center}
+  .team-final .box.winner{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(250,204,21,.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">Writing Warm-Up <span>Live Quiz</span></div>
+
+  <div id="view-config-error" class="card hidden"><h2>⚠ Quiz not set up yet</h2><p class="muted" style="margin-top:.5rem">Ask your teacher — the room link may be missing its setup.</p></div>
+
+  <!-- JOIN -->
+  <div id="view-join" class="card hidden">
+    <div id="joinError" class="error-box hidden"></div>
+    <div class="field" id="roomCodeField">
+      <label>Room Code</label>
+      <input type="text" id="roomCodeInput" maxlength="6" placeholder="e.g. AB3XQ9" autocapitalize="characters" />
+    </div>
+    <div class="field">
+      <label>Your Name</label>
+      <input type="text" id="nameInput" maxlength="20" placeholder="First name" />
+    </div>
+    <div class="field">
+      <label>Choose Your Team</label>
+      <div class="team-choice">
+        <div class="team-btn kiwi" id="pickKiwi"><span class="emoji">🥝</span><span class="lbl">Team Kiwi</span></div>
+        <div class="team-btn tui" id="pickTui"><span class="emoji">🐦</span><span class="lbl">Team Tui</span></div>
+      </div>
+    </div>
+    <button class="btn" id="joinBtn" style="width:100%">Join Quiz →</button>
+  </div>
+
+  <!-- WAITING FOR START -->
+  <div id="view-waiting" class="card hidden center">
+    <div class="waiting-icon">⏳</div>
+    <h2>You're in!</h2>
+    <p class="muted" style="margin:.5rem 0 1rem">Waiting for your teacher to start the quiz…</p>
+    <span class="team-pill" id="waitingTeamPill"></span>
+    <div class="spinner" style="margin-top:1.5rem"></div>
+  </div>
+
+  <!-- QUESTION -->
+  <div id="view-question" class="card hidden">
+    <div id="qHeader">
+      <span id="qCounter"></span>
+      <span id="qTimerNum" class="muted" style="font-family:var(--font-display);font-size:1.1rem">15</span>
+    </div>
+    <div class="timer-wrap"><div id="timerBar"></div></div>
+    <div id="qText"></div>
+    <div class="opt-grid" id="optGrid"></div>
+    <div class="points-toast hidden" id="pointsToast"></div>
+  </div>
+
+  <!-- DONE, WAITING FOR REVEAL -->
+  <div id="view-done" class="card hidden center">
+    <div class="waiting-icon">🎉</div>
+    <h2>All done!</h2>
+    <div class="score-track">
+      <div class="muted" style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase">Your Score</div>
+      <div class="big" id="doneScore">0</div>
+    </div>
+    <p class="muted" style="margin-top:1rem">Waiting for your teacher to reveal the final results…</p>
+    <div class="spinner" style="margin-top:1.25rem"></div>
+  </div>
+
+  <!-- FINAL RESULTS -->
+  <div id="view-results" class="card hidden">
+    <div class="rank-line" id="myRankLine"></div>
+    <div class="score-track" style="margin-top:0">
+      <div class="muted" style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase">Your Score</div>
+      <div class="big" id="resultsMyScore">0</div>
+    </div>
+    <div class="winner-banner" style="margin-top:1.5rem" id="winnerBanner"></div>
+    <p class="center muted" id="winnerSub"></p>
+    <div class="team-final" id="teamFinalBoxes"></div>
+  </div>
+</div>
+
+<div class="feedback-flash" id="feedbackFlash"></div>
+
+<script src="firebase-config.js"></script>
+<script src="quiz-data.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getDatabase, ref, set, update, onValue, get
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
+const views = ["view-config-error","view-join","view-waiting","view-question","view-done","view-results"];
+function show(id){ views.forEach(v => document.getElementById(v).classList.toggle("hidden", v!==id)); }
+
+const cfg = window.FIREBASE_CONFIG || {};
+if (!cfg.apiKey || cfg.apiKey.includes("PASTE_YOUR")) { show("view-config-error"); throw new Error("no config"); }
+
+const app = initializeApp(cfg);
+const db = getDatabase(app);
+
+const KIWI = { key: "kiwi", label: "Team Kiwi 🥝", color: "#3b82f6" };
+const TUI  = { key: "tui",  label: "Team Tui 🐦",  color: "#f97316" };
+const QUESTION_TIME = 15; // seconds
+
+const params = new URLSearchParams(window.location.search);
+let roomCode = (params.get("room") || "").toUpperCase();
+let playerId = null;
+let selectedTeam = null;
+let quizKey = null;      // "term-week"
+let questions = null;    // shuffled-per-player option order, fixed question order
+let roomMetaUnsub = null;
+
+function storageKey(code){ return "wwu_quiz_" + code; }
+
+// ---------- boot ----------
+init();
+
+async function init(){
+  document.getElementById("roomCodeInput").value = roomCode;
+  if (roomCode) document.getElementById("roomCodeField").classList.add("hidden");
+
+  // resume check
+  const saved = roomCode ? localStorage.getItem(storageKey(roomCode)) : null;
+  if (saved) {
+    try {
+      const { playerId: pid } = JSON.parse(saved);
+      const snap = await get(ref(db, "rooms/" + roomCode + "/players/" + pid));
+      if (snap.exists()) {
+        playerId = pid;
+        const p = snap.val();
+        selectedTeam = p.team;
+        await resumeSession(p);
+        return;
+      }
+    } catch(e) { /* fall through to join screen */ }
+  }
+
+  document.getElementById("pickKiwi").onclick = () => selectTeam("kiwi");
+  document.getElementById("pickTui").onclick = () => selectTeam("tui");
+  document.getElementById("joinBtn").onclick = attemptJoin;
+  show("view-join");
+}
+
+function selectTeam(t){
+  selectedTeam = t;
+  document.getElementById("pickKiwi").classList.toggle("selected", t==="kiwi");
+  document.getElementById("pickTui").classList.toggle("selected", t==="tui");
+}
+
+async function attemptJoin(){
+  const errBox = document.getElementById("joinError");
+  errBox.classList.add("hidden");
+
+  const code = (document.getElementById("roomCodeInput").value || "").trim().toUpperCase();
+  const name = (document.getElementById("nameInput").value || "").trim();
+
+  if (!code || code.length < 4) return joinError("Enter the room code your teacher gave you.");
+  if (!name) return joinError("Enter your name.");
+  if (!selectedTeam) return joinError("Choose a team.");
+
+  const roomSnap = await get(ref(db, "rooms/" + code + "/meta"));
+  if (!roomSnap.exists()) return joinError("Room not found — check the code with your teacher.");
+  const meta = roomSnap.val();
+  if (meta.status !== "waiting") return joinError("This quiz has already started or finished — ask your teacher for a new code.");
+
+  roomCode = code;
+  quizKey = meta.term + "-" + meta.week;
+  playerId = "p" + Date.now() + Math.random().toString(36).slice(2,8);
+
+  await set(ref(db, "rooms/" + roomCode + "/players/" + playerId), {
+    name, team: selectedTeam, score: 0, questionIndex: 0, finished: false, joinedAt: Date.now()
+  });
+
+  localStorage.setItem(storageKey(roomCode), JSON.stringify({ playerId, quizKey }));
+  enterWaiting();
+}
+
+function joinError(msg){
+  const errBox = document.getElementById("joinError");
+  errBox.textContent = msg;
+  errBox.classList.remove("hidden");
+}
+
+async function resumeSession(player){
+  const metaSnap = await get(ref(db, "rooms/" + roomCode + "/meta"));
+  if (!metaSnap.exists()) { localStorage.removeItem(storageKey(roomCode)); show("view-join"); init(); return; }
+  const meta = metaSnap.val();
+  quizKey = meta.term + "-" + meta.week;
+
+  if (meta.status === "waiting") enterWaiting();
+  else if (meta.status === "finished") enterResults();
+  else { // playing
+    currentLocalScore = player.score || 0;
+    if (player.finished) enterDone(player.score);
+    else startQuestionFlow(player.questionIndex || 0);
+  }
+}
+
+// ---------- WAITING ----------
+function enterWaiting(){
+  show("view-waiting");
+  const pill = document.getElementById("waitingTeamPill");
+  const t = selectedTeam === "kiwi" ? KIWI : TUI;
+  pill.textContent = t.label;
+  pill.className = "team-pill " + t.key;
+
+  if (roomMetaUnsub) roomMetaUnsub();
+  roomMetaUnsub = onValue(ref(db, "rooms/" + roomCode + "/meta"), snap => {
+    const meta = snap.val();
+    if (!meta) return;
+    if (meta.status === "playing") { roomMetaUnsub(); roomMetaUnsub = null; startQuestionFlow(0); }
+    else if (meta.status === "finished") { roomMetaUnsub(); roomMetaUnsub = null; enterResults(); }
+  });
+}
+
+// ---------- QUESTION FLOW ----------
+function buildQuestions(){
+  const raw = (window.QUIZ_DATA || {})[quizKey] || [];
+  return raw.map(q => {
+    const opts = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
+    for (let i = opts.length-1; i>0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [opts[i],opts[j]] = [opts[j],opts[i]];
+    }
+    return { q: q.q, options: opts };
+  });
+}
+
+let qStartTime = null;
+let qTimerRAF = null;
+let qHardTimeout = null;
+let answered = false;
+let watchingFinish = null;
+
+function startQuestionFlow(startIndex){
+  questions = questions || buildQuestions();
+  show("view-question");
+
+  // watch for early quiz-end while playing
+  if (watchingFinish) watchingFinish();
+  watchingFinish = onValue(ref(db, "rooms/" + roomCode + "/meta/status"), snap => {
+    if (snap.val() === "finished") {
+      cancelTimers();
+      if (watchingFinish) { watchingFinish(); watchingFinish = null; }
+      enterResults();
+    }
+  });
+
+  renderQuestion(startIndex);
+}
+
+function renderQuestion(index){
+  if (index >= questions.length) { finishQuiz(); return; }
+
+  answered = false;
+  document.getElementById("pointsToast").classList.add("hidden");
+  document.getElementById("qCounter").textContent = `Question ${index+1} / ${questions.length}`;
+  document.getElementById("qText").textContent = questions[index].q;
+
+  const grid = document.getElementById("optGrid");
+  grid.innerHTML = "";
+  const letters = ["A","B","C","D"];
+  questions[index].options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span><span>${opt.text}</span>`;
+    btn.onclick = () => submitAnswer(index, i, btn);
+    grid.appendChild(btn);
+  });
+
+  qStartTime = performance.now();
+  const bar = document.getElementById("timerBar");
+  const num = document.getElementById("qTimerNum");
+  bar.style.background = "var(--gold)";
+
+  cancelTimers();
+  function tick(){
+    const elapsed = (performance.now() - qStartTime) / 1000;
+    const remaining = Math.max(0, QUESTION_TIME - elapsed);
+    bar.style.width = (remaining / QUESTION_TIME * 100) + "%";
+    num.textContent = Math.ceil(remaining);
+    if (remaining <= 5) bar.style.background = "var(--red)";
+    else if (remaining <= 9) bar.style.background = "var(--tui)";
+    if (remaining > 0 && !answered) qTimerRAF = requestAnimationFrame(tick);
+  }
+  qTimerRAF = requestAnimationFrame(tick);
+  qHardTimeout = setTimeout(() => { if (!answered) submitAnswer(index, -1, null); }, QUESTION_TIME*1000 + 50);
+}
+
+function cancelTimers(){
+  if (qTimerRAF) cancelAnimationFrame(qTimerRAF);
+  if (qHardTimeout) clearTimeout(qHardTimeout);
+  qTimerRAF = null; qHardTimeout = null;
+}
+
+async function submitAnswer(index, choiceIdx, btnEl){
+  if (answered) return;
+  answered = true;
+  cancelTimers();
+
+  const elapsed = Math.min(QUESTION_TIME, (performance.now() - qStartTime) / 1000);
+  const opts = questions[index].options;
+  const isCorrect = choiceIdx >= 0 && opts[choiceIdx].isCorrect;
+  const earned = isCorrect ? Math.round(100 * Math.max(0, (QUESTION_TIME - elapsed) / QUESTION_TIME)) : 0;
+
+  // visual feedback
+  const grid = document.getElementById("optGrid");
+  [...grid.children].forEach((el, i) => {
+    el.disabled = true;
+    if (opts[i].isCorrect) el.classList.add("correct");
+    else if (i === choiceIdx) el.classList.add("wrong");
+  });
+  flash(isCorrect ? "correct" : "wrong");
+  const toast = document.getElementById("pointsToast");
+  toast.textContent = isCorrect ? `+${earned}` : (choiceIdx === -1 ? "Time's up! +0" : "+0");
+  toast.className = "points-toast " + (isCorrect ? "earn" : "zero");
+  toast.classList.remove("hidden");
+
+  const newScore = (currentLocalScore = currentLocalScore + earned);
+  const newIndex = index + 1;
+  const finished = newIndex >= questions.length;
+
+  update(ref(db, "rooms/" + roomCode + "/players/" + playerId), {
+    score: newScore, questionIndex: newIndex, finished, lastUpdate: Date.now()
+  });
+
+  setTimeout(() => {
+    if (finished) { finishQuiz(); }
+    else renderQuestion(newIndex);
+  }, 1100);
+}
+
+let currentLocalScore = 0;
+// keep local score in sync when resuming mid-quiz
+async function syncLocalScoreFromServer(){
+  const snap = await get(ref(db, "rooms/" + roomCode + "/players/" + playerId + "/score"));
+  currentLocalScore = snap.val() || 0;
+}
+
+function flash(kind){
+  const el = document.getElementById("feedbackFlash");
+  el.className = "feedback-flash " + kind;
+  el.style.opacity = "1";
+  setTimeout(() => { el.style.opacity = "0"; }, 500);
+}
+
+function finishQuiz(){
+  if (watchingFinish) { watchingFinish(); watchingFinish = null; }
+  enterDone(currentLocalScore);
+}
+
+// ---------- DONE (waiting for reveal) ----------
+function enterDone(score){
+  show("view-done");
+  document.getElementById("doneScore").textContent = score;
+  if (roomMetaUnsub) roomMetaUnsub();
+  roomMetaUnsub = onValue(ref(db, "rooms/" + roomCode + "/meta/status"), snap => {
+    if (snap.val() === "finished") { roomMetaUnsub(); roomMetaUnsub = null; enterResults(); }
+  });
+}
+
+// ---------- FINAL RESULTS ----------
+async function enterResults(){
+  show("view-results");
+  const snap = await get(ref(db, "rooms/" + roomCode + "/players"));
+  const players = snap.val() || {};
+  const list = Object.entries(players).map(([id,p]) => ({ id, ...p }));
+
+  const totals = { kiwi: 0, tui: 0 };
+  list.forEach(p => { totals[p.team] = (totals[p.team]||0) + (p.score||0); });
+
+  const ranked = list.slice().sort((a,b)=>(b.score||0)-(a.score||0));
+  const myRank = ranked.findIndex(p => p.id === playerId) + 1;
+  const myScore = (ranked.find(p => p.id === playerId) || {}).score || 0;
+
+  document.getElementById("resultsMyScore").textContent = myScore;
+  const rankLine = document.getElementById("myRankLine");
+  if (myRank >= 1 && myRank <= 3) {
+    const medals = ["🥇","🥈","🥉"];
+    rankLine.textContent = `${medals[myRank-1]} You placed #${myRank}!`;
+    rankLine.style.color = "var(--gold)";
+  } else if (myRank > 0) {
+    rankLine.textContent = `You placed #${myRank} of ${ranked.length}`;
+    rankLine.style.color = "var(--text)";
+  } else {
+    rankLine.textContent = "";
+  }
+
+  const teams = [ { ...KIWI, total: totals.kiwi }, { ...TUI, total: totals.tui } ];
+  const isTie = teams[0].total === teams[1].total;
+  const winner = isTie ? null : (teams[0].total > teams[1].total ? teams[0] : teams[1]);
+
+  document.getElementById("winnerBanner").textContent = isTie ? "IT'S A TIE!" : `${winner.label} WINS!`;
+  document.getElementById("winnerBanner").style.color = isTie ? "var(--gold)" : winner.color;
+  document.getElementById("winnerSub").textContent = `Team Kiwi ${totals.kiwi} · Team Tui ${totals.tui}`;
+
+  const teamBoxes = document.getElementById("teamFinalBoxes");
+  teamBoxes.innerHTML = "";
+  teams.sort((a,b)=>b.total-a.total).forEach(t => {
+    const div = document.createElement("div");
+    div.className = "box" + (!isTie && t.key===winner.key ? " winner" : "");
+    div.innerHTML = `<div class="team-pill ${t.key}">${t.label}</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:${t.color};margin-top:.3rem">${t.total}</div>`;
+    teamBoxes.appendChild(div);
+  });
+
+  localStorage.removeItem(storageKey(roomCode));
+}
+</script>
+</body>
+</html>
