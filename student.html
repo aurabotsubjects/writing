@@ -81,6 +81,13 @@
         <div class="team-btn tui" id="pickTui"><span class="emoji">🐦</span><span class="lbl">Team Tui</span></div>
       </div>
     </div>
+    <div id="dupWarn" class="hidden" style="background:rgba(250,204,21,.12);border:1px solid #facc15;color:#facc15;border-radius:8px;padding:.85rem 1rem;margin-bottom:.9rem;font-size:.9rem;line-height:1.5">
+      <div id="dupWarnText" style="margin-bottom:.75rem"></div>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn" id="dupSameBtn" style="flex:1">That's me</button>
+        <button class="btn" id="dupNewBtn" style="flex:1;background:transparent;border:1px solid #facc15;color:#facc15">I'm someone else</button>
+      </div>
+    </div>
     <button class="btn" id="joinBtn" style="width:100%">Join Quiz →</button>
   </div>
 
@@ -91,6 +98,7 @@
     <p class="muted" style="margin:.5rem 0 1rem">Waiting for your teacher to start the quiz…</p>
     <span class="team-pill" id="waitingTeamPill"></span>
     <div class="spinner" style="margin-top:1.5rem"></div>
+    <button id="notMeBtn" style="margin-top:1.5rem;background:none;border:none;color:var(--text-muted);font-size:.8rem;text-decoration:underline;cursor:pointer;font-family:inherit">Not you? Start again</button>
   </div>
 
   <!-- QUESTION -->
@@ -163,6 +171,25 @@ let roomMetaUnsub = null;
 
 function storageKey(code){ return "wwu_quiz_" + code; }
 
+// One stable id per browser. Re-joining from the same device always writes to the
+// same player record instead of creating a second one, so a double-tap on Join,
+// a refresh, or a re-scan of the QR code can never put a student on the list twice.
+let DEVICE_ID = null;
+function deviceId(){
+  if (DEVICE_ID) return DEVICE_ID;
+  try { DEVICE_ID = localStorage.getItem("wwu_device_id"); } catch(e){}
+  if (!DEVICE_ID) {
+    DEVICE_ID = "p" + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+    try { localStorage.setItem("wwu_device_id", DEVICE_ID); } catch(e){}
+  }
+  return DEVICE_ID;
+}
+function saveSession(){
+  try { localStorage.setItem(storageKey(roomCode), JSON.stringify({ playerId, quizKey })); } catch(e){}
+}
+let joining = false;
+let pendingTwinId = null;
+
 // ---------- boot ----------
 init();
 
@@ -170,16 +197,21 @@ async function init(){
   document.getElementById("roomCodeInput").value = roomCode;
   if (roomCode) document.getElementById("roomCodeField").classList.add("hidden");
 
-  // resume check
-  const saved = roomCode ? localStorage.getItem(storageKey(roomCode)) : null;
-  if (saved) {
+  // resume check - the room-specific note first, then this browser's stable id
+  if (roomCode) {
+    let pid = null;
     try {
-      const { playerId: pid } = JSON.parse(saved);
+      const saved = localStorage.getItem(storageKey(roomCode));
+      if (saved) pid = JSON.parse(saved).playerId;
+    } catch(e) { /* ignore */ }
+    if (!pid) pid = deviceId();
+    try {
       const snap = await get(ref(db, "rooms/" + roomCode + "/players/" + pid));
       if (snap.exists()) {
         playerId = pid;
         const p = snap.val();
         selectedTeam = p.team;
+        saveSession();
         await resumeSession(p);
         return;
       }
@@ -188,7 +220,13 @@ async function init(){
 
   document.getElementById("pickKiwi").onclick = () => selectTeam("kiwi");
   document.getElementById("pickTui").onclick = () => selectTeam("tui");
-  document.getElementById("joinBtn").onclick = attemptJoin;
+  document.getElementById("joinBtn").onclick = () => attemptJoin();
+  document.getElementById("dupSameBtn").onclick = () => {
+    const id = pendingTwinId; pendingTwinId = null; hideDupWarn(); attemptJoin(id, false);
+  };
+  document.getElementById("dupNewBtn").onclick = () => {
+    pendingTwinId = null; hideDupWarn(); attemptJoin(null, true);
+  };
   show("view-join");
 }
 
@@ -198,9 +236,12 @@ function selectTeam(t){
   document.getElementById("pickTui").classList.toggle("selected", t==="tui");
 }
 
-async function attemptJoin(){
+async function attemptJoin(adoptId, force){
+  if (joining) return;                       // a second tap while the first is still saving
+  const btn = document.getElementById("joinBtn");
   const errBox = document.getElementById("joinError");
   errBox.classList.add("hidden");
+  hideDupWarn();
 
   const code = (document.getElementById("roomCodeInput").value || "").trim().toUpperCase();
   const name = (document.getElementById("nameInput").value || "").trim();
@@ -209,21 +250,63 @@ async function attemptJoin(){
   if (!name) return joinError("Enter your name.");
   if (!selectedTeam) return joinError("Choose a team.");
 
-  const roomSnap = await get(ref(db, "rooms/" + code + "/meta"));
-  if (!roomSnap.exists()) return joinError("Room not found — check the code with your teacher.");
-  const meta = roomSnap.val();
-  if (meta.status !== "waiting") return joinError("This quiz has already started or finished — ask your teacher for a new code.");
+  joining = true;
+  const btnLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Joining…";
+  try {
+    const roomSnap = await get(ref(db, "rooms/" + code + "/meta"));
+    if (!roomSnap.exists()) return joinError("Room not found — check the code with your teacher.");
+    const meta = roomSnap.val();
+    if (meta.status !== "waiting") return joinError("This quiz has already started or finished — ask your teacher for a new code.");
 
-  roomCode = code;
-  quizKey = meta.term + "-" + meta.week;
-  playerId = "p" + Date.now() + Math.random().toString(36).slice(2,8);
+    roomCode = code;
+    quizKey = meta.term + "-" + meta.week;
 
-  await set(ref(db, "rooms/" + roomCode + "/players/" + playerId), {
-    name, team: selectedTeam, score: 0, questionIndex: 0, finished: false, joinedAt: Date.now()
-  });
+    const playersSnap = await get(ref(db, "rooms/" + roomCode + "/players"));
+    const players = playersSnap.val() || {};
 
-  localStorage.setItem(storageKey(roomCode), JSON.stringify({ playerId, quizKey }));
-  enterWaiting();
+    // Already joined this room from this browser? Re-use that record - don't make a new one.
+    let existingId = adoptId || (players[deviceId()] ? deviceId() : null);
+
+    // Same name already on this team, from another device? Ask before adding a second row.
+    if (!existingId && !force) {
+      const twinId = Object.keys(players).find(k =>
+        (players[k].name || "").trim().toLowerCase() === name.toLowerCase() &&
+        players[k].team === selectedTeam);
+      if (twinId) { showDupWarn(name, twinId); return; }
+    }
+
+    if (existingId) {
+      playerId = existingId;
+      // keep whatever score that record already has; only correct the name/team
+      await update(ref(db, "rooms/" + roomCode + "/players/" + playerId), { name, team: selectedTeam });
+    } else {
+      playerId = deviceId();
+      await set(ref(db, "rooms/" + roomCode + "/players/" + playerId), {
+        name, team: selectedTeam, score: 0, questionIndex: 0, finished: false, joinedAt: Date.now()
+      });
+    }
+
+    saveSession();
+    enterWaiting();
+  } catch(e) {
+    joinError("Couldn't join — check your connection and try again.");
+  } finally {
+    joining = false;
+    btn.disabled = false;
+    btn.textContent = btnLabel;
+  }
+}
+
+function showDupWarn(name, twinId){
+  pendingTwinId = twinId;
+  document.getElementById("dupWarnText").textContent =
+    '"' + name + '" has already joined this team. If that was you (a refresh, or a different device), tap "That\'s me" to carry on with the same place — your points stay with you.';
+  document.getElementById("dupWarn").classList.remove("hidden");
+}
+function hideDupWarn(){
+  document.getElementById("dupWarn").classList.add("hidden");
 }
 
 function joinError(msg){
@@ -254,6 +337,23 @@ function enterWaiting(){
   const t = selectedTeam === "kiwi" ? KIWI : TUI;
   pill.textContent = t.label;
   pill.className = "team-pill " + t.key;
+
+  // Shared device: let the next student hand themselves a clean slate.
+  document.getElementById("notMeBtn").onclick = async () => {
+    try {
+      // drop the entry only if it hasn't scored anything yet
+      const snap = await get(ref(db, "rooms/" + roomCode + "/players/" + playerId));
+      const p = snap.val();
+      if (p && !p.score && !p.questionIndex && !p.finished) {
+        await set(ref(db, "rooms/" + roomCode + "/players/" + playerId), null);
+      }
+    } catch(e) { /* leave it for the teacher to remove */ }
+    try {
+      localStorage.removeItem(storageKey(roomCode));
+      localStorage.removeItem("wwu_device_id");
+    } catch(e){}
+    window.location.reload();
+  };
 
   if (roomMetaUnsub) roomMetaUnsub();
   roomMetaUnsub = onValue(ref(db, "rooms/" + roomCode + "/meta"), snap => {

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Writing Warm-Up — Live Quiz (Teacher)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="live-quiz-theme.css" />
+<style>
+  .logo{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.03em;margin-bottom:1.5rem}
+  .logo span{color:var(--gold)}
+  .code-box{
+    font-family:var(--font-display);font-size:clamp(2.5rem,10vw,4rem);letter-spacing:.35em;
+    text-align:center;color:var(--gold);padding:1rem 0 .25rem;
+  }
+  #qrcode{display:flex;justify-content:center;padding:1rem 0}
+  #qrcode img,#qrcode canvas{border-radius:10px;background:#fff;padding:10px}
+  .join-link{text-align:center;font-size:.85rem;word-break:break-all}
+  .lobby-col h3{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem;justify-content:space-between}
+  .lobby-list{list-style:none;display:flex;flex-direction:column;gap:.4rem;min-height:3rem}
+  .lobby-list li{background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:.55rem .8rem;font-size:.95rem}
+  .lobby-empty{color:var(--text-dim);font-size:.85rem;font-style:italic;padding:.5rem 0}
+  .score-row{display:flex;align-items:center;gap:1rem;background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:.75rem}
+  .score-row .rank{font-family:var(--font-display);font-size:1.6rem;color:var(--text-dim);width:2rem}
+  .score-row .name{flex:1;font-weight:600}
+  .score-row .pts{font-family:var(--font-display);font-size:1.8rem}
+  .score-bar-track{background:var(--bg);border-radius:6px;height:8px;overflow:hidden;margin-top:.4rem}
+  .score-bar-fill{height:100%;border-radius:6px;transition:width .5s ease}
+  .progress-note{text-align:center;color:var(--text-muted);font-size:.85rem;margin-top:.5rem}
+  .podium{display:flex;align-items:flex-end;justify-content:center;gap:.75rem;margin:1.5rem 0 2rem}
+  .podium-item{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px 10px 0 0;padding:1rem .75rem;text-align:center;width:8.5rem}
+  .podium-item.p1{order:2;height:9rem;border-top:3px solid var(--gold)}
+  .podium-item.p2{order:1;height:7rem;border-top:3px solid #c0c0c0}
+  .podium-item.p3{order:3;height:5.5rem;border-top:3px solid #cd7f32}
+  .podium-medal{font-size:1.8rem}
+  .podium-name{font-weight:700;font-size:.85rem;margin:.3rem 0 .15rem;word-break:break-word}
+  .podium-score{font-family:var(--font-display);font-size:1.3rem;color:var(--gold)}
+  .team-final{display:flex;gap:1rem;justify-content:center;margin:1.5rem 0}
+  .team-final .box{flex:1;max-width:220px;background:var(--bg-surface);border-radius:10px;padding:1.25rem;text-align:center}
+  .team-final .box.winner{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(250,204,21,.3)}
+  .winner-banner{font-family:var(--font-display);font-size:clamp(2rem,6vw,3.2rem);text-align:center;color:var(--gold);margin-bottom:.25rem}
+  .hidden{display:none !important}
+  .qtext{color:var(--text-muted);font-size:.9rem;margin:.15rem 0 1rem}
+  label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:.4rem}
+  .field{margin-bottom:1.25rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">Writing Warm-Up <span>Live Quiz</span> · Teacher</div>
+
+  <div id="view-config-error" class="card hidden">
+    <h2>⚠ Firebase not configured</h2>
+    <p class="muted" style="margin-top:.75rem">
+      Open <code>firebase-config.js</code> and paste in your Firebase project's config —
+      see <code>SETUP.md</code> for the 5-minute walkthrough.
+    </p>
+  </div>
+
+  <!-- SETUP: choose term/week -->
+  <div id="view-setup" class="card hidden">
+    <h2 style="margin-bottom:1rem">Start a Live Quiz</h2>
+    <div class="field">
+      <label>Term</label>
+      <select id="termSelect"></select>
+    </div>
+    <div class="field">
+      <label>Week</label>
+      <select id="weekSelect"></select>
+    </div>
+    <div id="weekPreview" class="qtext"></div>
+    <button class="btn" id="createRoomBtn" style="width:100%">Create Room →</button>
+
+    <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+      <label>Already running a room? (e.g. after a page refresh)</label>
+      <div class="row" style="gap:.6rem">
+        <input type="text" id="rejoinInput" maxlength="6" placeholder="Room code" style="flex:1" autocapitalize="characters" />
+        <button class="btn btn-outline" id="rejoinBtn">Rejoin</button>
+      </div>
+      <div id="rejoinError" class="error-box hidden" style="margin-top:.6rem"></div>
+    </div>
+  </div>
+
+  <!-- LOBBY: room code + QR + live joins -->
+  <div id="view-lobby" class="card hidden">
+    <p class="center muted" style="font-size:.75rem;letter-spacing:.14em;text-transform:uppercase">Room Code</p>
+    <div class="code-box" id="roomCodeDisplay">------</div>
+    <div id="qrcode"></div>
+    <p class="join-link muted" id="joinLinkText"></p>
+
+    <div class="grid2" style="margin-top:1.75rem">
+      <div class="lobby-col">
+        <h3><span class="team-pill kiwi">🥝 Kiwi</span><span id="kiwiCount">0</span></h3>
+        <ul class="lobby-list" id="kiwiList"></ul>
+      </div>
+      <div class="lobby-col">
+        <h3><span class="team-pill tui">🐦 Tui</span><span id="tuiCount">0</span></h3>
+        <ul class="lobby-list" id="tuiList"></ul>
+      </div>
+    </div>
+
+    <button class="btn" id="startQuizBtn" style="width:100%;margin-top:1.75rem">Start Quiz →</button>
+    <button class="btn btn-outline" id="cancelRoomBtn" style="width:100%;margin-top:.6rem">Cancel / New Room</button>
+  </div>
+
+  <!-- LIVE: scoreboard while playing -->
+  <div id="view-live" class="card hidden">
+    <h2 class="center" style="margin-bottom:.25rem">🏁 Live Scoreboard</h2>
+    <p class="progress-note" id="liveProgressNote"></p>
+    <div id="liveTeamScores" style="margin-top:1.5rem"></div>
+    <button class="btn" id="endQuizBtn" style="width:100%;margin-top:1.5rem">End Quiz &amp; Reveal Results →</button>
+  </div>
+
+  <!-- RESULTS: final -->
+  <div id="view-results" class="card hidden">
+    <div class="winner-banner" id="winnerBanner"></div>
+    <p class="center muted" id="winnerSub" style="margin-bottom:.5rem"></p>
+
+    <div class="team-final" id="teamFinalBoxes"></div>
+
+    <h3 class="center" style="margin:1.75rem 0 0;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Top Students</h3>
+    <div class="podium" id="podium"></div>
+
+    <button class="btn" id="newQuizBtn" style="width:100%;margin-top:1rem">New Quiz →</button>
+  </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="quiz-data.js"></script>
+<script src="qrcode.min.js"></script>
+<script type="module">
+import { initializeApp } from "./firebase-bundle.js";
+import {
+  getDatabase, ref, set, update, onValue, get
+} from "./firebase-bundle.js";
+
+const views = ["view-config-error","view-setup","view-lobby","view-live","view-results"];
+function show(id){ views.forEach(v => document.getElementById(v).classList.toggle("hidden", v!==id)); }
+
+const cfg = window.FIREBASE_CONFIG || {};
+if (!cfg.apiKey || cfg.apiKey.includes("PASTE_YOUR")) {
+  show("view-config-error");
+  throw new Error("Firebase not configured");
+}
+
+const app = initializeApp(cfg);
+const db = getDatabase(app);
+
+const KIWI = { key: "kiwi", label: "Team Kiwi 🥝", color: "#3b82f6" };
+const TUI  = { key: "tui",  label: "Team Tui 🐦",  color: "#f97316" };
+
+const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+function genRoomCode(){
+  let s = "";
+  for (let i=0;i<6;i++) s += CODE_CHARS[Math.floor(Math.random()*CODE_CHARS.length)];
+  return s;
+}
+
+let roomCode = null;
+let unsubPlayers = null;
+let unsubMeta = null;
+
+// ---------- SETUP VIEW ----------
+const termSelect = document.getElementById("termSelect");
+const weekSelect = document.getElementById("weekSelect");
+const weekPreview = document.getElementById("weekPreview");
+
+for (let t=1; t<=4; t++){
+  const o = document.createElement("option");
+  o.value = t; o.textContent = "Term " + t;
+  termSelect.appendChild(o);
+}
+for (let w=1; w<=10; w++){
+  const o = document.createElement("option");
+  o.value = w; o.textContent = "Week " + w;
+  weekSelect.appendChild(o);
+}
+function updatePreview(){
+  const key = termSelect.value + "-" + weekSelect.value;
+  const topics = (window.QUIZ_WEEK_TOPICS || {})[key];
+  weekPreview.textContent = topics ? topics.join(" · ") : "";
+}
+termSelect.onchange = updatePreview;
+weekSelect.onchange = updatePreview;
+updatePreview();
+
+document.getElementById("createRoomBtn").onclick = async () => {
+  const term = Number(termSelect.value);
+  const week = Number(weekSelect.value);
+  const key = term + "-" + week;
+  if (!(window.QUIZ_DATA || {})[key]) { alert("No quiz data found for that term/week."); return; }
+
+  roomCode = genRoomCode();
+  await set(ref(db, "rooms/" + roomCode), {
+    meta: { term, week, status: "waiting", questionCount: 16, createdAt: Date.now() },
+    players: {}
+  });
+  enterLobby();
+};
+
+document.getElementById("rejoinBtn").onclick = async () => {
+  const errBox = document.getElementById("rejoinError");
+  errBox.classList.add("hidden");
+  const code = (document.getElementById("rejoinInput").value || "").trim().toUpperCase();
+  if (!code) { errBox.textContent = "Enter a room code."; errBox.classList.remove("hidden"); return; }
+
+  const snap = await get(ref(db, "rooms/" + code + "/meta"));
+  if (!snap.exists()) { errBox.textContent = "No room found with that code."; errBox.classList.remove("hidden"); return; }
+
+  roomCode = code;
+  const meta = snap.val();
+  if (meta.status === "waiting") enterLobby();
+  else if (meta.status === "playing") enterLive();
+  else enterResults();
+};
+
+// ---------- LOBBY VIEW ----------
+function enterLobby(){
+  show("view-lobby");
+  document.getElementById("roomCodeDisplay").textContent = roomCode;
+
+  const studentUrl = new URL("student.html", window.location.href);
+  studentUrl.searchParams.set("room", roomCode);
+  document.getElementById("joinLinkText").textContent = studentUrl.toString();
+
+  const qrEl = document.getElementById("qrcode");
+  qrEl.innerHTML = "";
+  new QRCode(qrEl, { text: studentUrl.toString(), width: 200, height: 200, colorDark: "#0a0812", colorLight: "#ffffff" });
+
+  listenPlayers(renderLobbyPlayers);
+}
+
+function renderLobbyPlayers(players){
+  const kiwiList = document.getElementById("kiwiList");
+  const tuiList = document.getElementById("tuiList");
+  kiwiList.innerHTML = ""; tuiList.innerHTML = "";
+  let kiwiN = 0, tuiN = 0;
+  Object.values(players).forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = p.name;
+    if (p.team === "kiwi"){ kiwiList.appendChild(li); kiwiN++; }
+    else { tuiList.appendChild(li); tuiN++; }
+  });
+  if (kiwiN===0) kiwiList.innerHTML = '<li class="lobby-empty" style="background:none;border:none">Waiting for players…</li>';
+  if (tuiN===0) tuiList.innerHTML = '<li class="lobby-empty" style="background:none;border:none">Waiting for players…</li>';
+  document.getElementById("kiwiCount").textContent = kiwiN;
+  document.getElementById("tuiCount").textContent = tuiN;
+}
+
+document.getElementById("startQuizBtn").onclick = async () => {
+  await update(ref(db, "rooms/" + roomCode + "/meta"), { status: "playing", startedAt: Date.now() });
+  enterLive();
+};
+
+document.getElementById("cancelRoomBtn").onclick = () => {
+  cleanupListeners();
+  roomCode = null;
+  show("view-setup");
+};
+
+// ---------- LIVE VIEW ----------
+function enterLive(){
+  show("view-live");
+  listenPlayers(renderLiveScoreboard);
+}
+
+function renderLiveScoreboard(players){
+  const list = Object.values(players);
+  const totals = { kiwi: 0, tui: 0 };
+  let finished = 0;
+  list.forEach(p => { totals[p.team] = (totals[p.team]||0) + (p.score||0); if (p.finished) finished++; });
+
+  const teams = [
+    { ...KIWI, total: totals.kiwi },
+    { ...TUI,  total: totals.tui }
+  ].sort((a,b)=>b.total-a.total);
+
+  const maxTotal = Math.max(1, teams[0].total);
+  const box = document.getElementById("liveTeamScores");
+  box.innerHTML = "";
+  teams.forEach(t => {
+    const row = document.createElement("div");
+    row.className = "score-row";
+    row.innerHTML = `
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="team-pill ${t.key}">${t.label}</span>
+          <span class="pts" style="color:${t.color}">${t.total}</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:${(t.total/maxTotal*100).toFixed(0)}%;background:${t.color}"></div></div>
+      </div>`;
+    box.appendChild(row);
+  });
+  document.getElementById("liveProgressNote").textContent =
+    list.length ? `${finished} / ${list.length} students finished` : "Waiting for students to answer…";
+}
+
+document.getElementById("endQuizBtn").onclick = async () => {
+  await update(ref(db, "rooms/" + roomCode + "/meta"), { status: "finished", finishedAt: Date.now() });
+  enterResults();
+};
+
+// ---------- RESULTS VIEW ----------
+function enterResults(){
+  show("view-results");
+  listenPlayers(renderResults);
+}
+
+function renderResults(players){
+  const list = Object.values(players);
+  const totals = { kiwi: 0, tui: 0 };
+  list.forEach(p => { totals[p.team] = (totals[p.team]||0) + (p.score||0); });
+
+  const teams = [ { ...KIWI, total: totals.kiwi }, { ...TUI, total: totals.tui } ];
+  const isTie = teams[0].total === teams[1].total;
+  const winner = isTie ? null : (teams[0].total > teams[1].total ? teams[0] : teams[1]);
+
+  document.getElementById("winnerBanner").textContent = isTie ? "IT'S A TIE!" : `${winner.label} WINS!`;
+  document.getElementById("winnerBanner").style.color = isTie ? "var(--gold)" : winner.color;
+  document.getElementById("winnerSub").textContent =
+    `Team Kiwi ${totals.kiwi} · Team Tui ${totals.tui} — combined class score`;
+
+  const teamBoxes = document.getElementById("teamFinalBoxes");
+  teamBoxes.innerHTML = "";
+  teams.sort((a,b)=>b.total-a.total).forEach(t => {
+    const div = document.createElement("div");
+    div.className = "box" + (!isTie && t.key===winner.key ? " winner" : "");
+    div.innerHTML = `<div class="team-pill ${t.key}">${t.label}</div>
+      <div style="font-family:var(--font-display);font-size:2.2rem;color:${t.color};margin-top:.4rem">${t.total}</div>`;
+    teamBoxes.appendChild(div);
+  });
+
+  const top3 = list.slice().sort((a,b)=>(b.score||0)-(a.score||0)).slice(0,3);
+  const medals = ["🥇","🥈","🥉"];
+  const podium = document.getElementById("podium");
+  podium.innerHTML = "";
+  top3.forEach((p, i) => {
+    const div = document.createElement("div");
+    div.className = "podium-item p" + (i+1);
+    div.innerHTML = `<div class="podium-medal">${medals[i]}</div>
+      <div class="podium-name">${p.name}</div>
+      <div class="podium-score">${p.score||0}</div>`;
+    podium.appendChild(div);
+  });
+  if (top3.length === 0) podium.innerHTML = '<p class="muted center">No students joined this round.</p>';
+}
+
+document.getElementById("newQuizBtn").onclick = () => {
+  cleanupListeners();
+  roomCode = null;
+  show("view-setup");
+};
+
+// ---------- shared listener helpers ----------
+function listenPlayers(cb){
+  cleanupListeners(false);
+  unsubPlayers = onValue(ref(db, "rooms/" + roomCode + "/players"), snap => {
+    cb(snap.val() || {});
+  });
+}
+
+function cleanupListeners(clearMeta){
+  if (unsubPlayers) { unsubPlayers(); unsubPlayers = null; }
+  if (clearMeta !== false && unsubMeta) { unsubMeta(); unsubMeta = null; }
+}
+
+show("view-setup");
+</script>
+</body>
+</html>

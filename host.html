@@ -237,9 +237,37 @@ function renderLobbyPlayers(players){
   const tuiList = document.getElementById("tuiList");
   kiwiList.innerHTML = ""; tuiList.innerHTML = "";
   let kiwiN = 0, tuiN = 0;
+  // count names per team so repeats can be flagged for the teacher
+  const nameCount = {};
   Object.values(players).forEach(p => {
+    const k = p.team + "|" + (p.name || "").trim().toLowerCase();
+    nameCount[k] = (nameCount[k] || 0) + 1;
+  });
+  Object.entries(players).forEach(([id, p]) => {
     const li = document.createElement("li");
-    li.textContent = p.name;
+    li.style.display = "flex";
+    li.style.alignItems = "center";
+    li.style.gap = ".5rem";
+    const dupe = nameCount[p.team + "|" + (p.name || "").trim().toLowerCase()] > 1;
+
+    const nameEl = document.createElement("span");
+    nameEl.style.flex = "1";
+    nameEl.textContent = p.name + (dupe ? "  ⚠ repeated name" : "");
+    if (dupe) nameEl.style.color = "#facc15";
+    li.appendChild(nameEl);
+
+    const del = document.createElement("button");
+    del.textContent = "✕";
+    del.title = "Remove " + p.name + " from the lobby";
+    del.style.cssText = "background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:.95rem;line-height:1;padding:.15rem .3rem";
+    del.onmouseenter = () => del.style.color = "#e63946";
+    del.onmouseleave = () => del.style.color = "var(--text-muted)";
+    del.onclick = () => {
+      if (!confirm("Remove " + p.name + " from the lobby?")) return;
+      set(ref(db, "rooms/" + roomCode + "/players/" + id), null);
+    };
+    li.appendChild(del);
+
     if (p.team === "kiwi"){ kiwiList.appendChild(li); kiwiN++; }
     else { tuiList.appendChild(li); tuiN++; }
   });
