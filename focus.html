@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Writing Focus — Years 5–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf7f2; --bg-surface:#ffffff; --bg-card:#fffdf9; --bg-sunk:#f3efe7;
+  --border:rgba(26,23,38,.10); --border-hi:rgba(26,23,38,.22);
+  --text:#1a1726; --text-muted:rgba(26,23,38,.58); --text-dim:rgba(26,23,38,.32);
+  --mon:#e63946; --tue:#f4a261; --wed:#2ec4b6; --thu:#a855f7; --fri:#facc15;
+  --i-do:#3b82f6; --we-do:#10b981; --you-do:#f97316; --bridge:#8b5cf6; --close:#64748b;
+  --s1:#2ec4b6; --s2:#3b82f6; --s3:#f97316; --s4:#a855f7;
+  --font-display:"Bebas Neue","Impact",sans-serif;
+  --font-body:"Space Grotesk","DM Sans",system-ui,sans-serif;
+  --r-sm:4px; --r-md:8px; --r-lg:12px;
+  --shadow-card:0 2px 14px rgba(26,23,38,.07); --shadow-lift:0 8px 28px rgba(26,23,38,.12);
+}
+html{font-size:18px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;
+  background-image:radial-gradient(ellipse 70% 55% at 25% 0%,rgba(168,85,247,.08) 0%,transparent 65%),
+                   radial-gradient(ellipse 55% 45% at 85% 85%,rgba(46,196,182,.08) 0%,transparent 60%);
+  background-attachment:fixed}
+.app-shell{display:flex;flex-direction:column;min-height:100vh}
+.site-header{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);padding:1.1rem 2rem;display:flex;align-items:center;gap:1.5rem;
+  flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.site-header:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--mon) 0 20%,var(--tue) 20% 40%,var(--wed) 40% 60%,var(--thu) 60% 80%,var(--fri) 80% 100%)}
+.hub-link{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);
+  text-decoration:none;border:1px solid var(--border-hi);border-radius:20px;padding:.3rem .85rem;transition:.15s}
+.hub-link:hover{color:var(--text);border-color:var(--text);background:#fff}
+.wordmark{font-family:var(--font-display);font-size:2rem;letter-spacing:.04em;line-height:1}
+.wordmark span{color:var(--thu)}
+.header-sub{margin-left:auto;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.selector-bar{background:var(--bg-surface);border-bottom:1px solid var(--border);padding:1rem 2rem;
+  display:flex;align-items:flex-end;gap:1.25rem;flex-wrap:wrap;position:sticky;top:69px;z-index:90}
+.sg{display:flex;flex-direction:column;gap:4px}
+.sg label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+.sg select{font-family:var(--font-body);font-size:.95rem;font-weight:500;padding:.4rem 2.2rem .4rem .75rem;
+  border:1px solid var(--border-hi);border-radius:var(--r-sm);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(26,23,38,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right .65rem center;
+  appearance:none;-webkit-appearance:none;cursor:pointer;color:var(--text)}
+.sg select:focus{outline:none;border-color:var(--thu);box-shadow:0 0 0 3px rgba(168,85,247,.18)}
+.tabs{margin-left:auto;display:flex;gap:.4rem;flex-wrap:wrap}
+.tab{padding:.42rem 1rem;border:1px solid var(--border-hi);background:#fff;border-radius:20px;cursor:pointer;
+  font-family:var(--font-body);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:.15s}
+.tab:hover{color:var(--text);border-color:var(--text-dim)}
+.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
+.main{flex:1;padding:2.25rem 2rem 4rem;max-width:940px;margin:0 auto;width:100%}
+
+.lh{margin-bottom:1.5rem}
+.lh__meta{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;flex-wrap:wrap}
+.badge{display:inline-flex;padding:.2rem .7rem;border-radius:3px;font-size:.6rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.meta-txt{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.lh__topic{font-family:var(--font-display);font-size:clamp(2.3rem,5.5vw,3.6rem);line-height:.98;letter-spacing:.02em;margin-bottom:.4rem}
+.lh__stage{font-size:.8rem;color:var(--text-muted)}
+.walt{margin-top:.7rem;font-size:1.02rem;background:var(--bg-card);border:1px solid var(--border);
+  border-left:3px solid var(--thu);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:.75rem 1rem}
+.walt b{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:2px}
+.nz{margin-top:.55rem;font-size:.8rem;color:var(--text-muted);display:flex;gap:6px;align-items:flex-start}
+.nz-btn{color:var(--mon);font-weight:700;background:none;border:none;padding:0;font-family:var(--font-body);
+  font-size:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px;flex-shrink:0}
+.ao-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem}
+.ao-tag{display:inline-flex;padding:.2rem .7rem;border-radius:20px;font-size:.62rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;border:1px solid;cursor:pointer;background:transparent;
+  font-family:var(--font-body);transition:.15s}
+.ao-tag:hover{opacity:.7}
+.ao-panel{background:var(--bg-surface);border:1px solid var(--border-hi);border-radius:var(--r-md);
+  padding:.8rem 1.05rem;margin-top:.55rem;font-size:.9rem;line-height:1.6;color:var(--text-muted);display:none}
+.ao-panel.open{display:block}
+.ao-panel strong{color:var(--text)}
+
+.prog{display:flex;gap:.45rem;margin-bottom:1.3rem;flex-wrap:wrap}
+.prog__step{flex:1;min-width:110px;display:flex;align-items:center;gap:.5rem;padding:.55rem .7rem;border-radius:var(--r-sm);
+  cursor:pointer;border:1px solid var(--border);background:var(--bg-surface);text-align:left;transition:.15s;font-family:var(--font-body)}
+.prog__step:hover{border-color:var(--border-hi);box-shadow:var(--shadow-card)}
+.prog__step.active{border-color:currentColor;background:#fff;box-shadow:var(--shadow-card)}
+.prog__icon{font-size:1rem}
+.prog__label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+.prog__sub{font-size:.6rem;color:var(--text-muted)}
+
+.card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
+  margin-bottom:1.1rem;box-shadow:var(--shadow-card)}
+.card__head{padding:1rem 1.35rem;display:flex;align-items:center;gap:.9rem;border-bottom:1px solid var(--border)}
+.card__head h2{font-family:var(--font-display);font-size:1.45rem;font-weight:400;letter-spacing:.04em;line-height:1;color:var(--text)}
+.card__head p{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:2px}
+.card__mins{margin-left:auto;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;padding:.18rem .6rem;border-radius:20px;white-space:nowrap}
+.card__body{padding:1.2rem 1.35rem}
+.blk{margin-bottom:1rem}
+.blk:last-child{margin-bottom:0}
+.blk__label{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
+.instruction{font-size:1.08rem;line-height:1.7}
+.example-box{background:var(--bg-sunk);border-left:3px solid currentColor;border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:.85rem 1.1rem;font-size:1.06rem;line-height:1.7;white-space:pre-line}
+.demo-box{background:var(--bg-card);border:1px solid var(--border-hi);border-radius:var(--r-md);
+  padding:.85rem 1.1rem;font-size:1.04rem;line-height:1.7}
+.tip-box{display:flex;gap:.8rem;background:rgba(250,204,21,.13);border:1px solid rgba(250,204,21,.4);
+  border-radius:var(--r-md);padding:.75rem 1rem;font-size:.98rem;line-height:1.55}
+.prompt-box{display:flex;gap:.8rem;background:rgba(59,130,246,.09);border:1px solid rgba(59,130,246,.28);
+  border-radius:var(--r-md);padding:.75rem 1rem;font-size:.98rem;line-height:1.55}
+.sentence-list,.task-list{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.sentence-list li{background:var(--bg-sunk);border-radius:var(--r-sm);padding:.55rem .9rem;font-size:1.06rem;
+  display:flex;gap:.7rem;line-height:1.55;white-space:pre-line}
+.sentence-list li:before{content:"→";color:var(--text-dim);flex-shrink:0}
+.task-list li{background:var(--bg-sunk);border:1px solid var(--border);border-radius:var(--r-sm);padding:.6rem .9rem;
+  font-size:1.06rem;display:flex;gap:.8rem;line-height:1.55}
+.task-num{width:20px;height:20px;border-radius:50%;background:var(--border-hi);color:var(--text);font-size:.66rem;
+  font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+.bridge-card{background:linear-gradient(180deg,rgba(139,92,246,.09),rgba(139,92,246,.03));border-color:rgba(139,92,246,.28)}
+.warmup-tag{display:block;margin-top:.55rem;font-size:.78rem;color:var(--text-muted)}
+.warmup-tag b{color:var(--bridge)}
+.proc-card{border-color:rgba(46,196,182,.4);background:linear-gradient(180deg,rgba(46,196,182,.10),rgba(46,196,182,.02))}
+.stage-pill{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .8rem;border-radius:20px;color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.spotlight{background:#fff;border:1px dashed var(--border-hi);border-radius:var(--r-md);padding:.95rem 1.15rem;
+  font-size:1.02rem;line-height:1.65;margin-top:.8rem}
+.spotlight>b{display:block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--wed);margin-bottom:.3rem}
+.spot-title{font-weight:700;font-size:1.1rem;margin-bottom:.5rem}
+.routine{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.routine li{display:flex;gap:.8rem;background:var(--bg-sunk);border-radius:var(--r-md);padding:.7rem .9rem}
+.routine .rn{width:22px;height:22px;border-radius:50%;background:var(--wed);color:#fff;font-size:.68rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+.r-label{font-weight:700;font-size:.98rem}
+.say{display:block;background:#fff;border-left:3px solid var(--wed);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:.4rem .7rem;margin:.35rem 0;font-size:1rem;font-style:italic}
+.r-do{font-size:.96rem;color:var(--text-muted);line-height:1.6}
+.first-banner{background:rgba(230,57,70,.10);border:1px solid rgba(230,57,70,.35);border-radius:var(--r-md);
+  padding:.75rem 1rem;margin-bottom:.9rem;font-size:1rem;line-height:1.6}
+.first-banner b{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mon);margin-bottom:.25rem}
+.then-line{display:flex;align-items:center;gap:.6rem;margin:1rem 0 .6rem;font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+.then-line:before,.then-line:after{content:"";flex:1;height:1px;background:var(--border)}
+.watch{background:rgba(250,204,21,.14);border:1px solid rgba(250,204,21,.4);border-radius:var(--r-md);
+  padding:.7rem .95rem;margin-top:.7rem;font-size:.96rem;line-height:1.55}
+.watch b{color:var(--text)}
+/* toolbar */
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.tbtn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border:1px solid var(--border-hi);
+  background:#fff;border-radius:20px;cursor:pointer;font-family:var(--font-body);font-size:.66rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:.15s}
+.tbtn:hover{color:var(--text);border-color:var(--text);box-shadow:var(--shadow-card)}
+.tbtn--solid{background:var(--wed);border-color:var(--wed);color:#fff}
+.tbtn--solid:hover{color:#fff;background:#26a99d;border-color:#26a99d}
+#printArea{display:none}
+.pr-lesson{page-break-after:always;margin-bottom:2rem}
+.pr-lesson:last-child{page-break-after:auto}
+.pr-h1{font-size:20pt;font-weight:700;margin-bottom:.2rem}
+.pr-meta{font-size:9pt;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:.5rem}
+.pr-box{border:1px solid #bbb;border-radius:6px;padding:.5rem .7rem;margin-bottom:.5rem}
+.pr-box h3{font-size:11pt;margin-bottom:.2rem}
+.pr-label{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#666;margin:.4rem 0 .15rem}
+.pr-box ul,.pr-box ol{margin-left:1.1rem}
+/* --- student worksheet --- */
+.ws{font-family:inherit;color:#000;max-width:100%}
+.ws-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #000;padding-bottom:.3rem;margin-bottom:.5rem}
+.ws-title{font-size:16pt;font-weight:700}
+.ws-sub{font-size:9pt;letter-spacing:.08em;text-transform:uppercase;color:#444}
+.ws-namebar{display:flex;gap:1.2rem;font-size:10pt;margin-bottom:.7rem}
+.ws-namebar span{flex:1;border-bottom:1px solid #000;padding-bottom:2px}
+.ws-sec{border:1.5px solid #000;border-radius:6px;padding:.5rem .7rem;margin-bottom:.6rem;break-inside:avoid}
+.ws-sec h3{font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+.ws-prompt{font-size:13pt;font-weight:600;line-height:1.4}
+.ws-q{margin-bottom:.45rem}
+.ws-q b{font-size:10.5pt}
+.ws-line{border-bottom:1px solid #999;height:1.45em;margin-top:.28em}
+.ws-words{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.4rem}
+.ws-word{border:1px solid #666;border-radius:11px;padding:.05rem .5rem;font-size:9.5pt}
+.ws-start{font-size:10.5pt;font-style:italic;margin-bottom:.15rem}
+.ws-stuck{border:1.5px dashed #666;border-radius:6px;padding:.5rem .7rem;margin-bottom:.6rem;break-inside:avoid}
+.ws-stuck b{font-size:8pt;letter-spacing:.1em;text-transform:uppercase;display:block}
+.ws-two{display:flex;gap:.6rem}
+.ws-two>*{flex:1}
+.ws-tick{font-size:10pt;line-height:1.7}
+.ws-page{break-after:page;page-break-after:always}
+.ws-page:last-child{break-after:auto;page-break-after:auto}
+.ws-foot{font-size:8pt;color:#555;text-align:right;margin-top:.3rem}
+@page{size:A4 portrait;margin:12mm}
+.pr-box li{margin-bottom:.15rem}
+
+.panel{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-card);margin-bottom:1.25rem;overflow:hidden}
+.panel__head{padding:1rem 1.35rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.panel__head h2{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.04em;line-height:1}
+.panel__body{padding:1.35rem}
+.layer{margin-bottom:1.35rem}
+.layer:last-child{margin-bottom:0}
+.layer__label{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.45rem}
+.prompt-big{font-size:1.32rem;line-height:1.5;font-weight:500;background:rgba(250,204,21,.14);
+  border:1px solid rgba(250,204,21,.4);border-radius:var(--r-md);padding:1rem 1.2rem}
+.ladder{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.ladder li{background:var(--bg-sunk);border-radius:var(--r-sm);padding:.55rem .9rem;font-size:1rem;display:flex;gap:.7rem}
+.ladder li:before{content:attr(data-n);color:var(--text-dim);font-weight:700;flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{background:rgba(46,196,182,.13);border:1px solid rgba(46,196,182,.35);border-radius:20px;padding:.22rem .75rem;font-size:.85rem;font-weight:500}
+.starters{list-style:none;display:flex;flex-direction:column;gap:.35rem;margin-top:.6rem}
+.starters li{font-size:1rem;font-style:italic;padding-left:1rem;border-left:2px solid var(--wed)}
+.stuck-btn{width:100%;padding:.75rem 1rem;border:1px dashed var(--border-hi);border-radius:var(--r-md);
+  background:var(--bg-sunk);cursor:pointer;font-family:var(--font-body);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:.15s}
+.stuck-btn:hover{color:var(--text);border-color:var(--text-dim);background:#fff}
+.stuck-body{display:none;margin-top:.7rem;flex-direction:column;gap:.55rem}
+.stuck-body.open{display:flex}
+.stuck-item{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:.75rem 1rem;font-size:1rem}
+.stuck-item b{display:block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--you-do);margin-bottom:3px}
+
+.t-sec{margin-bottom:2rem}
+.t-sec h3{font-family:var(--font-display);font-size:1.7rem;letter-spacing:.03em;margin-bottom:.15rem}
+.t-sec .t-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:.9rem}
+table{width:100%;border-collapse:collapse;background:var(--bg-surface);border:1px solid var(--border);
+  border-radius:var(--r-md);overflow:hidden;font-size:.92rem}
+th{background:var(--bg-sunk);text-align:left;padding:.6rem .8rem;font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border)}
+td{padding:.6rem .8rem;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.tick{width:38px;text-align:center;color:var(--text-dim)}
+.exemplar{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:1.1rem 1.3rem;margin-bottom:1rem;box-shadow:var(--shadow-card)}
+.exemplar.weak{background:rgba(230,57,70,.04);border-color:rgba(230,57,70,.25)}
+.exemplar h4{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.6rem}
+.exemplar pre{font-family:var(--font-body);white-space:pre-wrap;font-size:1rem;line-height:1.75}
+.exemplar ul{margin:.8rem 0 0 1.1rem;font-size:.88rem;color:var(--text-muted)}
+.pill-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.pill-list li{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-md);padding:.65rem .95rem;font-size:.98rem}
+.pill-list li b{color:var(--we-do)}
+
+/* writing process view */
+.stage-box__img{display:block;width:100%;max-width:920px;margin:0 auto .9rem;border-radius:var(--r-md);background:#fff;border:1px solid var(--border)}
+.stage-box__imglink{display:block;text-decoration:none}
+.stage-box__zoom{display:block;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:-.55rem 0 .8rem}
+.wallcards{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.1rem 1.2rem;margin-bottom:1.25rem}
+.wallcards h3{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.04em;margin-bottom:.15rem}
+.wallcards p{font-size:.92rem;color:var(--text-muted);margin-bottom:.85rem}
+.wallcards img{display:block;width:100%;border-radius:var(--r-md);border:1px solid var(--border);background:#fff}
+.pc-thumb{width:100%;height:auto;border-radius:12px;border:1px solid var(--border);background:#fff;display:block}
+.pc-thumb-wrap{flex:0 0 230px;width:230px;text-decoration:none}
+.pc-thumb-cap{display:block;text-align:center;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-top:.3rem}
+@media (max-width:720px){.pc-thumb-wrap{flex:0 0 130px;width:130px}}
+.wc-page{break-after:page;page-break-after:always;min-height:262mm;display:flex;align-items:center;justify-content:center}
+.wc-page:last-child{break-after:auto;page-break-after:auto}
+.wc-page img{max-width:100%;max-height:262mm;display:block;margin:0 auto}
+.stage-grid{display:grid;grid-template-columns:1fr;gap:1.4rem;margin-bottom:1.5rem}
+.stage-box{background:var(--bg-surface);border:1px solid var(--border);border-top:5px solid;border-radius:var(--r-lg);
+  padding:1.25rem 1.35rem;box-shadow:var(--shadow-card)}
+.stage-box__n{font-family:var(--font-display);font-size:2.6rem;line-height:.9;letter-spacing:.03em}
+.stage-box__q{font-size:1.05rem;font-weight:600;margin:.4rem 0 .6rem}
+.stage-box__kid{background:var(--bg-sunk);border-radius:var(--r-md);padding:.7rem .9rem;font-size:.98rem;line-height:1.6;margin-bottom:.7rem}
+.stage-box__meta{font-size:.82rem;color:var(--text-muted);margin-bottom:.5rem}
+.stage-box ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;font-size:.88rem;color:var(--text-muted)}
+.stage-box ul li:before{content:"→ ";color:var(--text-dim)}
+.chant{background:var(--text);color:#fff;border-radius:var(--r-lg);padding:1.4rem 1.5rem;margin-bottom:1.25rem}
+.chant h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.04em;margin-bottom:.8rem;color:#fff}
+.chant-row{display:flex;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:1.02rem}
+.chant-row:last-child{border-bottom:none}
+.chant-call{color:#facc15;font-weight:700;min-width:105px}
+.map-row{display:flex;gap:1rem;align-items:flex-start;background:var(--bg-surface);border:1px solid var(--border);
+  border-radius:var(--r-md);padding:.85rem 1.1rem;margin-bottom:.6rem;cursor:pointer;transition:.15s}
+.map-row:hover{box-shadow:var(--shadow-lift);transform:translateY(-1px)}
+.map-num{font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--thu);width:2.6rem;flex-shrink:0}
+.map-t{font-weight:600}
+.map-s{font-size:.78rem;color:var(--text-muted)}
+.nav-btns{display:flex;justify-content:space-between;gap:1rem;margin-top:1.5rem}
+.nav-btn{padding:.55rem 1.4rem;border-radius:var(--r-sm);border:1px solid var(--border-hi);background:#fff;
+  font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;color:var(--text-muted);transition:.15s}
+.nav-btn:hover{color:var(--text);border-color:var(--text);box-shadow:var(--shadow-card)}
+.nav-btn--next{background:var(--text);color:#fff;border-color:var(--text)}
+.nav-btn--next:hover{background:var(--thu);border-color:var(--thu);color:#fff}
+@media (max-width:720px){
+  html{font-size:16px}
+  .site-header,.selector-bar,.main{padding-left:1rem;padding-right:1rem}
+  .selector-bar{top:auto;position:static}
+  .tabs{margin-left:0;width:100%}
+  .prog__step{min-width:calc(50% - .25rem)}
+}
+@media print{
+  .site-header,.selector-bar,.nav-btns,.prog,.stuck-btn,.ao-tag,.nz-btn,.toolbar{display:none!important}
+  body{background:#fff}
+  .stuck-body,.ao-panel{display:block!important}
+  .card,.panel{box-shadow:none;break-inside:avoid}
+  body.printing .app-shell{display:none!important}
+  body.printing #printArea{display:block!important;font-size:10.5pt}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="site-header">
+    <a class="hub-link" href="hub.html">← Writing Hub</a>
+    <div class="wordmark">WRITING <span>FOCUS</span></div>
+    <div class="header-sub">Years 5–6 · NZC Phase 2</div>
+  </header>
+
+  <div class="selector-bar">
+    <div class="sg"><label for="selTerm">Term</label>
+      <select id="selTerm"><option value="1">Term 1 — Narrative</option>
+      <option value="2">Term 2 — Explanation &amp; Report</option>
+      <option value="3">Term 3 — Persuasive & Speeches</option>
+      <option value="4">Term 4 — Poetry &amp; Reflection</option></select></div>
+    <div class="sg"><label for="selWeek">Week</label><select id="selWeek"></select></div>
+    <div class="sg"><label for="selDay">Day</label><select id="selDay"></select></div>
+    <div class="tabs">
+      <button class="tab active" data-view="lesson">Lesson</button>
+      <button class="tab" data-view="prompt">Weekly Prompt</button>
+      <button class="tab" data-view="process">Writing Process</button>
+      <button class="tab" data-view="map">Term Map</button>
+      <button class="tab" data-view="teacher">Teacher</button>
+    </div>
+  </div>
+
+  <main class="main" id="main"></main>
+</div>
+<div id="printArea"></div>
+
+<script src="focus-term1-data.js"></script>
+<script src="focus-term2-data.js"></script>
+<script src="focus-term3-data.js"></script>
+<script src="focus-term4-data.js"></script>
+<script>
+(function(){
+  var DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
+  var DAYCOL={Monday:"var(--mon)",Tuesday:"var(--tue)",Wednesday:"var(--wed)",Thursday:"var(--thu)",Friday:"var(--fri)"};
+  var STCOL=["","var(--s1)","var(--s2)","var(--s3)","var(--s4)"];
+  var T=1,W=1,D="Monday",VIEW="lesson";
+  var data=window.__WF_DATA[T];
+  var main=document.getElementById("main");
+  var selTerm=document.getElementById("selTerm");
+  var selWeek=document.getElementById("selWeek"),selDay=document.getElementById("selDay");
+  var UNIT_FILES={
+    1:{docx:"unit-plans/ACS_Writing_Unit_Plan_Term1_Narrative.docx",md:"unit-plans/Term1_Narrative_UnitPlan.md"},
+    2:{docx:"unit-plans/ACS_Writing_Unit_Plan_Term2_Explanation.docx",md:"unit-plans/Term2_Explanation_UnitPlan.md"},
+    3:{docx:"unit-plans/ACS_Writing_Unit_Plan_Term3_Persuasive.docx",md:"unit-plans/Term3_Persuasive_UnitPlan.md"},
+    4:{docx:"unit-plans/ACS_Writing_Unit_Plan_Term4_Poetry.docx",md:"unit-plans/Term4_Poetry_UnitPlan.md"}
+  };
+
+  function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function save(){try{localStorage.setItem("wf-pos",JSON.stringify({T:T,W:W,D:D,VIEW:VIEW}));}catch(e){}}
+  function load(){try{var p=JSON.parse(localStorage.getItem("wf-pos")||"{}");if(p.T&&window.__WF_DATA[p.T]){T=p.T;data=window.__WF_DATA[T];}if(p.W)W=p.W;if(p.D)D=p.D;if(p.VIEW)VIEW=p.VIEW;}catch(e){}}
+
+  function buildWeeks(){
+    selWeek.innerHTML="";
+    for(var i=1;i<=10;i++){var o=document.createElement("option");o.value=i;o.textContent="Week "+i+" — "+data.weeks[i].title;selWeek.appendChild(o);}
+    selWeek.value=W;
+  }
+  DAYS.forEach(function(d){var o=document.createElement("option");o.value=d;o.textContent=d;selDay.appendChild(o);});
+
+  selTerm.onchange=function(){
+    T=+this.value; data=window.__WF_DATA[T];
+    W=1; D="Monday"; buildWeeks(); render(); window.scrollTo({top:0});
+  };
+  selWeek.onchange=function(){W=+this.value;if(VIEW!=="lesson"&&VIEW!=="prompt")VIEW="lesson";syncTabs();render();};
+  selDay.onchange=function(){D=this.value;VIEW="lesson";syncTabs();render();};
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){
+    b.onclick=function(){VIEW=b.dataset.view;syncTabs();render();window.scrollTo({top:0});};});
+  function syncTabs(){Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){
+    b.classList.toggle("active",b.dataset.view===VIEW);});}
+
+  function cardOpen(id,icon,label,sub,colour,mins,extraClass){
+    return '<section class="card '+(extraClass||"")+'" id="'+id+'"><div class="card__head" style="color:'+colour+'">'+
+      '<span style="font-size:1.5rem">'+icon+'</span><div><h2>'+esc(label)+'</h2><p>'+esc(sub)+'</p></div>'+
+      (mins?'<span class="card__mins" style="background:'+colour+'">'+mins+' min</span>':'')+
+      '</div><div class="card__body">';
+  }
+  function blk(label,html){return '<div class="blk">'+(label?'<div class="blk__label">'+esc(label)+'</div>':'')+html+'</div>';}
+
+  // routine step — `say` and `doHtml` may contain trusted inline markup built above
+  function routineStepHTML(n,label,say,doHtml){
+    return '<li><span class="rn">'+n+'</span><div><div class="r-label">'+esc(label)+'</div>'+
+      (say?'<span class="say">'+say+'</span>':'')+'<div class="r-do">'+doHtml+'</div></div></li>';
+  }
+  function spotlightHTML(sp){
+    if(typeof sp==="string") return '<div class="spotlight"><b>Process spotlight — teach this today</b>'+esc(sp)+'</div>';
+    return '<div class="spotlight"><b>Process spotlight — teach this today ('+(sp.mins||4)+' min)</b>'+
+      '<div class="spot-title">'+esc(sp.title)+'</div>'+
+      (sp.prep?'<div class="r-do" style="margin-bottom:.6rem"><b>Before the lesson:</b> '+esc(sp.prep)+'</div>':'')+
+      '<ul class="routine">'+sp.steps.map(function(s,i){
+        return '<li><span class="rn">'+(i+1)+'</span><div>'+
+          (s.say?'<span class="say" style="margin-top:0">'+esc(s.say)+'</span>':'')+
+          '<div class="r-do" style="color:var(--text)">'+esc(s.do)+'</div></div></li>';}).join("")+'</ul>'+
+      (sp.watchFor?'<div class="watch"><b>Watch for:</b> '+esc(sp.watchFor)+'</div>':'')+
+      '</div>';
+  }
+
+  /* ---------- printing ---------- */
+  function strip(t){return String(t).replace(/^(I Do|We Do|You Do)\s*—\s*/,"");}
+  function prBox(title,mins,inner){
+    return '<div class="pr-box"><h3>'+esc(title)+(mins?' · '+mins+' min':'')+'</h3>'+inner+'</div>';
+  }
+  function lessonPrintHTML(w,dy){
+    var wk=data.weeks[w],day=wk.days[dy],st=data.process.stages[(day.process.stage||1)-1];
+    var sp=day.process.spotlight;
+    var h='<div class="pr-lesson"><div class="pr-meta">Writing Focus · Term '+T+' '+esc(data.meta.topic)+' · Week '+w+' — '+esc(wk.title)+' · '+dy+' · 25 minutes</div>'+
+      '<div class="pr-h1">'+esc(day.focus)+'</div>'+
+      '<div class="pr-label">WALT</div><div>'+esc(day.walt)+'</div>'+
+      '<div class="pr-label">NZC link</div><div>'+esc(day.nzLink)+'</div>'+
+      '<div class="pr-label">Curriculum focus</div><ul>'+day.aos.map(function(a){return '<li><b>'+esc(a.code)+'</b> — '+esc(a.label)+'</li>';}).join("")+'</ul>';
+    h+=prBox("Warm-Up Bridge",2,'<div>'+esc(day.bridge)+'</div>'+(wk.warmups[dy]?'<div class="pr-label">Today’s warm-up: '+esc(wk.warmups[dy])+'</div>':''));
+    h+=prBox("Process Check — Stage "+st.n+" "+st.key,sp?(1+(sp.mins||4)):1,
+      '<div><b>“'+esc(st.question)+'”</b> · hand action: '+esc(st.action)+'</div>'+
+      '<ol><li>“Hands — which stage are we in?” (silent hand action)</li>'+
+      '<li>“Name it.” Whole class: “Stage '+st.n+', '+esc(st.key)+' — '+esc(st.question)+'”</li>'+
+      '<li>One student: “How do you know we’re in that stage today?”</li>'+
+      '<li>'+esc(day.process.check)+'</li></ol>'+
+      (sp&&typeof sp==="object"?'<div class="pr-label">Process spotlight — '+esc(sp.title)+'</div>'+
+        (sp.prep?'<div><i>Before the lesson: '+esc(sp.prep)+'</i></div>':'')+
+        '<ol>'+sp.steps.map(function(s){return '<li>'+(s.say?'<b>Say:</b> '+esc(s.say)+'<br>':'')+esc(s.do)+'</li>';}).join("")+'</ol>'+
+        (sp.watchFor?'<div><b>Watch for:</b> '+esc(sp.watchFor)+'</div>':''):''));
+    h+=prBox("I Do — "+strip(day.iDo.title),day.iDo.mins,'<div>'+esc(day.iDo.instruction)+'</div>'+
+      (day.iDo.example?'<div class="pr-label">Example</div><div style="white-space:pre-line">'+esc(day.iDo.example)+'</div>':'')+
+      (day.iDo.demonstration?'<div class="pr-label">Think aloud</div><div>'+esc(day.iDo.demonstration)+'</div>':'')+
+      (day.iDo.tip?'<div class="pr-label">Tip</div><div>'+esc(day.iDo.tip)+'</div>':''));
+    h+=prBox("We Do — "+strip(day.weDo.title),day.weDo.mins,'<div>'+esc(day.weDo.instruction)+'</div>'+
+      (day.weDo.sentences?'<ul>'+day.weDo.sentences.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul>':'')+
+      (day.weDo.prompt?'<div class="pr-label">Discussion prompt</div><div>'+esc(day.weDo.prompt)+'</div>':''));
+    h+=prBox("You Do — "+strip(day.youDo.title),day.youDo.mins,'<div>'+esc(day.youDo.instruction)+'</div>'+
+      (day.youDo.tasks?'<ol>'+day.youDo.tasks.map(function(t){return '<li>'+esc(t)+'</li>';}).join("")+'</ol>':''));
+    h+=prBox("Close",2,'<div>'+esc(day.close)+'</div>');
+    return h+'</div>';
+  }
+  function weekPrintHTML(w){
+    var wk=data.weeks[w],p=wk.prompt;
+    var h='<div class="pr-lesson"><div class="pr-meta">Writing Focus · Term '+T+' '+esc(data.meta.topic)+'</div>'+
+      '<div class="pr-h1">Week '+w+' — '+esc(wk.title)+'</div>'+
+      '<div>'+esc(wk.stage)+'</div><div class="pr-label">Essential question</div><div>'+esc(wk.eq)+'</div>'+
+      prBox("Weekly writing prompt",0,'<div><b>'+esc(p.text)+'</b></div>'+
+        '<div class="pr-label">Question ladder</div><ol>'+p.ladder.map(function(q){return '<li>'+esc(q)+'</li>';}).join("")+'</ol>'+
+        '<div class="pr-label">Word bank</div><div>'+p.words.map(esc).join(" · ")+'</div>'+
+        '<div class="pr-label">Sentence starters</div><ul>'+p.starters.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul>'+
+        '<div class="pr-label">Still stuck?</div><ul><li><b>Borrow this:</b> '+esc(p.stuck.borrow)+'</li><li><b>Picture this:</b> '+esc(p.stuck.image)+'</li><li><b>Talk it out:</b> '+esc(p.stuck.talk)+'</li></ul>')+
+      prBox("Warm-Up links this week",0,'<ul>'+["Monday","Tuesday","Wednesday","Thursday"].map(function(d){
+        return '<li><b>'+d+'</b> — '+esc(wk.warmups[d])+'</li>';}).join("")+'</ul>')+
+      (wk.note?prBox("Teacher note",0,'<div>'+esc(wk.note)+'</div>'):'')+'</div>';
+    return h+DAYS.map(function(d){return lessonPrintHTML(w,d);}).join("");
+  }
+  function line(n){var o='';for(var i=0;i<(n||1);i++)o+='<div class="ws-line"></div>';return o;}
+  function worksheetHTML(w){
+    var wk=data.weeks[w], p=wk.prompt, m=data.meta;
+    var st=data.process.stages[(wk.stageNum||1)-1];
+    function head(sub){
+      return '<div class="ws-head"><div><div class="ws-title">'+esc(wk.title)+'</div>'+
+        '<div class="ws-sub">Writing Focus · Term '+T+' '+esc(m.topic)+' · Week '+w+(sub?' · '+sub:'')+'</div></div>'+
+        '<div class="ws-sub" style="text-align:right">'+st.icon+' Stage '+st.n+' — '+esc(st.key)+'<br>“'+esc(st.question)+'”</div></div>';
+    }
+    var h='<div class="ws">';
+    // ---- page 1: what am I writing, and what could I say? ----
+    h+='<div class="ws-page">'+head()+
+      '<div class="ws-namebar"><span>Name:</span><span>Date:</span></div>'+
+      '<div class="ws-sec"><h3>This week we are asking</h3><div style="font-size:11pt">'+esc(wk.eq)+'</div></div>'+
+      '<div class="ws-sec"><h3>Step 1 — the prompt</h3><div class="ws-prompt">'+esc(p.text)+'</div></div>'+
+      '<div class="ws-sec"><h3>Step 2 — questions to get you started (notes are fine — no full sentences needed)</h3>'+
+        p.ladder.map(function(q,i){return '<div class="ws-q"><b>'+(i+1)+'. '+esc(q)+'</b>'+line(2)+'</div>';}).join("")+
+      '</div>'+
+      '<div class="ws-two">'+
+        '<div class="ws-sec"><h3>Step 3 — words I could use (tick the ones you use)</h3>'+
+          '<div class="ws-words">'+p.words.map(function(x){return '<span class="ws-word">☐ '+esc(x)+'</span>';}).join("")+'</div>'+
+          '<h3 style="margin-top:.4rem">My own words for this piece</h3>'+line(3)+'</div>'+
+        '<div class="ws-sec"><h3>Sentence starters — try one</h3>'+
+          p.starters.map(function(x){return '<div class="ws-start">☐ '+esc(x)+'</div>';}).join("")+line(3)+'</div>'+
+      '</div>'+
+      '<div class="ws-foot">Page 1 of 2 — turn over to plan and start writing</div>'+
+    '</div>';
+    // ---- page 2: plan it and start ----
+    h+='<div class="ws-page">'+head('page 2')+
+      '<div class="ws-sec"><h3>Step 4 — my plan / my notes</h3>'+line(13)+'</div>'+
+      '<div class="ws-sec"><h3>Step 5 — my first sentence (write it properly — you can change it later)</h3>'+line(5)+'</div>'+
+      '<div class="ws-stuck"><b>Only if you are stuck — you do not have to read this</b>'+
+        '<div style="font-size:10.5pt;margin-top:.3rem"><b style="display:inline">Borrow this idea:</b> '+esc(p.stuck.borrow)+'</div>'+
+        '<div style="font-size:10.5pt;margin-top:.25rem"><b style="display:inline">Picture this:</b> '+esc(p.stuck.image)+'</div>'+
+        '<div style="font-size:10.5pt;margin-top:.25rem"><b style="display:inline">Talk it out first:</b> '+esc(p.stuck.talk)+'</div></div>'+
+      '<div class="ws-sec"><h3>Before I hand this in</h3><div class="ws-tick">'+
+        '☐ I answered the questions in Step 2 &nbsp;&nbsp; ☐ I used at least two words from the bank<br>'+
+        '☐ I know which stage of our writing process I am in &nbsp;&nbsp; ☐ I read my first sentence out loud'+
+      '</div></div>'+
+      '<div class="ws-foot">Page 2 of 2</div>'+
+    '</div>';
+    return h+'</div>';
+  }
+  function doPrint(html){
+    var pa=document.getElementById("printArea");
+    pa.innerHTML=html;document.body.classList.add("printing");
+    window.print();
+    setTimeout(function(){document.body.classList.remove("printing");pa.innerHTML="";},600);
+  }
+  var PROC_IMG={FILL:"images/process/fill",FIND:"images/process/find",SHAPE:"images/process/shape",SHARE:"images/process/share"};
+  function procImg(key){ var b=PROC_IMG[(key||"").toUpperCase()]; return b?b+".webp":""; }
+  function procImgPrint(key){ var b=PROC_IMG[(key||"").toUpperCase()]; return b?b+"-print.png":""; }
+  function wallCardsHTML(){
+    var st=data.process.stages;
+    return '<div class="ws">'+st.map(function(s){
+      return '<div class="wc-page"><img src="'+procImgPrint(s.key)+'" alt="Stage '+s.n+' — '+esc(s.key)+'"></div>';
+    }).join("")+'</div>';
+  }
+  function toolbarHTML(){
+    return '<div class="toolbar">'+
+      '<button class="tbtn tbtn--solid" id="pLesson">🖨 Print this lesson</button>'+
+      '<button class="tbtn" id="pWeek">🖨 Print the whole week</button>'+
+      '<button class="tbtn" id="pSheet">📝 Print student worksheet</button>'+
+      '<a class="tbtn" href="'+UNIT_FILES[T].docx+'" download>⬇ Unit plan (Word)</a>'+
+      '<a class="tbtn" href="'+UNIT_FILES[T].md+'" download>⬇ Full unit plan (Markdown)</a>'+
+      '</div>';
+  }
+  function wireToolbar(){
+    var a=document.getElementById("pLesson"),b=document.getElementById("pWeek"),c=document.getElementById("pSheet");
+    if(a)a.onclick=function(){doPrint(lessonPrintHTML(W,D));};
+    if(b)b.onclick=function(){doPrint(weekPrintHTML(W));};
+    if(c)c.onclick=function(){doPrint(worksheetHTML(W));};
+  }
+
+  function renderLesson(){
+    var wk=data.weeks[W],day=wk.days[D],col=DAYCOL[D];
+    var warm=wk.warmups[D], st=data.process.stages[(day.process.stage||1)-1];
+
+    var h=toolbarHTML()+'<div class="lh"><div class="lh__meta">'+
+      '<span class="badge" style="background:'+col+'">'+D+'</span>'+
+      '<span class="meta-txt">Term '+T+' · Week '+W+' · '+esc(wk.title)+'</span>'+
+      '<span class="meta-txt" style="margin-left:auto">'+esc(wk.stage)+'</span></div>'+
+      '<h1 class="lh__topic">'+esc(day.focus)+'</h1>'+
+      '<div class="walt"><b>WALT</b>'+esc(day.walt)+'</div>'+
+      '<div class="nz"><button class="nz-btn" id="nzBtn">NZC link ▾</button><span>'+esc(wk.eq)+'</span></div>'+
+      '<div class="ao-panel" id="nzPanel"><strong>Curriculum focus:</strong> '+esc(day.nzLink)+'</div>'+
+      '<div class="ao-tags">'+day.aos.map(function(a,i){
+        return '<button class="ao-tag" data-ao="'+i+'" style="color:'+col+';border-color:'+col+'">'+esc(a.label)+'</button>';}).join("")+'</div>'+
+      day.aos.map(function(a,i){return '<div class="ao-panel" id="ao'+i+'"><strong>'+esc(a.code)+'</strong> — '+esc(a.detail)+'</div>';}).join("")+
+      '</div>';
+
+    var steps=[["bridge","🔗","Bridge",2],["process","🧭","Process",1],["ido","👁","I Do",day.iDo.mins],
+               ["wedo","🤝","We Do",day.weDo.mins],["youdo","✍️","You Do",day.youDo.mins],["close","⭐","Close",2]];
+    var cols={bridge:"var(--bridge)",process:"var(--wed)",ido:"var(--i-do)",wedo:"var(--we-do)",youdo:"var(--you-do)",close:"var(--close)"};
+    h+='<div class="prog">'+steps.map(function(s){
+      return '<button class="prog__step" style="color:'+cols[s[0]]+'" data-scroll="'+s[0]+'">'+
+        '<span class="prog__icon">'+s[1]+'</span><span><span class="prog__label">'+s[2]+'</span><br>'+
+        '<span class="prog__sub">'+s[3]+' min</span></span></button>';}).join("")+'</div>';
+
+    // bridge
+    h+=cardOpen("bridge","🔗","Warm-Up Bridge","Connect to this week's Daily Warm-Up","var(--bridge)",2,"bridge-card")+
+       '<div class="instruction">'+esc(day.bridge)+'</div>'+
+       (warm?'<span class="warmup-tag">Today’s warm-up: <b>'+esc(warm)+'</b></span>':'')+
+       '</div></section>';
+
+    // process check
+    var sp=day.process.spotlight, spMins=(sp&&sp.mins)||4;
+    var spFirst = !!(sp && typeof sp==="object" && sp.first);
+    h+=cardOpen("process","🧭","Process Check","The same 60-second routine, every lesson","var(--wed)",sp?(1+spMins):1,"proc-card")+
+       '<div class="blk" style="display:flex;gap:.8rem;align-items:flex-start">'+
+       (procImg(st.key)?'<a class="pc-thumb-wrap" href="'+procImg(st.key)+'" target="_blank" rel="noopener"><img class="pc-thumb" src="'+procImg(st.key)+'" alt="Stage '+st.n+' — '+esc(st.key)+' wall card"><span class="pc-thumb-cap">Tap to open full size</span></a>':'')+
+       '<div><span class="stage-pill" style="background:'+STCOL[st.n]+'">'+st.icon+' Today we are in Stage '+st.n+' — '+esc(st.key)+'</span>'+
+       '<div style="margin-top:.55rem;font-size:1.04rem"><b>“'+esc(st.question)+'”</b> · hand action: '+esc(st.action)+'</div>'+
+       '<div style="margin-top:.3rem;font-size:.84rem;color:var(--text-muted)">Point at this card on the wall as they answer.</div></div></div>'+
+       (spFirst?'<div class="first-banner"><b>⚠ Teach the spotlight first today</b>'+esc(sp.firstNote||'')+'</div>'+spotlightHTML(sp)+
+         '<div class="then-line">Then — and only then — run the routine</div>':'')+
+       '<div class="blk"><div class="blk__label">'+(spFirst?'The routine (60 seconds) — from now on this comes first':'Run it like this (60 seconds)')+'</div><ul class="routine">'+
+         routineStepHTML(1,"Ask with your hands",'"Hands — which stage are we in?"',
+           'Students answer silently with the hand action: '+st.action.toLowerCase().replace(/\.$/,'')+'. Nobody speaks. Scan the room in three seconds. If it\'s messy, don\'t correct anyone — do the action yourself, say "with me", and let them copy.')+
+         routineStepHTML(2,"Name it together",'"Name it."',
+           'Whole class, out loud together: <b>"Stage '+st.n+', '+esc(st.key)+' — '+esc(st.question)+'"</b> Choral, so the unsure students are carried by the confident ones. That is the point, not a problem.')+
+         routineStepHTML(3,"One student justifies it",'"[Name] — how do you know we\'re in that stage today?"',
+           'Pick one student (work through the roll across the term). The answer must point at what the class is <b>actually doing today</b>, not at the wall. If you get "because it says so on the wall", reply "That\'s where it\'s written — how do you KNOW?" and let them try again.')+
+         routineStepHTML(4,"Today's extra question",esc(day.process.check),
+           'One quick question linking the stage to today\'s work. Take one or two answers, don\'t discuss it, move straight into the I Do. If you\'re short of time, this is the step you drop.')+
+       '</ul></div>'+
+       (sp&&!spFirst?spotlightHTML(sp):'')+
+       '</div></section>';
+
+    // I Do
+    h+=cardOpen("ido","👁","I Do","Teacher models and thinks aloud","var(--i-do)",day.iDo.mins)+
+       '<div class="blk"><div class="blk__label">'+esc(day.iDo.title)+'</div><div class="instruction">'+esc(day.iDo.instruction)+'</div></div>'+
+       (day.iDo.example?blk("Example",'<div class="example-box" style="color:var(--i-do)">'+esc(day.iDo.example)+'</div>'):'')+
+       (day.iDo.demonstration?blk("Think aloud",'<div class="demo-box">'+esc(day.iDo.demonstration)+'</div>'):'')+
+       (day.iDo.tip?'<div class="tip-box"><span>💡</span><span>'+esc(day.iDo.tip)+'</span></div>':'')+
+       '</div></section>';
+
+    // We Do
+    h+=cardOpen("wedo","🤝","We Do","Joint construction — class supplies, teacher scribes","var(--we-do)",day.weDo.mins)+
+       '<div class="blk"><div class="blk__label">'+esc(day.weDo.title)+'</div><div class="instruction">'+esc(day.weDo.instruction)+'</div></div>'+
+       (day.weDo.sentences?blk("Work through together",'<ul class="sentence-list">'+day.weDo.sentences.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul>'):'')+
+       (day.weDo.prompt?'<div class="prompt-box"><span>💬</span><span>'+esc(day.weDo.prompt)+'</span></div>':'')+
+       '</div></section>';
+
+    // You Do
+    h+=cardOpen("youdo","✍️","You Do","Independent or paired writing","var(--you-do)",day.youDo.mins)+
+       '<div class="blk"><div class="blk__label">'+esc(day.youDo.title)+'</div><div class="instruction">'+esc(day.youDo.instruction)+'</div></div>'+
+       (day.youDo.tasks?'<ul class="task-list">'+day.youDo.tasks.map(function(t,i){
+          return '<li><span class="task-num">'+(i+1)+'</span><span>'+esc(t)+'</span></li>';}).join("")+'</ul>':'')+
+       '</div></section>';
+
+    // Close
+    h+=cardOpen("close","⭐","Close","One share, one preview","var(--close)",2)+
+       '<div class="instruction">'+esc(day.close)+'</div></div></section>';
+
+    h+='<div class="nav-btns"><button class="nav-btn" id="prevBtn">← Previous lesson</button>'+
+       '<button class="nav-btn nav-btn--next" id="nextBtn">Next lesson →</button></div>';
+
+    main.innerHTML=h;
+    wireToolbar();
+    var nzB=document.getElementById("nzBtn"),nzP=document.getElementById("nzPanel");
+    nzB.onclick=function(){nzP.classList.toggle("open");nzB.textContent=nzP.classList.contains("open")?"NZC link ▴":"NZC link ▾";};
+    Array.prototype.forEach.call(main.querySelectorAll("[data-ao]"),function(b){
+      b.onclick=function(){document.getElementById("ao"+b.dataset.ao).classList.toggle("open");};});
+    Array.prototype.forEach.call(main.querySelectorAll("[data-scroll]"),function(b){
+      b.onclick=function(){document.getElementById(b.dataset.scroll).scrollIntoView({behavior:"smooth",block:"start"});
+        Array.prototype.forEach.call(main.querySelectorAll(".prog__step"),function(x){x.classList.remove("active");});
+        b.classList.add("active");};});
+    document.getElementById("prevBtn").onclick=function(){step(-1);};
+    document.getElementById("nextBtn").onclick=function(){step(1);};
+  }
+
+  function step(dir){
+    var i=DAYS.indexOf(D)+dir;
+    if(i<0){ if(W>1){W--;i=4;} else i=0; }
+    else if(i>4){ if(W<10){W++;i=0;} else i=4; }
+    D=DAYS[i];render();window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function renderPrompt(){
+    var wk=data.weeks[W],p=wk.prompt;
+    var h=toolbarHTML()+'<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--fri)">Weekly Prompt</span>'+
+      '<span class="meta-txt">Term '+T+' · Week '+W+'</span></div>'+
+      '<h1 class="lh__topic">'+esc(wk.title)+'</h1><div class="lh__stage">'+esc(wk.stage)+'</div></div>';
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.4rem">💡</span><h2>The Prompt</h2></div><div class="panel__body">'+
+      '<div class="layer"><div class="layer__label">Layer 1 — the prompt</div><div class="prompt-big">'+esc(p.text)+'</div></div>'+
+      '<div class="layer"><div class="layer__label">Layer 2 — question ladder (start here if you’re stuck)</div><ul class="ladder">'+
+        p.ladder.map(function(q,i){return '<li data-n="'+(i+1)+'">'+esc(q)+'</li>';}).join("")+'</ul></div>'+
+      '<div class="layer"><div class="layer__label">Layer 3 — word & sentence-starter bank</div><div class="chips">'+
+        p.words.map(function(w){return '<span class="chip">'+esc(w)+'</span>';}).join("")+'</div><ul class="starters">'+
+        p.starters.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div>'+
+      '<div class="layer"><div class="layer__label">Layer 4 — only if you need it</div>'+
+        '<button class="stuck-btn" id="stuckBtn">Still stuck? Click here 🔓</button>'+
+        '<div class="stuck-body" id="stuckBody">'+
+          '<div class="stuck-item"><b>Borrow this idea</b>'+esc(p.stuck.borrow)+'</div>'+
+          '<div class="stuck-item"><b>Picture this</b>'+esc(p.stuck.image)+'</div>'+
+          '<div class="stuck-item"><b>Talk it out first</b>'+esc(p.stuck.talk)+'</div>'+
+        '</div></div></div></div>';
+    if(wk.note){h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">📚</span><h2>Teacher note</h2></div>'+
+      '<div class="panel__body"><div class="instruction">'+esc(wk.note)+'</div></div></div>';}
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🔗</span><h2>Warm-Up links this week</h2></div><div class="panel__body"><ul class="pill-list">'+
+      ["Monday","Tuesday","Wednesday","Thursday"].map(function(d){return '<li><b>'+d+'</b> — '+esc(wk.warmups[d])+'</li>';}).join("")+
+      '</ul><p style="margin-top:.8rem;font-size:.85rem;color:var(--text-muted)">The Daily Warm-Up runs Monday–Thursday, so Friday’s bridge looks back across the whole week.</p></div></div>';
+    main.innerHTML=h;
+    wireToolbar();
+    var b=document.getElementById("stuckBtn"),bd=document.getElementById("stuckBody");
+    b.onclick=function(){bd.classList.toggle("open");b.textContent=bd.classList.contains("open")?"Hide the hints 🔒":"Still stuck? Click here 🔓";};
+  }
+
+  function renderProcess(){
+    var pr=data.process;
+    var h='<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--wed)">Our Writing Process</span>'+
+      '<span class="meta-txt">Taught explicitly · checked every lesson · assessed Week 10</span></div>'+
+      '<h1 class="lh__topic">'+esc(pr.mnemonic)+'</h1>'+
+      '<div class="walt"><b>Why we teach it</b>'+esc(pr.intro)+'</div>'+
+      '<div class="nz"><span>'+esc(pr.mnemonicNote)+'</span></div></div>';
+
+    h+='<div class="wallcards"><h3>The four wall cards</h3>'+
+      '<p>These are the classroom posters for FILL · FIND · SHAPE · SHARE. Print one per A4 page and put them up in order before Week 1 — the whole routine points at them. They are line drawings on purpose: a student can colour one in and it becomes theirs.</p>'+
+      '<img src="images/process/all-four.webp" alt="The four writing-process wall cards: FILL, FIND, SHAPE and SHARE" loading="lazy">'+
+      '<div class="toolbar" style="margin:.9rem 0 0"><button class="tbtn tbtn--solid" id="pCards">🖨 Print the four wall cards (A4)</button></div></div>';
+
+    h+='<div class="stage-grid">'+pr.stages.map(function(s){
+      var im=procImg(s.key);
+      return '<div class="stage-box" style="border-top-color:'+s.colour+'">'+
+        (im?'<a class="stage-box__imglink" href="'+im+'" target="_blank" rel="noopener"><img class="stage-box__img" src="'+im+'" alt="Stage '+s.n+' — '+esc(s.key)+': '+esc(s.question)+'" loading="lazy"></a><span class="stage-box__zoom">Tap to open full size</span>':'')+
+        '<div class="stage-box__n" style="color:'+s.colour+'">'+s.icon+' '+esc(s.key)+'</div>'+
+        '<div class="stage-box__q">Stage '+s.n+' — “'+esc(s.question)+'”</div>'+
+        '<div class="stage-box__kid">'+esc(s.kid)+'</div>'+
+        '<div class="stage-box__meta"><b>Hand action:</b> '+esc(s.action)+'</div>'+
+        '<div class="stage-box__meta"><b>Teacher language:</b> '+esc(s.teacherLang)+'</div>'+
+        '<div class="stage-box__meta"><b>'+esc(s.weeks)+'</b> · '+esc(s.acs)+'</div>'+
+        '<ul>'+s.looksLike.map(function(l){return '<li>'+esc(l)+'</li>';}).join("")+'</ul></div>';}).join("")+'</div>';
+
+    h+='<div class="chant"><h3>THE CHANT — call and response, 20 seconds</h3>'+
+      pr.chant.map(function(c){return '<div class="chant-row"><span class="chant-call">'+esc(c.call)+'</span><span>'+esc(c.response)+'</span></div>';}).join("")+
+      '</div>';
+
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🍽️</span><h2>'+esc(pr.analogy.title)+'</h2></div>'+
+      '<div class="panel__body"><div class="instruction">'+esc(pr.analogy.text)+'</div></div></div>';
+
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🔁</span><h2>It’s a cycle, not a line</h2></div>'+
+      '<div class="panel__body"><div class="instruction">'+esc(pr.cycle)+'</div></div></div>';
+
+    if(pr.setup){
+      h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🧰</span><h2>'+esc(pr.setup.title)+'</h2></div>'+
+        '<div class="panel__body"><ul class="pill-list">'+pr.setup.items.map(function(i){
+          return '<li><b>'+esc(i.thing)+'</b><br><span style="font-size:.94rem;color:var(--text-muted)">'+esc(i.how)+'</span></li>';}).join("")+
+        '</ul><div class="watch" style="margin-top:.9rem"><b>Tip:</b> '+esc(pr.setup.note)+'</div></div></div>';
+    }
+    if(pr.routine){
+      h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">⏱️</span><h2>'+esc(pr.routine.title)+'</h2></div>'+
+        '<div class="panel__body"><div class="instruction" style="margin-bottom:1rem">'+esc(pr.routine.intro)+'</div>'+
+        '<ul class="routine">'+pr.routine.steps.map(function(s){
+          return '<li><span class="rn">'+s.n+'</span><div><div class="r-label">'+esc(s.label)+'</div>'+
+            '<span class="say">'+esc(s.say)+'</span><div class="r-do">'+esc(s.do)+'</div></div></li>';}).join("")+
+        '</ul><div class="watch" style="margin-top:.9rem">'+esc(pr.routine.note)+'</div></div></div>';
+    }
+
+    h+='<div class="t-sec"><h3>How we make it stick</h3><div class="t-sub">The learning techniques behind the design — worth knowing, because they’re why the routine looks the way it does.</div>'+
+      '<table><tr><th>Technique</th><th>How it shows up</th></tr>'+
+      pr.memoryMoves.map(function(m){return '<tr><td><b>'+esc(m.name)+'</b></td><td>'+esc(m.how)+'</td></tr>';}).join("")+'</table></div>';
+
+    h+='<div class="t-sec"><h3>Teaching &amp; recall schedule</h3><div class="t-sub">Full teaching in five weeks; spaced recalls at widening intervals in the others.</div>'+
+      '<table><tr><th>Week</th><th>What happens</th></tr>'+
+      pr.schedule.map(function(s){return '<tr><td><b>'+esc(s.w)+'</b></td><td>'+esc(s.what)+'</td></tr>';}).join("")+'</table></div>';
+
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">✅</span><h2>'+esc(pr.assessment.title)+'</h2></div>'+
+      '<div class="panel__body"><div class="prompt-big" style="font-size:1.1rem">'+esc(pr.assessment.prompt)+'</div>'+
+      '<div class="layer__label" style="margin-top:1rem">A strong answer…</div><ul class="pill-list">'+
+      pr.assessment.success.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div></div>';
+
+    main.innerHTML=h;
+    var pc=document.getElementById("pCards");
+    if(pc)pc.onclick=function(){doPrint(wallCardsHTML());};
+  }
+
+  function renderMap(){
+    var m=data.meta;
+    var h='<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--thu)">Term '+T+'</span>'+
+      '<span class="meta-txt">'+esc(m.topic)+' · 10 weeks</span></div>'+
+      '<h1 class="lh__topic">'+esc(m.title)+'</h1>'+
+      '<div class="walt"><b>Throughline</b>'+esc(m.throughline)+'</div></div>';
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🧭</span><h2>The Writing Process Across the Term</h2></div><div class="panel__body"><ul class="pill-list">'+
+      m.arc.map(function(a){return '<li><b>'+esc(a.s)+'</b> · '+esc(a.t)+'<br><span style="font-size:.88rem;color:var(--text-muted)">'+esc(a.d)+'</span></li>';}).join("")+'</ul></div></div>';
+    h+='<div class="t-sec"><h3>Week by Week</h3><div class="t-sub">Click any week to jump to Monday.</div>';
+    for(var i=1;i<=10;i++){var wk=data.weeks[i];
+      h+='<div class="map-row" data-week="'+i+'"><div class="map-num" style="color:'+STCOL[wk.stageNum]+'">'+i+'</div><div><div class="map-t">'+esc(wk.title)+'</div>'+
+         '<div class="map-s">'+esc(wk.stage)+' · '+esc(wk.eq)+'</div></div></div>';}
+    h+='</div>';
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">✝️</span><h2>Faith &amp; Values</h2></div><div class="panel__body">'+
+      '<p style="margin-bottom:.7rem"><b>Anchor value:</b> '+esc(m.value)+'</p>'+
+      '<p style="margin-bottom:.7rem"><b>Unit concept:</b> '+esc(m.unitConcept)+'</p>'+
+      '<p style="margin-bottom:.5rem"><b>Story arc as framework:</b> Creation → Fall → Redemption → Restoration. Something good · something breaks · something is put right · something is made new.</p>'+
+      '<ul class="pill-list" style="margin-top:.8rem">'+m.scripture.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div></div>';
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">📘</span><h2>NZC Phase 2 Links</h2></div><div class="panel__body"><ul class="pill-list">'+
+      m.nzc.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div></div>';
+    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">📄</span><h2>Published Piece</h2></div><div class="panel__body"><div class="instruction">'+esc(m.published)+'</div></div></div>';
+    main.innerHTML=h;
+    Array.prototype.forEach.call(main.querySelectorAll("[data-week]"),function(r){
+      r.onclick=function(){W=+r.dataset.week;D="Monday";VIEW="lesson";selWeek.value=W;selDay.value=D;syncTabs();render();window.scrollTo({top:0,behavior:"smooth"});};});
+  }
+
+  function renderTeacher(){
+    var h='<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--we-do)">Teacher</span>'+
+      '<span class="meta-txt">Term '+T+' · '+esc(data.meta.topic)+'</span></div><h1 class="lh__topic">Assessment &amp; Support</h1></div>';
+    h+='<div class="t-sec"><h3>Marking load — the whole term</h3><div class="t-sub">Two marking events in ten weeks. Everything else is self- or peer-assessed in the same criteria language.</div>'+
+      '<table><tr><th>When</th><th>What</th><th>How long</th></tr>'+
+      data.marking.map(function(m){return '<tr><td><b>'+esc(m.w)+'</b></td><td>'+esc(m.what)+'</td><td>'+esc(m.time)+'</td></tr>';}).join("")+'</table></div>';
+    h+='<div class="t-sec"><h3>Single-point rubric</h3><div class="t-sub">One standard, not four columns. Only Glow and Grow need writing — and Grow is ONE next step.</div>'+
+      '<table><tr><th>✓</th><th>Success criteria</th><th>Glow</th><th>Grow →</th></tr>'+
+      data.rubric.map(function(r){return '<tr><td class="tick">☐</td><td><b>'+esc(r.c)+'</b><br><span style="font-size:.86rem;color:var(--text-muted)">'+esc(r.d)+'</span></td><td></td><td></td></tr>';}).join("")+'</table>'+
+      '<p style="margin-top:.7rem;font-size:.88rem;color:var(--text-muted)">Student-facing version: identical criteria worded as “I can…” statements — used for self-assessment in Week 7 and peer feedback in Week 8.</p></div>';
+    var hc=data.helpingCircle;
+    h+='<div class="t-sec"><h3>The Helping Circle</h3><div class="t-sub">Groups of 4 · five minutes per writer · timer visible.</div><ul class="pill-list">'+
+      hc.steps.map(function(s,i){return '<li><b>'+(i+1)+'.</b> '+esc(s)+'</li>';}).join("")+'</ul>'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem">'+
+      '<div><div class="layer__label">Two stars — listener prompts</div><ul class="pill-list">'+hc.stars.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div>'+
+      '<div><div class="layer__label">One wish — listener prompts</div><ul class="pill-list">'+hc.wishes.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div></div>'+
+      '<div class="stuck-item" style="margin-top:1rem"><b>Ground rules poster</b>'+esc(hc.rules)+'</div></div>';
+    h+='<div class="t-sec"><h3>Exemplar bank</h3><div class="t-sub">Analyse the strong one first, the weaker one second — and never present the weaker one as a real child’s work.</div>'+
+      data.exemplars.map(function(e){return '<div class="exemplar'+(e.level==="weak"?" weak":"")+'"><h4>'+esc(e.label)+'</h4><pre>'+esc(e.text)+'</pre>'+
+        '<ul>'+e.notes.map(function(n){return '<li>'+esc(n)+'</li>';}).join("")+'</ul></div>';}).join("")+'</div>';
+    h+='<div class="t-sec"><h3>Differentiation</h3><table><tr><th>If a student…</th><th>Do this</th></tr>'+
+      data.differentiation.map(function(d){return '<tr><td><b>'+esc(d.if)+'</b></td><td>'+esc(d.then)+'</td></tr>';}).join("")+'</table></div>';
+    main.innerHTML=h;
+  }
+
+  function render(){
+    selTerm.value=T;selWeek.value=W;selDay.value=D;save();
+    if(VIEW==="lesson")renderLesson();
+    else if(VIEW==="prompt")renderPrompt();
+    else if(VIEW==="process")renderProcess();
+    else if(VIEW==="map")renderMap();
+    else renderTeacher();
+  }
+
+  document.addEventListener("keydown",function(e){
+    if(e.target.tagName==="SELECT")return;
+    if(VIEW!=="lesson")return;
+    if(e.key==="ArrowRight")step(1);
+    if(e.key==="ArrowLeft")step(-1);
+  });
+
+  load();buildWeeks();syncTabs();render();
+})();
+</script>
+</body>
+</html>
