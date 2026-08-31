@@ -484,8 +484,20 @@ tr:last-child td{border-bottom:none}
   function doPrint(html){
     var pa=document.getElementById("printArea");
     pa.innerHTML=html;document.body.classList.add("printing");
-    window.print();
-    setTimeout(function(){document.body.classList.remove("printing");pa.innerHTML="";},600);
+    // wait for any images to finish loading, or the browser prints blank pages
+    var imgs=[].slice.call(pa.querySelectorAll("img")), pending=0, done=false;
+    function go(){
+      if(done)return; done=true;
+      window.print();
+      setTimeout(function(){document.body.classList.remove("printing");pa.innerHTML="";},600);
+    }
+    imgs.forEach(function(im){
+      if(im.complete && im.naturalWidth>0) return;
+      pending++;
+      var fin=function(){ pending--; if(pending<=0) go(); };
+      im.addEventListener("load",fin); im.addEventListener("error",fin);
+    });
+    if(pending===0){ go(); } else { setTimeout(go,8000); }
   }
   var PROC_IMG={FILL:"images/process/fill",FIND:"images/process/find",SHAPE:"images/process/shape",SHARE:"images/process/share"};
   function procImg(key){ var b=PROC_IMG[(key||"").toUpperCase()]; return b?b+".webp":""; }
@@ -713,6 +725,8 @@ tr:last-child td{border-bottom:none}
     main.innerHTML=h;
     var pc=document.getElementById("pCards");
     if(pc)pc.onclick=function(){doPrint(wallCardsHTML());};
+    // warm the high-resolution print files so the print dialog never opens on empty pages
+    data.process.stages.forEach(function(st){ var im=new Image(); im.src=procImgPrint(st.key); });
   }
 
   function renderMap(){
