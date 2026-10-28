@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vocabulary Focus — Writing Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070D;--panel:#12121C;--panel2:#1B1B29;--line:rgba(255,255,255,.12);
+  --ink:#F7F7FF;--mute:rgba(247,247,255,.62);
+  --lime:#C6FF3D;--cyan:#22E4FF;--pink:#FF3D8B;--orange:#FF9F1C;--violet:#A98BFF;
+  --acc:var(--lime);
+  --fd:"Unbounded","Arial Black",Impact,sans-serif;
+  --fb:"Space Grotesk",system-ui,sans-serif;
+}
+html{font-size:18px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;line-height:1.45}
+body[data-step="1"]{--acc:var(--lime)} body[data-step="2"]{--acc:var(--cyan)}
+body[data-step="3"]{--acc:var(--pink)} body[data-step="4"]{--acc:var(--orange)}
+body.fri{--acc:var(--violet)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+/* ---------- animated background ---------- */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#bg span{position:absolute;font-family:var(--fd);font-weight:900;color:var(--acc);opacity:.06;animation:drift linear infinite;transition:color .6s}
+@keyframes drift{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-20vh) rotate(360deg)}}
+.glow{position:fixed;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);opacity:.18;pointer-events:none;z-index:0;background:var(--acc);transition:background .6s}
+.glow.a{top:-30vw;right:-20vw}.glow.b{bottom:-35vw;left:-25vw;background:var(--violet);opacity:.12}
+/* ---------- top bar ---------- */
+.top{position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;align-items:center;padding:1rem 1.6rem;border-bottom:1px solid var(--line);background:rgba(7,7,13,.75);backdrop-filter:blur(10px)}
+.back{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--line);border-radius:30px;padding:.45rem 1rem;color:var(--mute);text-decoration:none;transition:.2s}
+.back:hover{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.logo{font-family:var(--fd);font-weight:900;font-size:1.35rem;letter-spacing:-.01em;line-height:1;white-space:nowrap}
+.logo b{color:var(--acc);transition:color .4s}
+.sel{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-left:auto}
+.sel select{font:700 .85rem var(--fb);background:var(--panel2);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:.5rem .7rem;cursor:pointer}
+.sel select:hover{border-color:var(--acc)}
+.days{display:flex;gap:.35rem}
+.days button{font:800 .72rem var(--fd);letter-spacing:.04em;padding:.55rem .75rem;border-radius:10px;background:var(--panel2);border:1.5px solid var(--line);transition:.18s}
+.days button:hover{transform:translateY(-2px);border-color:var(--acc)}
+.days button.on{background:var(--acc);color:var(--bg);border-color:var(--acc);box-shadow:0 0 24px color-mix(in srgb,var(--acc) 55%,transparent)}
+.days button.fri-b.on{background:var(--violet);border-color:var(--violet)}
+.timer{font:800 1rem var(--fd);padding:.5rem .9rem;border-radius:10px;border:1.5px solid var(--line);background:var(--panel2);min-width:5.6rem;text-align:center;transition:.2s}
+.timer:hover{border-color:var(--acc)}
+.timer.run{color:var(--bg);background:var(--acc);border-color:var(--acc)}
+.timer.done{animation:pulse .6s infinite alternate;background:var(--pink);color:#fff}
+@keyframes pulse{to{transform:scale(1.08)}}
+.vault-b{font:800 .72rem var(--fd);padding:.55rem .85rem;border-radius:10px;border:1.5px solid var(--line);background:var(--panel2)}
+.vault-b:hover{border-color:var(--acc);color:var(--acc)}
+/* ---------- steps rail ---------- */
+main{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 6rem}
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-bottom:1.6rem}
+.rail button{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;border-radius:16px;background:var(--panel);border:2px solid var(--line);text-align:left;transition:.2s;position:relative;overflow:hidden}
+.rail button:hover{transform:translateY(-3px)}
+.rail .n{font:900 1.5rem var(--fd);width:2.4rem;height:2.4rem;border-radius:12px;display:grid;place-items:center;background:var(--panel2);flex-shrink:0;transition:.2s}
+.rail .t{font:900 .95rem var(--fd);letter-spacing:.02em;line-height:1.05}
+.rail .t small{display:block;font:500 .72rem var(--fb);color:var(--mute);letter-spacing:0;margin-top:.2rem}
+.rail button[data-c]{--c:var(--lime)}
+.rail button.on{border-color:var(--c);box-shadow:0 0 30px color-mix(in srgb,var(--c) 35%,transparent)}
+.rail button.on .n{background:var(--c);color:var(--bg)}
+.rail button.done .n{background:color-mix(in srgb,var(--c) 30%,var(--panel2));color:var(--c)}
+/* ---------- stage ---------- */
+.stage{min-height:62vh}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:26px;padding:2.2rem 2.4rem;position:relative;overflow:hidden}
+.kick{font:800 .78rem var(--fd);letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
+.kick:before{content:"";width:28px;height:4px;border-radius:4px;background:var(--acc)}
+.do{display:flex;gap:1rem;align-items:center;margin-top:1.6rem;padding:1.1rem 1.4rem;border-radius:18px;background:color-mix(in srgb,var(--acc) 12%,var(--panel2));border:2px dashed color-mix(in srgb,var(--acc) 55%,transparent);font-size:1.3rem;font-weight:700}
+.do .ic{font-size:2rem;flex-shrink:0;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-6deg)}}
+.do b{color:var(--acc)}
+/* step 1: big word */
+.bigword{font-family:var(--fd);font-weight:900;font-size:clamp(3.2rem,11vw,9.5rem);line-height:1;letter-spacing:-.02em;margin:.4rem 0 1rem;display:flex;flex-wrap:wrap;user-select:none;position:relative}
+.bigword span{display:inline-block;animation:drop .7s cubic-bezier(.2,1.6,.4,1) both;transition:transform .2s,color .2s;cursor:default}
+.bigword span:hover{transform:translateY(-.18em) rotate(-8deg) scale(1.12);color:var(--acc);text-shadow:0 0 30px var(--acc)}
+@keyframes drop{from{opacity:0;transform:translateY(-1.2em) rotate(-25deg) scale(.5)}}
+.cover{position:absolute;inset:-.1em -.2em;border-radius:20px;background:repeating-linear-gradient(45deg,var(--acc) 0 22px,color-mix(in srgb,var(--acc) 70%,#000) 22px 44px);transform-origin:left;transform:scaleX(0);transition:transform .5s cubic-bezier(.7,0,.2,1);display:grid;place-items:center;font-size:.25em;color:var(--bg);letter-spacing:.2em}
+.bigword.covered .cover{transform:scaleX(1)}
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.chip{font:700 1.05rem var(--fb);padding:.55rem 1.1rem;border-radius:40px;background:var(--panel2);border:2px solid var(--line);display:inline-flex;gap:.5rem;align-items:center;transition:.2s}
+.chip:hover{border-color:var(--acc)}
+.chip i{font-style:normal;color:var(--mute);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}
+.say b{color:var(--acc);font-weight:900}
+.btn{font:900 .9rem var(--fd);letter-spacing:.03em;padding:.85rem 1.4rem;border-radius:14px;background:var(--acc);color:var(--bg);display:inline-flex;gap:.55rem;align-items:center;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 0 color-mix(in srgb,var(--acc) 45%,#000)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 color-mix(in srgb,var(--acc) 45%,#000),0 0 40px color-mix(in srgb,var(--acc) 40%,transparent)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 color-mix(in srgb,var(--acc) 45%,#000)}
+.btn.ghost{background:var(--panel2);color:var(--ink);border:2px solid var(--line);box-shadow:0 6px 0 #000}
+.btn.ghost:hover{border-color:var(--acc);color:var(--acc)}
+.lscc{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}
+.lscc span{font:900 .8rem var(--fd);letter-spacing:.08em;padding:.5rem .9rem;border-radius:10px;background:var(--panel2);border:2px solid var(--line);transition:.2s}
+.lscc span:hover{background:var(--acc);color:var(--bg);transform:rotate(-3deg) scale(1.08)}
+/* step 2: clues */
+.clues{display:grid;gap:1.2rem;margin-top:.6rem}
+.clue{display:flex;gap:1.2rem;align-items:flex-start;padding:1.5rem 1.7rem;border-radius:22px;background:var(--panel2);border:2px solid var(--line);font-size:clamp(1.3rem,2.3vw,1.9rem);font-weight:500;line-height:1.4;animation:slide .6s cubic-bezier(.2,1.2,.4,1) both;transition:.25s}
+.clue:nth-child(2){animation-delay:.25s}
+.clue:hover{border-color:var(--acc);transform:translateX(8px)}
+.clue .tag{font:900 .7rem var(--fd);letter-spacing:.14em;padding:.45rem .7rem;border-radius:10px;background:var(--acc);color:var(--bg);flex-shrink:0;margin-top:.35rem}
+@keyframes slide{from{opacity:0;transform:translateX(-60px)}}
+mark{background:none;color:var(--acc);font-weight:800;position:relative;display:inline-block;cursor:zoom-in;transition:transform .2s;padding:0 .1em}
+mark:after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.18em;border-radius:4px;background:var(--acc);opacity:.45;transition:.2s}
+mark:hover{transform:scale(1.18) rotate(-2deg);text-shadow:0 0 22px var(--acc)}
+mark:hover:after{height:100%;opacity:.16}
+.hint{margin-top:1.1rem;font-size:1rem;color:var(--mute)}
+.hint b{color:var(--ink)}
+/* step 3: meanings */
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:.6rem;perspective:900px}
+.opt{position:relative;text-align:left;padding:1.4rem 1.5rem 1.4rem 4.6rem;min-height:7.2rem;border-radius:22px;background:var(--panel2);border:2.5px solid var(--line);font-size:clamp(1.1rem,1.9vw,1.5rem);font-weight:600;line-height:1.3;transition:transform .15s,border-color .2s,background .2s,opacity .3s;transform-style:preserve-3d;animation:pop .5s cubic-bezier(.2,1.5,.4,1) both}
+.opt:nth-child(2){animation-delay:.08s}.opt:nth-child(3){animation-delay:.16s}.opt:nth-child(4){animation-delay:.24s}
+@keyframes pop{from{opacity:0;transform:scale(.7)}}
+.opt .L{position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);font:900 1.4rem var(--fd);width:2.6rem;height:2.6rem;border-radius:12px;display:grid;place-items:center;background:var(--bg);border:2px solid var(--line);transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt:hover .L{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.opt.no{opacity:.35;border-color:#555;animation:shake .45s;text-decoration:line-through;text-decoration-thickness:2px}
+.opt.no .L{background:#333;color:#999;border-color:#333}
+.opt.no .L:after{content:"✕";position:absolute;font-size:1.4rem}
+.opt.no .L span{visibility:hidden}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.opt.yes{border-color:var(--lime);background:color-mix(in srgb,var(--lime) 18%,var(--panel2));animation:win .6s cubic-bezier(.2,1.6,.4,1)}
+.opt.yes .L{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+@keyframes win{40%{transform:scale(1.07)}}
+.verdict{margin-top:1.3rem;min-height:3.5rem;font:900 clamp(1.1rem,2vw,1.6rem) var(--fd);display:flex;gap:.8rem;align-items:center}
+.verdict.ok{color:var(--lime)} .verdict.try{color:var(--pink)}
+.verdict small{font:600 1rem var(--fb);color:var(--mute)}
+/* step 4 */
+.use{display:grid;grid-template-columns:1.1fr .9fr;gap:1.3rem;margin-top:.4rem}
+.lvls{display:grid;gap:.8rem}
+.lvl{display:flex;gap:1rem;align-items:center;padding:1.1rem 1.3rem;border-radius:18px;background:var(--panel2);border:2px solid var(--line);font-size:1.2rem;font-weight:600;transition:.2s;cursor:pointer}
+.lvl:hover{border-color:var(--acc);transform:scale(1.02)}
+.lvl.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 15%,var(--panel2))}
+.lvl .st{font-size:1.3rem;white-space:nowrap;min-width:4.4rem;letter-spacing:-.1em}
+.inst{padding:1.3rem 1.4rem;border-radius:18px;background:var(--panel2);border:2px solid var(--line)}
+.inst h4{font:900 .75rem var(--fd);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:.5rem}
+.inst .tw{display:flex;flex-wrap:wrap;gap:.5rem}
+.inst .tw span{padding:.35rem .8rem;border-radius:30px;background:var(--bg);border:1.5px solid var(--line);font-weight:700;text-decoration:line-through;text-decoration-color:var(--pink);text-decoration-thickness:2px}
+.inst .arrow{font:900 1.6rem var(--fd);color:var(--acc);margin:.4rem 0 0}
+.model{margin-top:1rem;padding:1.3rem 1.4rem;border-radius:18px;border:2px solid var(--acc);background:color-mix(in srgb,var(--acc) 10%,var(--panel2));font-size:clamp(1.2rem,2vw,1.6rem);font-weight:500;line-height:1.4;min-height:5rem}
+.model.hide{border-style:dashed;display:grid;place-items:center;color:var(--mute);font-size:1rem;cursor:pointer}
+.model.hide:hover{color:var(--acc)}
+.caret{display:inline-block;width:.5em;height:1em;background:var(--acc);vertical-align:-.1em;animation:blink .7s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.stamp{position:fixed;left:50%;top:45%;z-index:60;font:900 clamp(2rem,6vw,4.5rem) var(--fd);color:var(--lime);border:8px solid var(--lime);padding:.5rem 1.5rem;border-radius:20px;transform:translate(-50%,-50%) rotate(-10deg) scale(3);opacity:0;pointer-events:none;text-shadow:0 0 30px var(--lime);background:rgba(7,7,13,.85)}
+.stamp.go{animation:stamp 1.6s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes stamp{15%{transform:translate(-50%,-50%) rotate(-10deg) scale(1);opacity:1}80%{transform:translate(-50%,-50%) rotate(-10deg) scale(1);opacity:1}100%{opacity:0;transform:translate(-50%,-50%) rotate(-10deg) scale(.9)}}
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.6rem;gap:1rem}
+.nav .info{font-size:.85rem;color:var(--mute)}
+/* friday */
+.flips{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;perspective:1000px;margin-top:.6rem}
+.flip{height:15rem;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.4,1);cursor:pointer}
+.flip.on{transform:rotateY(180deg)}
+.flip:hover:not(.on){transform:rotateY(14deg) translateY(-6px)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;display:grid;place-items:center;text-align:center;padding:1.2rem}
+.flip .f{background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 45%,#000));color:var(--bg);font:900 clamp(1.1rem,2.1vw,1.7rem) var(--fd);word-break:break-word}
+.flip .f small{display:block;font:700 .75rem var(--fb);letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:.6rem}
+.flip .b{background:var(--panel2);border:2.5px solid var(--c);transform:rotateY(180deg);font-size:1.1rem;font-weight:600;line-height:1.35}
+.flip .b b{display:block;font:900 1rem var(--fd);color:var(--c);margin-bottom:.5rem}
+.match{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.2rem 3rem;margin-top:.6rem}
+.mcol{display:grid;gap:.8rem}
+.mi{padding:1rem 1.2rem;border-radius:16px;background:var(--panel2);border:2.5px solid var(--line);text-align:left;font-weight:600;font-size:1.1rem;transition:.18s;min-height:4.2rem}
+.mi.w{font:900 1.15rem var(--fd)}
+.mi:hover{border-color:var(--acc);transform:translateY(-2px)}
+.mi.pick{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 22%,var(--panel2));transform:scale(1.04)}
+.mi.got{border-color:var(--c);background:color-mix(in srgb,var(--c) 22%,var(--panel2));pointer-events:none}
+.mi.got.w{color:var(--c)}
+.mi.bad{animation:shake .4s;border-color:var(--pink)}
+.gaps{display:grid;gap:.9rem;margin-top:.6rem}
+.gap{padding:1.1rem 1.4rem;border-radius:18px;background:var(--panel2);border:2px solid var(--line);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:500}
+.gap .bl{display:inline-block;min-width:7em;border-bottom:4px dashed var(--acc);text-align:center;color:var(--lime);font-weight:900;transition:.3s}
+.gap.ok{border-color:var(--lime)}
+.gap .ws{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}
+.gap .ws button{font:800 .8rem var(--fd);padding:.45rem .8rem;border-radius:10px;background:var(--bg);border:2px solid var(--line);transition:.15s}
+.gap .ws button:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-2px)}
+.gap .ws button.x{animation:shake .4s;border-color:var(--pink);color:var(--pink)}
+.gap.ok .ws{display:none}
+.votes{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.vote{padding:1.2rem;border-radius:20px;background:var(--panel2);border:2.5px solid var(--c);text-align:center;transition:.2s}
+.vote:hover{transform:translateY(-5px) rotate(-1.5deg);box-shadow:0 0 30px color-mix(in srgb,var(--c) 40%,transparent)}
+.vote b{display:block;font:900 clamp(1rem,1.8vw,1.35rem) var(--fd);color:var(--c);word-break:break-word}
+.vote .ct{font:900 2.4rem var(--fd);margin-top:.4rem}
+.vote small{color:var(--mute);font-size:.75rem}
+/* vault */
+.vault{position:fixed;inset:0;z-index:50;background:rgba(7,7,13,.92);backdrop-filter:blur(8px);display:none;overflow:auto;padding:2rem}
+.vault.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.vault h2{font:900 clamp(2rem,5vw,3.4rem) var(--fd);margin-bottom:.3rem}
+.vault h2 b{color:var(--lime)}
+.vault p.s{color:var(--mute);margin-bottom:1.4rem}
+.vault .wk{margin-bottom:1.2rem}
+.vault .wk h3{font:800 .72rem var(--fd);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:.5rem}
+.vault .row{display:flex;flex-wrap:wrap;gap:.6rem}
+.vw{position:relative;font:900 1rem var(--fd);padding:.6rem 1rem;border-radius:12px;background:var(--panel2);border:2px solid var(--line);transition:.15s}
+.vw.have{border-color:var(--lime);color:var(--lime)}
+.vw:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.vw .tip{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) scale(.9);width:16rem;padding:.8rem 1rem;border-radius:12px;background:var(--ink);color:var(--bg);font:600 .9rem var(--fb);opacity:0;pointer-events:none;transition:.15s;z-index:3;text-align:left}
+.vw:hover .tip{opacity:1;transform:translateX(-50%) scale(1)}
+.vclose{position:fixed;top:1.2rem;right:1.4rem}
+/* confetti */
+.cf{position:fixed;z-index:70;width:12px;height:16px;border-radius:3px;pointer-events:none;will-change:transform}
+/* fullscreen-ish presenting */
+body.big main{max-width:1600px}
+@media (max-width:900px){.rail{grid-template-columns:repeat(2,1fr)}.opts,.use,.match{grid-template-columns:1fr}.flips,.votes{grid-template-columns:repeat(2,1fr)}.card{padding:1.5rem}.sel{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}#bg{display:none}}
+</style>
+</head>
+<body data-step="1">
+<div class="glow a"></div><div class="glow b"></div>
+<div id="bg"></div>
+
+<header class="top">
+  <a class="back" href="index.html">← Writing Hub</a>
+  <div class="logo">VOCAB<b>FOCUS</b></div>
+  <div class="sel">
+    <select id="sT" aria-label="Term"></select>
+    <select id="sW" aria-label="Week"></select>
+    <div class="days" id="days"></div>
+    <button class="timer" id="timer" title="Click to start / pause the 5-minute timer. Double-click to reset.">5:00</button>
+    <button class="vault-b" id="vaultB" title="Every word so far">🔐 WORD VAULT</button>
+  </div>
+</header>
+
+<main>
+  <div class="rail" id="rail"></div>
+  <section class="stage" id="stage"></section>
+  <div class="nav">
+    <button class="btn ghost" id="prev">← Back</button>
+    <span class="info" id="info"></span>
+    <button class="btn" id="next">Next →</button>
+  </div>
+</main>
+
+<div class="stamp" id="stamp">IN THE VAULT!</div>
+<div class="vault" id="vault"></div>
+
+<script src="vocab-t1.js"></script>
+<script src="vocab-t2.js"></script>
+<script src="vocab-t3.js"></script>
+<script src="vocab-t4.js"></script>
+<script>
+(function(){
+var VF=window.__VF, DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"], DS=["MON","TUE","WED","THU","FRI"];
+var COLS=["var(--lime)","var(--cyan)","var(--pink)","var(--orange)"];
+var STEPS=[
+  {n:"WRITE IT",s:"Copy the word",c:"var(--lime)"},
+  {n:"GUESS IT",s:"Read the clues",c:"var(--cyan)"},
+  {n:"PICK IT",s:"Find the meaning",c:"var(--pink)"},
+  {n:"USE IT",s:"Your own sentence",c:"var(--orange)"}];
+var FSTEPS=[
+  {n:"RECALL",s:"What do they mean?",c:"var(--lime)"},
+  {n:"MATCH",s:"Word ↔ meaning",c:"var(--cyan)"},
+  {n:"FIT IT",s:"Which word fits?",c:"var(--pink)"},
+  {n:"SHINE",s:"Use two words",c:"var(--orange)"}];
+function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v));}catch(e){return null;}}
+var st=ls("vf-pos")||{T:1,W:1,D:0}; st.S=1;
+var $=function(id){return document.getElementById(id);};
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function W(){return VF[st.T].weeks[st.W];}
+function E(i){var e=W()[i];return {w:e[0],p:e[1],say:e[2],s:[e[3],e[4]],m:e[5],x:e[6],u:e[7],i:e[8],g:e[9]};}
+function hash(s){var h=7;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h;}
+function shuffle(a,seed){a=a.slice();var r=seed||1;for(var i=a.length-1;i>0;i--){r=(r*1103515245+12345)>>>0;var j=r%(i+1);var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+/* highlight the word (any form) inside a sentence */
+function hl(sent,w){var stem=w.length>5?w.slice(0,w.length-2):w;
+  var re=new RegExp("\\b("+stem.replace(/[-]/g,"\\-")+"[a-z]*)","i");
+  return esc(sent).replace(re,'<mark>$1</mark>');}
+function sayHTML(s){return esc(s).replace(/\b([A-Z]{2,})\b/g,"<b>$1</b>").toLowerCase().replace(/<b>(.*?)<\/b>/g,function(m,x){return "<b>"+x.toUpperCase()+"</b>";});}
+
+/* ---------- background letters ---------- */
+(function(){var bg=$("bg"),L="ABCDEFGHIJKLMNOPQRSTUVWXYZ";for(var i=0;i<26;i++){var s=document.createElement("span");s.textContent=L[(i*7)%26];
+  s.style.left=(Math.random()*100)+"vw";s.style.fontSize=(2+Math.random()*7)+"rem";s.style.animationDuration=(18+Math.random()*30)+"s";s.style.animationDelay=(-Math.random()*40)+"s";bg.appendChild(s);}})();
+
+/* ---------- confetti ---------- */
+function confetti(x,y,n){n=n||70;var cs=["#C6FF3D","#22E4FF","#FF3D8B","#FF9F1C","#A98BFF","#fff"];
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  for(var i=0;i<n;i++)(function(){var d=document.createElement("div");d.className="cf";d.style.background=cs[i%cs.length];
+    d.style.left=x+"px";d.style.top=y+"px";document.body.appendChild(d);
+    var a=Math.random()*Math.PI*2,v=6+Math.random()*12,vx=Math.cos(a)*v,vy=Math.sin(a)*v-8,px=0,py=0,r=0,vr=(Math.random()-.5)*30,t=0;
+    (function f(){t++;vy+=.45;vx*=.98;px+=vx;py+=vy;r+=vr;d.style.transform="translate("+px+"px,"+py+"px) rotate("+r+"deg)";d.style.opacity=1-t/90;
+      if(t<90)requestAnimationFrame(f);else d.remove();})();})();}
+function boomFrom(el,n){var r=el.getBoundingClientRect();confetti(r.left+r.width/2,r.top+r.height/2,n);}
+
+/* ---------- speech ---------- */
+function speak(t){try{var u=new SpeechSynthesisUtterance(t);var vs=speechSynthesis.getVoices();
+  var v=vs.find(function(v){return /en-NZ/i.test(v.lang);})||vs.find(function(v){return /en-AU|en-GB/i.test(v.lang);})||vs.find(function(v){return /^en/i.test(v.lang);});
+  if(v)u.voice=v;u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+
+/* ---------- timer ---------- */
+var tLeft=300,tRun=false,tInt=null;
+function tDraw(){var b=$("timer");b.textContent=Math.floor(tLeft/60)+":"+("0"+tLeft%60).slice(-2);b.classList.toggle("run",tRun);b.classList.toggle("done",tLeft===0);}
+$("timer").onclick=function(){if(tLeft===0){tLeft=300;tRun=false;}else tRun=!tRun;clearInterval(tInt);
+  if(tRun)tInt=setInterval(function(){tLeft--;if(tLeft<=0){tLeft=0;tRun=false;clearInterval(tInt);boomFrom($("timer"),40);}tDraw();},1000);tDraw();};
+$("timer").ondblclick=function(){clearInterval(tInt);tRun=false;tLeft=300;tDraw();};
+
+/* ---------- selectors ---------- */
+function fillSel(){var sT=$("sT"),sW=$("sW");
+  sT.innerHTML=[1,2,3,4].map(function(t){return '<option value="'+t+'"'+(t==st.T?" selected":"")+'>Term '+t+'</option>';}).join("");
+  sW.innerHTML=Object.keys(VF[st.T].weeks).map(function(w){return '<option value="'+w+'"'+(w==st.W?" selected":"")+'>Week '+w+'</option>';}).join("");
+  $("days").innerHTML=DS.map(function(d,i){return '<button class="'+(i===4?"fri-b ":"")+(i===st.D?"on":"")+'" data-d="'+i+'" title="'+(i===4?"Friday Reflect":DAYS[i]+": "+E(i).w)+'">'+(i===4?"FRI ★":d)+'</button>';}).join("");
+  $("days").querySelectorAll("button").forEach(function(b){b.onclick=function(){st.D=+b.dataset.d;go(1);};});}
+$("sT").onchange=function(){st.T=+this.value;st.W=1;go(1);};
+$("sW").onchange=function(){st.W=+this.value;go(1);};
+
+/* ---------- rail ---------- */
+function rail(){var S=st.D===4?FSTEPS:STEPS;
+  $("rail").innerHTML=S.map(function(s,i){return '<button data-c style="--c:'+s.c+'" class="'+(st.S===i+1?"on":(st.S>i+1?"done":""))+'" data-s="'+(i+1)+'"><span class="n">'+(st.S>i+1?"✓":i+1)+'</span><span class="t">'+s.n+'<small>'+s.s+'</small></span></button>';}).join("");
+  $("rail").querySelectorAll("button").forEach(function(b){b.onclick=function(){go(+b.dataset.s);};});}
+
+function go(s){st.S=s;ls("vf-pos",{T:st.T,W:st.W,D:st.D});
+  document.body.dataset.step=s;
+  fillSel();rail();(st.D===4?friday:day)();
+  $("prev").style.visibility=s>1?"visible":"hidden";
+  $("next").textContent=s<4?"Next →":(st.D<4?"Next day →":"Next week →");
+  $("info").textContent="Term "+st.T+" · Week "+st.W+" · "+(st.D===4?"Friday Reflect":DAYS[st.D])+" · "+VF[st.T].theme;
+  window.scrollTo({top:0,behavior:"smooth"});}
+$("prev").onclick=function(){if(st.S>1)go(st.S-1);};
+$("next").onclick=function(){if(st.S<4)return go(st.S+1);
+  if(st.D<4){st.D++;}else{st.D=0;if(VF[st.T].weeks[st.W+1])st.W++;else if(VF[st.T+1]){st.T++;st.W=1;}}go(1);};
+document.addEventListener("keydown",function(e){if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+  if(e.key==="ArrowRight"){$("next").click();}else if(e.key==="ArrowLeft"){$("prev").click();}else if(e.key==="Escape"){$("vault").classList.remove("on");}});
+
+/* ---------- Monday–Thursday ---------- */
+function day(){var e=E(st.D),h="",S=st.S,stage=$("stage");
+  if(S===1){
+    h='<div class="card"><div class="kick">'+DAYS[st.D]+' · Word of the day</div>'+
+      '<div class="bigword" id="bw">'+e.w.split("").map(function(c,i){return '<span style="animation-delay:'+(i*0.06)+'s">'+esc(c)+'</span>';}).join("")+'<div class="cover">COVERED!</div></div>'+
+      '<div class="chips"><span class="chip"><i>word type</i>'+esc(e.p)+'</span><span class="chip say"><i>say it</i>'+sayHTML(e.say)+'</span>'+
+      '<button class="btn" id="hear">🔊 Hear it</button><button class="btn ghost" id="cov">🙈 Cover &amp; check</button></div>'+
+      '<div class="lscc"><span>👀 LOOK</span><span>🗣 SAY</span><span>🙈 COVER</span><span>✏️ WRITE</span><span>✅ CHECK</span></div>'+
+      '<div class="do"><span class="ic">✏️</span><span>In your book, write today\'s date and the word <b>'+esc(e.w)+'</b>. Say it out loud, then copy it letter by letter.</span></div></div>';
+    stage.innerHTML=h;
+    $("hear").onclick=function(){speak(e.w);};
+    $("cov").onclick=function(){var b=$("bw");b.classList.toggle("covered");this.innerHTML=b.classList.contains("covered")?"👀 Uncover":"🙈 Cover &amp; check";};
+  }
+  if(S===2){
+    h='<div class="card"><div class="kick">Word detective · '+esc(e.w)+'</div>'+
+      '<div class="clues">'+e.s.map(function(x,i){return '<div class="clue"><span class="tag">CLUE '+(i+1)+'</span><div>'+hl(x,e.w)+'</div></div>';}).join("")+'</div>'+
+      '<p class="hint">🔎 <b>Detective tip:</b> read the words around it. What is happening? How do people feel? What would make sense in that spot?</p>'+
+      '<div class="do"><span class="ic">🤔</span><span>In your book, write: <b>I think “'+esc(e.w)+'” means…</b> Have a go — it\'s fine to be wrong!</span></div></div>';
+    stage.innerHTML=h;
+  }
+  if(S===3){
+    var opts=shuffle([{t:e.m,ok:1}].concat(e.x.map(function(t){return{t:t};})),hash(e.w));
+    h='<div class="card"><div class="kick">Only one is right · '+esc(e.w)+'</div>'+
+      '<p style="font-size:1.15rem;color:var(--mute);margin-bottom:.4rem">Which meaning fits <b style="color:var(--ink)">both</b> clue sentences? Test each one by swapping it into the sentences.</p>'+
+      '<div class="opts" id="opts">'+opts.map(function(o,i){return '<button class="opt" data-ok="'+(o.ok?1:0)+'"><span class="L"><span>'+"ABCD"[i]+'</span></span>'+esc(o.t)+'</button>';}).join("")+'</div>'+
+      '<div class="verdict" id="vd"></div>'+
+      '<details style="margin-top:.6rem;color:var(--mute)"><summary style="cursor:pointer;font-weight:700">Show the clues again</summary><div style="margin-top:.6rem;font-size:1.1rem;line-height:1.5">'+e.s.map(function(x,i){return '<p>'+(i+1)+'. '+hl(x,e.w)+'</p>';}).join("")+'</div></details></div>';
+    stage.innerHTML=h;
+    stage.querySelectorAll(".opt").forEach(function(b){
+      b.onmousemove=function(ev){if(b.classList.contains("yes")||b.classList.contains("no"))return;var r=b.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;b.style.transform="rotateY("+(x*12)+"deg) rotateX("+(-y*12)+"deg) translateZ(10px)";};
+      b.onmouseleave=function(){b.style.transform="";};
+      b.onclick=function(){b.style.transform="";if(b.dataset.ok==="1"){b.classList.add("yes");boomFrom(b,90);
+          stage.querySelectorAll('.opt[data-ok="0"]').forEach(function(o){o.classList.add("no");});
+          $("vd").className="verdict ok";$("vd").innerHTML='✓ YES! It fits both clues. <small>Tick your guess if you were close — or fix it in your book.</small>';}
+        else{b.classList.add("no");$("vd").className="verdict try";$("vd").innerHTML='✗ Not that one… <small>Try it in clue 1 — does it make sense?</small>';}};});
+  }
+  if(S===4){
+    h='<div class="card"><div class="kick">Your turn · make it yours</div>'+
+      '<div class="bigword" style="font-size:clamp(2.4rem,6vw,4.6rem);margin:.1rem 0 .4rem">'+e.w.split("").map(function(c,i){return '<span style="animation-delay:'+(i*0.04)+'s">'+esc(c)+'</span>';}).join("")+'</div>'+
+      '<p style="font-size:1.25rem;font-weight:600;margin-bottom:1.1rem">= '+esc(e.m)+'</p>'+
+      '<div class="use"><div class="lvls">'+
+        '<div class="lvl"><span class="st">⭐</span><span>Write your own sentence using <b>'+esc(e.w)+'</b>.</span></div>'+
+        '<div class="lvl"><span class="st">⭐⭐</span><span>Make your sentence <b>paint a picture</b> — who, where, what happened?</span></div>'+
+        '<div class="lvl"><span class="st">⭐⭐⭐</span><span>Put it in a sentence for your <b>Writing Focus</b> piece, or use it to replace a tired word.</span></div>'+
+      '</div><div><div class="inst"><h4>Use it instead of</h4><div class="tw">'+e.i.split(/,\s*/).map(function(t){return '<span>'+esc(t)+'</span>';}).join("")+'</div><div class="arrow">→ '+esc(e.w)+'</div></div>'+
+      '<div class="model hide" id="mdl">💡 Stuck? Click for an example sentence</div></div></div>'+
+      '<div class="do"><span class="ic">✏️</span><span>Write <b>your own sentence</b> in your book. Underline <b>'+esc(e.w)+'</b>. Share it with a partner!</span>'+
+      '<button class="btn" id="vaultIt" style="margin-left:auto;flex-shrink:0">🔐 Add to vault</button></div></div>';
+    stage.innerHTML=h;
+    stage.querySelectorAll(".lvl").forEach(function(l){l.onclick=function(){stage.querySelectorAll(".lvl").forEach(function(x){x.classList.remove("on");});l.classList.add("on");};});
+    $("mdl").onclick=function(){var m=this;if(!m.classList.contains("hide"))return;m.classList.remove("hide");var full=e.u,i=0;m.innerHTML='<span id="ty"></span><span class="caret"></span>';
+      (function type(){i+=2;$("ty").innerHTML=hl(full.slice(0,i),e.w);if(i<full.length)setTimeout(type,28);else $("ty").innerHTML=hl(full,e.w);})();};
+    $("vaultIt").onclick=function(){var v=ls("vf-vault")||{};v[e.w]=1;ls("vf-vault",v);var s=$("stamp");s.classList.remove("go");void s.offsetWidth;s.classList.add("go");confetti(innerWidth/2,innerHeight*.45,120);};
+  }
+}
+
+/* ---------- Friday Reflect ---------- */
+function friday(){var es=[0,1,2,3].map(E),S=st.S,stage=$("stage"),h="";
+  if(S===1){
+    h='<div class="card"><div class="kick">Friday reflect · Recall</div>'+
+      '<p style="font-size:1.3rem;font-weight:600;margin-bottom:.4rem">In your book, write what each word means — <b style="color:var(--acc)">from memory</b>. Then flip to check!</p>'+
+      '<div class="flips">'+es.map(function(e,i){return '<div class="flip" style="--c:'+COLS[i]+'"><div class="f"><div>'+esc(e.w)+'<small>'+DAYS[i]+' · tap to flip</small></div></div><div class="b"><div><b>'+esc(e.w)+'</b>'+esc(e.m)+'</div></div></div>';}).join("")+'</div>'+
+      '<div class="do"><span class="ic">🧠</span><span>Give yourself a tick for each one you remembered. <b>4/4 = word legend!</b></span></div></div>';
+    stage.innerHTML=h;
+    stage.querySelectorAll(".flip").forEach(function(f){f.onclick=function(){f.classList.toggle("on");};});
+  }
+  if(S===2){
+    var ws=shuffle(es.map(function(e,i){return{i:i,t:e.w};}),hash("w"+st.T+st.W)),ms=shuffle(es.map(function(e,i){return{i:i,t:e.m};}),hash("m"+st.W+st.T));
+    h='<div class="card"><div class="kick">Friday reflect · Match</div>'+
+      '<p style="font-size:1.2rem;color:var(--mute);margin-bottom:.5rem">Click a word, then click its meaning.</p>'+
+      '<div class="match"><div class="mcol">'+ws.map(function(x){return '<button class="mi w" data-i="'+x.i+'">'+esc(x.t)+'</button>';}).join("")+'</div>'+
+      '<div class="mcol">'+ms.map(function(x){return '<button class="mi m" data-i="'+x.i+'">'+esc(x.t)+'</button>';}).join("")+'</div></div>'+
+      '<div class="verdict ok" id="vd"></div></div>';
+    stage.innerHTML=h;var pick=null,got=0;
+    stage.querySelectorAll(".mi.w").forEach(function(b){b.onclick=function(){stage.querySelectorAll(".mi.w").forEach(function(x){x.classList.remove("pick");});pick=b;b.classList.add("pick");};});
+    stage.querySelectorAll(".mi.m").forEach(function(b){b.onclick=function(){if(!pick){b.classList.add("bad");setTimeout(function(){b.classList.remove("bad");},400);return;}
+      if(pick.dataset.i===b.dataset.i){var c=COLS[+b.dataset.i];[pick,b].forEach(function(x){x.classList.remove("pick");x.classList.add("got");x.style.setProperty("--c",c);});boomFrom(b,40);pick=null;got++;
+        if(got===4){$("vd").innerHTML="★ ALL MATCHED! Word wizards!";confetti(innerWidth/2,innerHeight/2,140);}}
+      else{b.classList.add("bad");pick.classList.add("bad");var p=pick;setTimeout(function(){b.classList.remove("bad");p.classList.remove("bad");},400);}};});
+  }
+  if(S===3){
+    var order=shuffle([0,1,2,3],hash("g"+st.T+"-"+st.W));
+    h='<div class="card"><div class="kick">Friday reflect · Fit it</div>'+
+      '<p style="font-size:1.2rem;color:var(--mute);margin-bottom:.5rem">Which of this week\'s words fits each gap? Write the sentences in your book with the right word.</p>'+
+      '<div class="gaps">'+order.map(function(i,n){var g=es[i].g,m=g.match(/\[([^\]]+)\]/);return '<div class="gap" data-i="'+i+'">'+(n+1)+'. '+esc(g.replace(/\[[^\]]+\]/,"§")).replace("§",'<span class="bl" data-f="'+esc(m[1])+'">?</span>')+
+        '<div class="ws">'+es.map(function(e,j){return '<button data-j="'+j+'">'+esc(e.w)+'</button>';}).join("")+'</div></div>';}).join("")+'</div><div class="verdict ok" id="vd"></div></div>';
+    stage.innerHTML=h;var done=0;
+    stage.querySelectorAll(".gap").forEach(function(g){g.querySelectorAll(".ws button").forEach(function(b){b.onclick=function(){
+      if(b.dataset.j===g.dataset.i){var bl=g.querySelector(".bl");bl.textContent=bl.dataset.f;g.classList.add("ok");boomFrom(bl,35);done++;if(done===4)$("vd").textContent="★ 4/4 — every gap filled!";}
+      else{b.classList.add("x");setTimeout(function(){b.classList.remove("x");},400);}};});});
+  }
+  if(S===4){
+    var vk="vf-votes-"+st.T+"-"+st.W,vt=ls(vk)||[0,0,0,0];
+    h='<div class="card"><div class="kick">Friday reflect · Shine</div>'+
+      '<div class="do" style="margin-top:0"><span class="ic">✏️</span><span>Write <b>2–3 sentences</b> that use <b>at least TWO</b> of this week\'s words. Underline them. Can you make them tell a tiny story?</span></div>'+
+      '<p style="font:900 1.1rem var(--fd);margin:1.6rem 0 .3rem">Which word will you steal for your writing? <span style="color:var(--mute);font:600 .9rem var(--fb)">— click to vote</span></p>'+
+      '<div class="votes">'+es.map(function(e,i){return '<button class="vote" data-i="'+i+'" style="--c:'+COLS[i]+'"><b>'+esc(e.w)+'</b><div class="ct">'+vt[i]+'</div><small>votes</small></button>';}).join("")+'</div>'+
+      '<p style="margin-top:1rem;color:var(--mute);font-size:.9rem">Right-click a word to take a vote away. <button id="vreset" style="text-decoration:underline;color:var(--mute)">Reset votes</button></p></div>';
+    stage.innerHTML=h;
+    stage.querySelectorAll(".vote").forEach(function(b){var i=+b.dataset.i;
+      b.onclick=function(){vt[i]++;ls(vk,vt);b.querySelector(".ct").textContent=vt[i];boomFrom(b,18);};
+      b.oncontextmenu=function(ev){ev.preventDefault();vt[i]=Math.max(0,vt[i]-1);ls(vk,vt);b.querySelector(".ct").textContent=vt[i];};});
+    $("vreset").onclick=function(){vt=[0,0,0,0];ls(vk,vt);go(4);};
+  }
+}
+
+/* ---------- vault ---------- */
+$("vaultB").onclick=function(){var v=ls("vf-vault")||{},h='<button class="btn ghost vclose" id="vx">✕ Close</button><h2>WORD <b>VAULT</b></h2><p class="s">Every word up to Term '+st.T+', Week '+st.W+'. Hover for the meaning. Green = added to the vault.</p>',count=0;
+  for(var t=1;t<=st.T;t++)for(var w in VF[t].weeks){if(t===st.T&&+w>st.W)break;
+    h+='<div class="wk"><h3>Term '+t+' · Week '+w+'</h3><div class="row">'+VF[t].weeks[w].map(function(e){count++;return '<span class="vw'+(v[e[0]]?" have":"")+'">'+esc(e[0])+'<span class="tip">'+esc(e[5])+'</span></span>';}).join("")+'</div></div>';}
+  h=h.replace('<p class="s">','<p class="s"><b style="color:var(--ink)">'+count+' words</b> so far. ');
+  $("vault").innerHTML=h;$("vault").classList.add("on");$("vx").onclick=function(){$("vault").classList.remove("on");};};
+
+go(1);
+})();
+</script>
+</body>
+</html>

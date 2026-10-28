@@ -6,7 +6,7 @@
 <title>Writing Hub — Years 5–6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -23,13 +23,13 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-he
                    radial-gradient(ellipse 55% 45% at 90% 90%,rgba(46,196,182,.10) 0%,transparent 60%);
   background-attachment:fixed;display:flex;flex-direction:column}
 .topbar{height:4px;background:linear-gradient(90deg,var(--mon) 0 20%,var(--tue) 20% 40%,var(--wed) 40% 60%,var(--thu) 60% 80%,var(--fri) 80% 100%)}
-.wrap{flex:1;max-width:980px;margin:0 auto;width:100%;padding:4rem 2rem 3rem}
+.wrap{flex:1;max-width:1180px;margin:0 auto;width:100%;padding:4rem 2rem 3rem}
 .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
 h1{font-family:var(--font-display);font-size:clamp(4rem,13vw,8.5rem);line-height:.88;letter-spacing:.02em;margin-bottom:1rem}
 h1 span{color:var(--thu)}
 .lede{font-size:1.15rem;color:var(--muted);max-width:520px;margin-bottom:3rem}
 .lede b{color:var(--text)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:3.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:3.5rem}
 .card{display:block;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid var(--border);
   transition:transform .18s ease,box-shadow .18s ease;position:relative}
 .card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,23,38,.16)}
@@ -44,6 +44,18 @@ h1 span{color:var(--thu)}
 .card__cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px}
 
+.card--vocab{background:#07070D;color:#F7F7FF;border:2px solid #C6FF3D;box-shadow:0 0 0 rgba(198,255,61,0)}
+.card--vocab:hover{box-shadow:0 16px 50px rgba(198,255,61,.35)}
+.card--vocab .card__stripe{background:linear-gradient(90deg,#C6FF3D,#22E4FF,#FF3D8B,#FF9F1C)}
+.card--vocab .card__kicker{color:#22E4FF}
+.card--vocab .card__title{font-family:"Unbounded","Arial Black",sans-serif;font-weight:900;font-size:2.15rem;line-height:1.02;letter-spacing:-.01em}
+.card--vocab .card__title b{color:#C6FF3D}
+.card--vocab .card__desc,.card--vocab .card__list{color:rgba(247,247,255,.66)}
+.card--vocab .card__cta{background:#C6FF3D;color:#07070D}
+.card--vocab .vlet{display:inline-block;transition:transform .2s}
+.card--vocab:hover .vlet{animation:vjump .5s ease both}
+.card--vocab:hover .vlet:nth-child(2){animation-delay:.04s}.card--vocab:hover .vlet:nth-child(3){animation-delay:.08s}.card--vocab:hover .vlet:nth-child(4){animation-delay:.12s}.card--vocab:hover .vlet:nth-child(5){animation-delay:.16s}
+@keyframes vjump{50%{transform:translateY(-8px) rotate(-6deg)}}
 .card--warmup{background:#13101e;color:#f0eeff;border-color:rgba(255,255,255,.10)}
 .card--warmup .card__stripe{background:linear-gradient(90deg,var(--mon),var(--thu))}
 .card--warmup .card__kicker{color:#facc15}
@@ -83,9 +95,25 @@ footer{padding:2rem;text-align:center;font-size:.72rem;letter-spacing:.14em;text
 <div class="wrap">
   <div class="eyebrow">Years 5–6 · NZC Phase 2 · Aotearoa New Zealand</div>
   <h1>WRITING <span>HUB</span></h1>
-  <p class="lede">Two halves of one writing programme. <b>Daily Warm-Up</b> builds the tools. <b>Writing Focus</b> puts them to work on a real piece.</p>
+  <p class="lede">Three parts of one writing programme. <b>Vocab Focus</b> grows our word power. <b>Daily Warm-Up</b> builds the tools. <b>Writing Focus</b> puts them to work on a real piece.</p>
 
   <div class="cards">
+    <a class="card card--vocab" href="vocab.html">
+      <div class="card__stripe"></div>
+      <div class="card__body">
+        <div class="card__kicker">Monday – Friday · 5 min</div>
+        <div class="card__title"><span class="vlet">V</span><span class="vlet">O</span><span class="vlet">C</span><span class="vlet">A</span><span class="vlet">B</span><br><b>FOCUS</b></div>
+        <p class="card__desc">One powerful new word a day, worked out like a detective. Friday is reflect day.</p>
+        <ul class="card__list">
+          <li>Write it · Guess it · Pick it · Use it</li>
+          <li>160 words to make writing shine</li>
+          <li>Friday recall, match &amp; fit-it games</li>
+          <li>Word Vault of every word so far</li>
+        </ul>
+        <span class="card__cta">Open Vocab Focus →</span>
+      </div>
+    </a>
+
     <a class="card card--warmup" href="warmup.html">
       <div class="card__stripe"></div>
       <div class="card__body">
