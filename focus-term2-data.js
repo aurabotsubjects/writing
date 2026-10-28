@@ -40,93 +40,296 @@ window.__WF_DATA[2] = {
 
   /* ================= THE WRITING PROCESS — same four stages, new genre ================= */
   process: {
-    intro: `Same process, new genre. Term 1 taught the four stages inside a narrative; Term 2 proves they belong to writing itself, not to stories. Students are expected to arrive already able to name FILL · FIND · SHAPE · SHARE, so this term's spotlights are about TRANSFER — what each stage looks like when you're explaining how something works rather than telling a story.`,
-    mnemonic: `FILL · FIND · SHAPE · SHARE`,
-    mnemonicNote: `Unchanged from Term 1 — same words, same questions, same hand actions, same chant. What changes is what a writer actually does inside each stage when the purpose is to inform rather than to entertain.`,
-    stages: [
-      { n:1, key:`FILL`, colour:`#2ec4b6`, icon:`🪣`,
-        question:`What do I want to say?`,
-        kid:`I wonder, I ask, I find out, I take notes in my own words. In a story I filled up with memories. In an explanation I fill up with FACTS — and I have to know where each one came from.`,
-        action:`Two cupped hands, like holding water.`,
-        looksLike:[`Wonder-question bank in the jotter`,`Deconstructing real explanation texts`,`Research: reading, watching, asking an expert`,`Note-making in key words — never copied sentences`,`Choosing the ONE question I'll answer`],
-        teacherLang:`"We're in FILL. You can't explain something you don't understand yet — so today we're finding out."`,
-        acs:`Loane Ch 3 (jotters), Ch 7 (making thinking visible) · Proverbs 25:2 — searching a matter out`,
-        weeks:`Weeks 1–3` },
-      { n:2, key:`FIND`, colour:`#3b82f6`, icon:`🎯`,
-        question:`Who do I want to say it to?`,
-        kid:`I find my reader — this term it's a Year 3 buddy — and I find the ORDER. An explanation has to go in the right sequence or nobody can follow it.`,
-        action:`Hands up to your eyes like binoculars, looking for your reader.`,
-        looksLike:[`The Audience Card: my buddy's name, what they already know, what they'll ask`,`Flow-chart organiser: first · next · then · finally`,`Explaining it out loud to a partner before writing`,`Drafting: definition paragraph, then the sequence`],
-        teacherLang:`"We're in FIND. Everything you write, you write for one eight-year-old. Would they follow this?"`,
-        acs:`Loane Ch 5 (models, close reading, audience awareness) — impact, voice, first ideas`,
-        weeks:`Weeks 3–6` },
-      { n:3, key:`SHAPE`, colour:`#f97316`, icon:`🔍`,
-        question:`How do I want to say it?`,
-        kid:`I read it like an editor — but this time I'm checking whether it's CLEAR, not whether it's exciting. Would my buddy understand every word? Is anything in the wrong order? Did I explain the hard bit or skip it?`,
-        action:`Both hands moulding a ball of clay, turning it as you shape it.`,
-        looksLike:[`Deconstructing a strong and a weak explanation`,`The clarity audit: circle every word a Year 3 wouldn't know`,`Checking the sequence has no missing step`,`Topic sentences, connectives and present tense checked`,`Two personal goals set`],
-        teacherLang:`"We're in SHAPE. Stop being the person who knows this. Read it as the person who doesn't."`,
-        acs:`Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)`,
-        weeks:`Weeks 7–8` },
-      { n:4, key:`SHARE`, colour:`#a855f7`, icon:`🎁`,
-        question:`Is it ready to give away?`,
-        kid:`I test it on a real person, I recraft it as many times as it takes, I check the small things — and then I give it to my buddy and watch whether they actually understand.`,
-        action:`Open both hands and push them forward, offering.`,
-        looksLike:[`Helping Circle with the buddy lens`,`The "explain it without your paper" test`,`ADD · CUT · REORDER · REPLACE`,`Four-pass edit, best copy, labelled diagram, typing`,`Reading it to the buddy class`],
-        teacherLang:`"We're in SHARE. The test isn't whether I like it — it's whether a Year 3 gets it."`,
-        acs:`The Helping Circle (Gail Loane) — revise and recraft in cycles until ready to publish`,
-        weeks:`Weeks 8–10` }
+    "intro": "Same process, new genre. Term 1 taught the four stages inside a narrative; Term 2 proves they belong to writing itself, not to stories. Students are expected to arrive already able to name FILL · FIND · SHAPE · SHARE, so this term's spotlights are about TRANSFER — what each stage looks like when you're explaining how something works rather than telling a story.",
+    "mnemonic": "FILL · FIND · SHAPE · SHARE",
+    "mnemonicNote": "Four stages. Four questions. Four hand actions. One chant.",
+    "stages": [
+      {
+        "n": 1,
+        "key": "FILL",
+        "colour": "#2ec4b6",
+        "icon": "🪣",
+        "question": "What will I write about?",
+        "big": "Gather your ideas",
+        "point": "Collect lots of ideas, then choose the best one. We are not writing the piece yet.",
+        "steps": [
+          "I notice, remember and wonder.",
+          "I jot ideas, words and pictures in my jotter.",
+          "I choose my best idea and say why."
+        ],
+        "notYet": "Writing the whole piece. Right now we just collect.",
+        "moveOn": "I have chosen ONE idea and I can tell someone about it.",
+        "action": "Cup your two hands together, like you're holding water.",
+        "actionShort": "Cupped hands",
+        "kid": "This term I fill up with FACTS. I ask questions, research, and make notes in my own words — and I know where each fact came from.",
+        "looksLike": [
+          "Writing wonder questions",
+          "Reading real explanations to see how they work",
+          "Researching: reading, watching, asking an expert",
+          "Notes in key words — not copied sentences",
+          "Choosing the ONE question I'll answer"
+        ],
+        "teacherLang": "\"We're in FILL. You can't explain something you don't understand yet — so today we're finding out.\"",
+        "acs": "Loane Ch 3 (jotters), Ch 7 (making thinking visible) · Proverbs 25:2 — searching a matter out",
+        "weeks": "Weeks 1–3"
+      },
+      {
+        "n": 2,
+        "key": "FIND",
+        "colour": "#3b82f6",
+        "icon": "🎯",
+        "question": "Who am I writing for?",
+        "big": "Find your reader, then draft",
+        "point": "Decide who will read it and what you want them to feel or know. Then write your first draft fast — just get it all down.",
+        "steps": [
+          "I decide who my reader is.",
+          "I say my piece out loud to a partner first.",
+          "I write my first draft fast, for that reader."
+        ],
+        "notYet": "Fixing spelling or making it neat. A messy draft is fine.",
+        "moveOn": "My whole first draft is on the page, from beginning to end.",
+        "action": "Make binoculars with your hands and hold them to your eyes — you're looking for your reader.",
+        "actionShort": "Binocular hands",
+        "kid": "This term my reader is a Year 3 buddy. I plan the steps in the right order so they can follow, then I draft.",
+        "looksLike": [
+          "Audience Card: what my buddy already knows and might ask",
+          "Flow chart: first · next · then · finally",
+          "Explaining it out loud before I write",
+          "Drafting: what it is, then how it works step by step"
+        ],
+        "teacherLang": "\"We're in FIND. Everything you write, you write for one eight-year-old. Would they follow this?\"",
+        "acs": "Loane Ch 5 (models, close reading, audience awareness) — impact, voice, first ideas",
+        "weeks": "Weeks 3–6"
+      },
+      {
+        "n": 3,
+        "key": "SHAPE",
+        "colour": "#f97316",
+        "icon": "🔍",
+        "question": "How can I make it better?",
+        "big": "Reread and improve",
+        "point": "Read your draft like an editor. Find what's working and what isn't, then change it to make it stronger.",
+        "steps": [
+          "I reread my draft slowly, like a reader would.",
+          "I check it against our success criteria.",
+          "I change words, sentences and order to make it stronger."
+        ],
+        "notYet": "Just copying it out neater. Shaping means making real changes.",
+        "moveOn": "I have made real changes and set two goals.",
+        "action": "Use both hands to mould an invisible ball of clay.",
+        "actionShort": "Moulding hands",
+        "kid": "This term I check that it's CLEAR. Would my buddy understand every word? Is any step missing or in the wrong order?",
+        "looksLike": [
+          "Comparing a strong and a weak explanation",
+          "Clarity check: circle words a Year 3 wouldn't know",
+          "Checking no step is missing",
+          "Topic sentences, linking words, present tense",
+          "Setting two goals"
+        ],
+        "teacherLang": "\"We're in SHAPE. Stop being the person who knows this. Read it as the person who doesn't.\"",
+        "acs": "Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)",
+        "weeks": "Weeks 7–8"
+      },
+      {
+        "n": 4,
+        "key": "SHARE",
+        "colour": "#a855f7",
+        "icon": "🎁",
+        "question": "Is it ready for my reader?",
+        "big": "Get feedback, fix, publish",
+        "point": "Get feedback, improve it again, check the small things, then give it to your reader.",
+        "steps": [
+          "I get feedback: two stars and a wish.",
+          "I fix it: add, cut, reorder or replace.",
+          "I check spelling and punctuation, then publish."
+        ],
+        "notYet": "Stopping after one go. Feedback and fixing can happen more than once.",
+        "moveOn": "My reader has it in their hands.",
+        "action": "Hold out both open hands and push them forward, like you're giving a gift.",
+        "actionShort": "Giving hands",
+        "kid": "This term I test it on a real person, fix the confusing bits, then give it to my buddy and check they understand.",
+        "looksLike": [
+          "Helping Circle with the buddy lens",
+          "The 'explain it without your paper' test",
+          "ADD · CUT · REORDER · REPLACE",
+          "Final edit, best copy, labelled diagram, typing",
+          "Reading it to the buddy class"
+        ],
+        "teacherLang": "\"We're in SHARE. The test isn't whether I like it — it's whether a Year 3 gets it.\"",
+        "acs": "The Helping Circle (Gail Loane) — revise and recraft in cycles until ready to publish",
+        "weeks": "Weeks 8–10"
+      }
     ],
-    chant: [
-      { call:`Stage one!`, response:`WHAT do I want to say — I FILL!` },
-      { call:`Stage two!`, response:`WHO am I saying it to — I FIND!` },
-      { call:`Stage three!`, response:`HOW do I want to say it — I SHAPE!` },
-      { call:`Stage four!`, response:`Is it ready to give away — I SHARE!` }
+    "chant": [
+      {
+        "call": "Stage one!",
+        "response": "What will I write? — I FILL!"
+      },
+      {
+        "call": "Stage two!",
+        "response": "Who is it for? — I FIND!"
+      },
+      {
+        "call": "Stage three!",
+        "response": "How can it be better? — I SHAPE!"
+      },
+      {
+        "call": "Stage four!",
+        "response": "Is it ready? — I SHARE!"
+      }
     ],
-    analogy: {
-      title: `The feast analogy (unchanged from Term 1 — plus the Term 2 version)`,
-      text: `Term 1: writing is like cooking a meal for someone you love. FILL — gather the ingredients. FIND — find out who's coming to dinner. SHAPE — taste it and adjust. SHARE — serve it and watch their face. Term 2 has its own version, and it's worth teaching alongside: explaining something is like giving directions. FILL — you have to know the route yourself first. FIND — you find out who's asking, because you'd direct a driver differently from someone walking. SHAPE — you check your directions for the step you left out. SHARE — you watch whether they actually arrive.`
-    },
-    cycle: `Still a cycle, not a line. Stages 3 and 4 loop: analyse → test on a reader → recraft → analyse again. In explanation writing the loop is even more obvious, because every time a real reader doesn't understand something, you go straight back to SHAPE.`,
-    memoryMoves: [
-      { name:`Retrieval before re-teaching`, how:`Week 1 opens with a cold recall of all four stages after the holidays — no wall strip, no warning. What survives a two-week break is what's actually learned.` },
-      { name:`Transfer`, how:`The strongest test of learning is using it somewhere new. Each Term 2 spotlight asks "what does this stage look like when we're explaining instead of storytelling?"` },
-      { name:`Dual coding`, how:`Same word, colour, icon and hand action as Term 1 — deliberately unchanged, so the term break doesn't cost the students their hooks.` },
-      { name:`Retrieval practice`, how:`The same 60-second Process Check in every lesson. It is the single highest-value routine in the programme.` },
-      { name:`Spaced repetition`, how:`Recall in Weeks 1, 4, 6 and 9; transfer teaching in Weeks 2, 3, 7 and 8; assessment in Week 10 — the same widening pattern as Term 1.` },
-      { name:`Elaboration & teaching others`, how:`Week 5 has students explain the process to their Year 3 buddy. Teaching a younger child is the hardest and most revealing form of explanation there is.` },
-      { name:`Visible progress`, how:`The same wall strip and peg. Put it up in Week 1 without comment and see who notices where the peg belongs.` }
-    ],
-    schedule: [
-      { w:`Week 1`, what:`COLD RECALL — all four stages after the break, no notes, no strip. Then re-establish the daily Process Check and put the wall strip back up.` },
-      { w:`Week 2`, what:`TRANSFER — FILL in a new genre. In a story you filled with memories; in an explanation you fill with facts. Same stage, different bucket.` },
-      { w:`Week 3`, what:`TRANSFER — FIND in a new genre. The reader is now a real eight-year-old, and "shape" now means the correct ORDER.` },
-      { w:`Week 4`, what:`SPACED RECALL — 60-second quick-fire, no notes.` },
-      { w:`Week 5`, what:`TEACH IT — explain the four stages to your Year 3 buddy in your own words.` },
-      { w:`Week 6`, what:`SPACED RECALL + move the peg, justified out loud.` },
-      { w:`Week 7`, what:`TRANSFER — SHAPE in a new genre. In narrative you asked "is it vivid?" Now you ask "is it clear?"` },
-      { w:`Week 8`, what:`TRANSFER — SHARE in a new genre. The feedback question changes from "did you feel it?" to "did you understand it?"` },
-      { w:`Week 9`, what:`THE CYCLE — draw it from memory again, and mark where a confused reader sends you back to.` },
-      { w:`Week 10`, what:`ASSESS — explain the process AND explain how it changed between a story and an explanation.` }
-    ],
-    check: {
-      title: `The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)`,
-      steps: [
-        `"Hands — which stage are we in?" Whole class does the action. No talking.`,
-        `"Name it." Whole class: the stage word and its question.`,
-        `One student: "How do you know we're in that stage?" — the answer must point at what they are actually doing today.`
+    "analogy": {
+      "title": "Explaining is like giving directions",
+      "parts": [
+        "Know the route yourself first.",
+        "Find out who's asking — are they driving or walking?",
+        "Check your directions for a missing turn.",
+        "Watch whether they actually get there."
       ],
-      note: `Identical to Term 1. Don't change it — the value is entirely in its sameness.`
+      "end": "Directions only work if someone arrives.",
+      "teacher": "Term 1: writing is like cooking a meal for someone you love. FILL — gather the ingredients. FIND — find out who's coming to dinner. SHAPE — taste it and adjust. SHARE — serve it and watch their face. Term 2 has its own version, and it's worth teaching alongside: explaining something is like giving directions. FILL — you have to know the route yourself first. FIND — you find out who's asking, because you'd direct a driver differently from someone walking. SHAPE — you check your directions for the step you left out. SHARE — you watch whether they actually arrive."
     },
-    assessment: {
-      title: `Week 10 — can they explain it, and can they transfer it?`,
-      prompt: `Explain our writing process to someone who has never heard of it. Then explain how each stage was DIFFERENT this term, when you were explaining how something works instead of telling a story.`,
-      success: [
-        `Names all four stages in order, with the question that belongs to each`,
-        `Explains in their own words what a writer DOES in each stage`,
-        `Names at least two real differences between the narrative version and the explanation version (e.g. "in FILL I collected memories, this term I collected facts and had to check them")`,
-        `Knows that Stages 3 and 4 repeat in cycles — and that a confused reader sends you back to SHAPE`
+    "cycle": "Every time a real reader gets confused, you go back to SHAPE, fix that part, and test it again.",
+    "cycleTeacher": "Still a cycle, not a line. Stages 3 and 4 loop: analyse → test on a reader → recraft → analyse again. In explanation writing the loop is even more obvious, because every time a real reader doesn't understand something, you go straight back to SHAPE.",
+    "memoryMoves": [
+      {
+        "name": "Retrieval before re-teaching",
+        "how": "Week 1 opens with a cold recall of all four stages after the holidays — no wall strip, no warning. What survives a two-week break is what's actually learned."
+      },
+      {
+        "name": "Transfer",
+        "how": "The strongest test of learning is using it somewhere new. Each Term 2 spotlight asks \"what does this stage look like when we're explaining instead of storytelling?\""
+      },
+      {
+        "name": "Dual coding",
+        "how": "Same word, colour, icon and hand action as Term 1 — deliberately unchanged, so the term break doesn't cost the students their hooks."
+      },
+      {
+        "name": "Retrieval practice",
+        "how": "The same 60-second Process Check in every lesson. It is the single highest-value routine in the programme."
+      },
+      {
+        "name": "Spaced repetition",
+        "how": "Recall in Weeks 1, 4, 6 and 9; transfer teaching in Weeks 2, 3, 7 and 8; assessment in Week 10 — the same widening pattern as Term 1."
+      },
+      {
+        "name": "Elaboration & teaching others",
+        "how": "Week 5 has students explain the process to their Year 3 buddy. Teaching a younger child is the hardest and most revealing form of explanation there is."
+      },
+      {
+        "name": "Visible progress",
+        "how": "The same wall strip and peg. Put it up in Week 1 without comment and see who notices where the peg belongs."
+      }
+    ],
+    "schedule": [
+      {
+        "w": "Week 1",
+        "what": "COLD RECALL — all four stages after the break, no notes, no strip. Then re-establish the daily Process Check and put the wall strip back up."
+      },
+      {
+        "w": "Week 2",
+        "what": "TRANSFER — FILL in a new genre. In a story you filled with memories; in an explanation you fill with facts. Same stage, different bucket."
+      },
+      {
+        "w": "Week 3",
+        "what": "TRANSFER — FIND in a new genre. The reader is now a real eight-year-old, and \"shape\" now means the correct ORDER."
+      },
+      {
+        "w": "Week 4",
+        "what": "SPACED RECALL — 60-second quick-fire, no notes."
+      },
+      {
+        "w": "Week 5",
+        "what": "TEACH IT — explain the four stages to your Year 3 buddy in your own words."
+      },
+      {
+        "w": "Week 6",
+        "what": "SPACED RECALL + move the peg, justified out loud."
+      },
+      {
+        "w": "Week 7",
+        "what": "TRANSFER — SHAPE in a new genre. In narrative you asked \"is it vivid?\" Now you ask \"is it clear?\""
+      },
+      {
+        "w": "Week 8",
+        "what": "TRANSFER — SHARE in a new genre. The feedback question changes from \"did you feel it?\" to \"did you understand it?\""
+      },
+      {
+        "w": "Week 9",
+        "what": "THE CYCLE — draw it from memory again, and mark where a confused reader sends you back to."
+      },
+      {
+        "w": "Week 10",
+        "what": "ASSESS — explain the process AND explain how it changed between a story and an explanation."
+      }
+    ],
+    "check": {
+      "title": "The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)",
+      "steps": [
+        "\"Hands — which stage are we in?\" Whole class does the action. No talking.",
+        "\"Name it.\" Whole class: the stage word and its question.",
+        "One student: \"How do you know we're in that stage?\" — the answer must point at what they are actually doing today."
+      ],
+      "note": "Identical to Term 1. Don't change it — the value is entirely in its sameness."
+    },
+    "assessment": {
+      "title": "Week 10 — can they explain it, and can they transfer it?",
+      "prompt": "Explain our writing process to someone who has never heard of it. Then explain how each stage was DIFFERENT this term, when you were explaining how something works instead of telling a story.",
+      "success": [
+        "Names all four stages in order, with the question that belongs to each",
+        "Explains in their own words what a writer DOES in each stage",
+        "Names at least two real differences between the narrative version and the explanation version (e.g. \"in FILL I collected memories, this term I collected facts and had to check them\")",
+        "Knows that Stages 3 and 4 repeat in cycles — and that a confused reader sends you back to SHAPE"
       ]
+    },
+    "setup": {
+      "title": "Before Week 1 — get the wall strip back up (10 minutes)",
+      "items": [
+        {
+          "thing": "The wall strip",
+          "how": "The same four cards as Term 1: 🪣 FILL (teal) · 🎯 FIND (blue) · 🔍 SHAPE (orange) · 🎁 SHARE (purple), each with its number, word and question. Do NOT redesign it — the whole value is that it's identical to last term."
+        },
+        {
+          "thing": "The peg",
+          "how": "Same peg, same job. Put it up in Week 1 with no peg on it at all, and let a student work out where it belongs."
+        },
+        {
+          "thing": "The two charts",
+          "how": "Keep the Term 1 \"What Makes a Strong Narrative\" chart up on the wall. In Week 6 you'll build the explanation version beside it, and in Week 10 the class compares them. That comparison is where the transfer learning lands."
+        }
+      ],
+      "note": "New students who joined this term won't know any of it. Pair them with a confident student for the Week 1 cold recall — being taught it by a peer is better than being taught it by you."
+    },
+    "routine": {
+      "title": "The 60-second Process Check — unchanged from Term 1",
+      "intro": "Identical routine, identical wording, every lesson, straight after the Warm-Up Bridge. Do not improve it. Its entire value is that it is the same fifty times a term, and now a hundred times across two terms. Only step 4 changes day to day.",
+      "steps": [
+        {
+          "n": 1,
+          "label": "Ask with your hands",
+          "say": "\"Hands — which stage are we in?\"",
+          "do": "Students answer silently with the hand action. Nobody speaks. Scan the room in three seconds. After a term of practice most classes are near-perfect at this by Week 2 — which is itself worth naming to them."
+        },
+        {
+          "n": 2,
+          "label": "Name it together",
+          "say": "\"Name it.\"",
+          "do": "Whole class, out loud together: the stage number, word and question — e.g. \"Stage one, FILL — What will I write about?\""
+        },
+        {
+          "n": 3,
+          "label": "One student justifies it",
+          "say": "\"[Name] — how do you know we're in that stage today?\"",
+          "do": "Rotate through the roll. The answer must point at what the class is actually doing today. This term, push one step further with your strongest students: \"…and how is that different from what FILL looked like last term?\""
+        },
+        {
+          "n": 4,
+          "label": "Today's extra question",
+          "say": "(Written on today's lesson.)",
+          "do": "One quick question connecting the stage to today's work. Take one or two answers and move straight into the I Do. Drop this step if you're short of time."
+        }
+      ],
+      "note": "On the days marked \"Process spotlight\" you also teach the longer piece underneath, and the lesson's other timings shorten to make room. Term 2's spotlights are mostly about TRANSFER — the same stage doing a different job. On a day marked “teach this first”, the spotlight is taught BEFORE the routine — the lesson card tells you when and why."
     }
   },
 
@@ -688,7 +891,7 @@ window.__WF_T2_WEEKS[4] = {
       { code:`Writing — Writing processes (Drafting)`, label:`Non-fiction paragraph structure`, detail:`NZC Phase 2: "write non-fiction paragraphs that have a topic sentence, detail sentences, and a concluding sentence" — the explicit paragraph expectation for Years 5–6 information writing.` },
       { code:`Writing — Writing to inform`, label:`Linking words and phrases`, detail:`NZC Phase 2: "begin to use linking words and phrases (also, another, together with)" — plus the cause connectives this genre needs.` }
     ],
-    process:{ stage:2, check:`FIND. What's the question that belongs to this stage? ("Who do I want to say it to?")` },
+    process:{ stage:2, check:`FIND. What's the question that belongs to this stage? ("Who am I writing for?")` },
     bridge:`Relative pronouns — who, which, that. "The light, WHICH has slowed down, bends." That's how you slip a definition into a sentence without stopping.`,
     iDo:{ mins:6, title:`I Do — One Step, One Paragraph`,
       instruction:`One box from my flow chart becomes one paragraph. Watch the three jobs each paragraph does.`,
@@ -1206,7 +1409,7 @@ window.__WF_T2_WEEKS[7] = {
       { code:`Key competency — Relating to others`, label:`Listening without defending`, detail:`"Listen carefully and paraphrase ideas of others" — the writer records the feedback rather than arguing with it.` }
     ],
     process:{ stage:3, spotlight:`HANDOVER — SHAPE into SHARE (2 min). See the spotlight panel.`,
-      check:`Finishing SHAPE, entering SHARE — "Is it ready to give away?"` },
+      check:`Finishing SHAPE, entering SHARE — "Is it ready for my reader?"` },
     bridge:`All four warm-ups this week were about accuracy and consistency. Next week is about whether a real person understands it.`,
     iDo:{ mins:4, title:`I Do — The One Sentence You Must Not Say`,
       instruction:`The protocol, and then the rule that matters most in this genre.`,
@@ -1684,7 +1887,7 @@ window.__WF_DATA[2].process.routine = {
     { n:1, label:`Ask with your hands`, say:`"Hands — which stage are we in?"`,
       do:`Students answer silently with the hand action. Nobody speaks. Scan the room in three seconds. After a term of practice most classes are near-perfect at this by Week 2 — which is itself worth naming to them.` },
     { n:2, label:`Name it together`, say:`"Name it."`,
-      do:`Whole class, out loud together: the stage number, word and question — e.g. "Stage one, FILL — What do I want to say?"` },
+      do:`Whole class, out loud together: the stage number, word and question — e.g. "Stage one, FILL — What will I write about?"` },
     { n:3, label:`One student justifies it`, say:`"[Name] — how do you know we're in that stage today?"`,
       do:`Rotate through the roll. The answer must point at what the class is actually doing today. This term, push one step further with your strongest students: "…and how is that different from what FILL looked like last term?"` },
     { n:4, label:`Today's extra question`, say:`(Written on today's lesson.)`,
@@ -1704,7 +1907,7 @@ window.__WF_DATA[2].process.routine = {
     steps:[
       { do:`No warning, no warm-up. Just: "Last term we learned four stages of the writing process. Nothing on the wall, no notes. Write down as many as you can, in order, in your jotter. Ninety seconds." Everyone writes.` },
       { do:`Then: "Hands up if you got four. Three. Two." Take the count without commenting on it. A class that gets 60% after a break is completely normal — say that out loud so nobody feels caught out.` },
-      { do:`Now put the cards up, one at a time, and have the class do the hand action for each as it goes up. Finish with the chant, twice.`, say:`"Stage one!" → "What do I want to say — I FILL!" … and so on through all four.` },
+      { do:`Now put the cards up, one at a time, and have the class do the hand action for each as it goes up. Finish with the chant, twice.`, say:`"Stage one!" → "What will I write? — I FILL!" … and so on through all four.` },
       { do:`Land the term's big idea: "Same four stages. Completely different writing. This term you're not telling a story — you're explaining how something works — and we'll find out that every stage does a slightly different job."` }
     ],
     watchFor:`Resist the urge to reteach it all today. What you want is the retrieval attempt first — the forgetting is what makes the relearning stick. The cards go up AFTER they've tried.`

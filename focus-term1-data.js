@@ -39,94 +39,298 @@ window.__WF_DATA[1] = {
 
   /* ================= THE WRITING PROCESS — explicit teaching module ================= */
   process: {
-    intro: `Our writers don't just move through the writing process — they can name it, explain it, and say which stage they are standing in and why. That is taught explicitly, revisited in a 60-second Process Check in every single lesson, and assessed in Week 10 by asking a student to explain the whole thing to someone who has never heard of it.`,
-    mnemonic: `FILL · FIND · SHAPE · SHARE`,
-    mnemonicNote: `Four stages, four questions, four hand actions, one chant. The words are alliterative and the actions are physical, so the process is stored in more than one place in memory (dual coding + embodied learning).`,
-    stages: [
-      { n:1, key:`FILL`, colour:`#2ec4b6`, icon:`🪣`,
-        question:`What do I want to say?`,
-        kid:`I collect. I notice, I remember, I wonder, I choose. I am filling up with things to say — I'm not writing the story yet.`,
-        action:`Two cupped hands, like holding water.`,
-        looksLike:[`Jotter noticings, wonderings and feelings`,`Telling a story out loud before writing it`,`Sensory maps, imaging with eyes shut`,`Word and idea banks`,`Choosing THE moment and saying why`],
-        teacherLang:`"We're in FILL. Nothing goes on the page as a story yet — we're collecting."`,
-        acs:`Loane Ch 3 (jotters), Ch 4 (has a story to tell), Ch 7 (imaging & the senses)`,
-        weeks:`Weeks 1–3` },
-      { n:2, key:`FIND`, colour:`#3b82f6`, icon:`🎯`,
-        question:`Who do I want to say it to?`,
-        kid:`I find my reader. I decide who is going to hear this and what I want them to feel. Then I draft fast and get it all down.`,
-        action:`Hands up to your eyes like binoculars, looking for your reader.`,
-        looksLike:[`The Audience Card — who, what they need, what I want them to feel`,`Oral rehearsal to a partner`,`Reading models and stealing techniques`,`Fast drafting — impact, voice, first ideas`],
-        teacherLang:`"We're in FIND. You know who's reading this. Write it for them, and write it fast."`,
-        acs:`Loane Ch 5 (sharing stories, models, close reading) — impact, voice, first ideas`,
-        weeks:`Weeks 3–6` },
-      { n:3, key:`SHAPE`, colour:`#f97316`, icon:`🔍`,
-        question:`How do I want to say it?`,
-        kid:`I read my own writing like an editor. I hold it up against what strong writing does, and I find what's working and what isn't — ideas, structure, words, punctuation.`,
-        action:`Both hands moulding a ball of clay, turning it as you shape it.`,
-        looksLike:[`Deconstructing a model text against success criteria`,`Marking up my own draft — glows and grows`,`The three-colour audit: weak verbs, repeated openers, vague nouns`,`Setting two personal goals`],
-        teacherLang:`"We're in SHAPE. You're not the writer right now — you're the reader, and you're being honest."`,
-        acs:`Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)`,
-        weeks:`Weeks 7–8` },
-      { n:4, key:`SHARE`, colour:`#a855f7`, icon:`🎁`,
-        question:`Is it ready to give away?`,
-        kid:`I ask for help, I recraft it — as many times as it takes — I check the small things, and then I give it to my reader.`,
-        action:`Open both hands and push them forward, offering.`,
-        looksLike:[`The Helping Circle — two stars and one wish`,`ADD · CUT · REORDER · REPLACE`,`A real second draft, not just neater`,`Four-pass edit, best copy, typing, Author's Chair`],
-        teacherLang:`"We're in SHARE. Feedback, recraft, repeat — until it's ready to be given away."`,
-        acs:`The Helping Circle (Gail Loane) — revise and recraft in cycles until ready to publish`,
-        weeks:`Weeks 8–10` }
+    "intro": "Our writers don't just move through the writing process — they can name it, explain it, and say which stage they are standing in and why. That is taught explicitly, revisited in a 60-second Process Check in every single lesson, and assessed in Week 10 by asking a student to explain the whole thing to someone who has never heard of it.",
+    "mnemonic": "FILL · FIND · SHAPE · SHARE",
+    "mnemonicNote": "Four stages. Four questions. Four hand actions. One chant.",
+    "stages": [
+      {
+        "n": 1,
+        "key": "FILL",
+        "colour": "#2ec4b6",
+        "icon": "🪣",
+        "question": "What will I write about?",
+        "big": "Gather your ideas",
+        "point": "Collect lots of ideas, then choose the best one. We are not writing the piece yet.",
+        "steps": [
+          "I notice, remember and wonder.",
+          "I jot ideas, words and pictures in my jotter.",
+          "I choose my best idea and say why."
+        ],
+        "notYet": "Writing the whole piece. Right now we just collect.",
+        "moveOn": "I have chosen ONE idea and I can tell someone about it.",
+        "action": "Cup your two hands together, like you're holding water.",
+        "actionShort": "Cupped hands",
+        "kid": "This term I collect true moments from my own life. I jot them as one-line 'seeds', then I choose the ONE moment that matters most.",
+        "looksLike": [
+          "Jotting moment seeds in my jotter",
+          "Telling my story out loud first",
+          "Closing my eyes to remember what I saw, heard and felt",
+          "Building a word bank",
+          "Choosing my moment and saying why"
+        ],
+        "teacherLang": "\"We're in FILL. Nothing goes on the page as a story yet — we're collecting.\"",
+        "acs": "Loane Ch 3 (jotters), Ch 4 (has a story to tell), Ch 7 (imaging & the senses)",
+        "weeks": "Weeks 1–3"
+      },
+      {
+        "n": 2,
+        "key": "FIND",
+        "colour": "#3b82f6",
+        "icon": "🎯",
+        "question": "Who am I writing for?",
+        "big": "Find your reader, then draft",
+        "point": "Decide who will read it and what you want them to feel or know. Then write your first draft fast — just get it all down.",
+        "steps": [
+          "I decide who my reader is.",
+          "I say my piece out loud to a partner first.",
+          "I write my first draft fast, for that reader."
+        ],
+        "notYet": "Fixing spelling or making it neat. A messy draft is fine.",
+        "moveOn": "My whole first draft is on the page, from beginning to end.",
+        "action": "Make binoculars with your hands and hold them to your eyes — you're looking for your reader.",
+        "actionShort": "Binocular hands",
+        "kid": "This term I decide who will read my story and what I want them to feel. Then I write my first draft quickly.",
+        "looksLike": [
+          "Filling in my Audience Card",
+          "Telling my story to a partner",
+          "Reading model stories and borrowing their tricks",
+          "Writing my first draft fast"
+        ],
+        "teacherLang": "\"We're in FIND. You know who's reading this. Write it for them, and write it fast.\"",
+        "acs": "Loane Ch 5 (sharing stories, models, close reading) — impact, voice, first ideas",
+        "weeks": "Weeks 3–6"
+      },
+      {
+        "n": 3,
+        "key": "SHAPE",
+        "colour": "#f97316",
+        "icon": "🔍",
+        "question": "How can I make it better?",
+        "big": "Reread and improve",
+        "point": "Read your draft like an editor. Find what's working and what isn't, then change it to make it stronger.",
+        "steps": [
+          "I reread my draft slowly, like a reader would.",
+          "I check it against our success criteria.",
+          "I change words, sentences and order to make it stronger."
+        ],
+        "notYet": "Just copying it out neater. Shaping means making real changes.",
+        "moveOn": "I have made real changes and set two goals.",
+        "action": "Use both hands to mould an invisible ball of clay.",
+        "actionShort": "Moulding hands",
+        "kid": "This term I reread my story like an editor. I hunt for weak verbs, repeated sentence starters and vague words — and make them stronger.",
+        "looksLike": [
+          "Comparing a model story with our success criteria",
+          "Marking my draft: glows and grows",
+          "The three-colour check: weak verbs, repeated openers, vague nouns",
+          "Setting two goals"
+        ],
+        "teacherLang": "\"We're in SHAPE. You're not the writer right now — you're the reader, and you're being honest.\"",
+        "acs": "Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)",
+        "weeks": "Weeks 7–8"
+      },
+      {
+        "n": 4,
+        "key": "SHARE",
+        "colour": "#a855f7",
+        "icon": "🎁",
+        "question": "Is it ready for my reader?",
+        "big": "Get feedback, fix, publish",
+        "point": "Get feedback, improve it again, check the small things, then give it to your reader.",
+        "steps": [
+          "I get feedback: two stars and a wish.",
+          "I fix it: add, cut, reorder or replace.",
+          "I check spelling and punctuation, then publish."
+        ],
+        "notYet": "Stopping after one go. Feedback and fixing can happen more than once.",
+        "moveOn": "My reader has it in their hands.",
+        "action": "Hold out both open hands and push them forward, like you're giving a gift.",
+        "actionShort": "Giving hands",
+        "kid": "This term I get feedback in the Helping Circle, improve my story, check the small things, and share it from the Author's Chair.",
+        "looksLike": [
+          "Helping Circle: two stars and a wish",
+          "ADD · CUT · REORDER · REPLACE",
+          "A real second draft — not just neater",
+          "Final edit, best copy, typing, Author's Chair"
+        ],
+        "teacherLang": "\"We're in SHARE. Feedback, recraft, repeat — until it's ready to be given away.\"",
+        "acs": "The Helping Circle (Gail Loane) — revise and recraft in cycles until ready to publish",
+        "weeks": "Weeks 8–10"
+      }
     ],
-    chant: [
-      { call:`Stage one!`, response:`WHAT do I want to say — I FILL!` },
-      { call:`Stage two!`, response:`WHO am I saying it to — I FIND!` },
-      { call:`Stage three!`, response:`HOW do I want to say it — I SHAPE!` },
-      { call:`Stage four!`, response:`Is it ready to give away — I SHARE!` }
+    "chant": [
+      {
+        "call": "Stage one!",
+        "response": "What will I write? — I FILL!"
+      },
+      {
+        "call": "Stage two!",
+        "response": "Who is it for? — I FIND!"
+      },
+      {
+        "call": "Stage three!",
+        "response": "How can it be better? — I SHAPE!"
+      },
+      {
+        "call": "Stage four!",
+        "response": "Is it ready? — I SHARE!"
+      }
     ],
-    analogy: {
-      title: `The feast analogy (use this when a student can't explain it)`,
-      text: `Writing a piece is like cooking a meal for someone you love. FILL — you go out and gather the ingredients; you can't cook with an empty bench. FIND — you find out who's coming to dinner, because you'd cook differently for a toddler than for your nana. SHAPE — you taste it and adjust it; too bland, needs something sharp, that bit's burnt. SHARE — you set the table, you serve it, and you watch their face. The cooking isn't finished when the food is made. It's finished when someone eats it.`
-    },
-    cycle: `The process is a cycle, not a straight line. Stages 3 and 4 loop: analyse → feedback → recraft → analyse again, as many times as the piece needs. Teach this explicitly in Week 9 — students who think writing is a one-way line stop too early.`,
-    memoryMoves: [
-      { name:`Dual coding`, how:`Every stage has a word, a colour, an icon and a hand action. Students meet it four ways at once, so recall has four hooks instead of one.` },
-      { name:`Embodied learning`, how:`The four hand actions are used every day. Ask "which stage?" and the whole class answers with hands before anyone speaks.` },
-      { name:`Chant and rhythm`, how:`Call-and-response, 20 seconds. Rhythm and rhyme make verbal sequences stick — this is why we remember songs from years ago.` },
-      { name:`Retrieval practice`, how:`The 60-second Process Check in every lesson. Students recall the stage from memory before the teacher says it. Retrieval, not re-reading, is what builds durable memory.` },
-      { name:`Spaced repetition`, how:`Full teaching in Weeks 1, 2, 3, 7 and 8; deliberate spaced recalls in Weeks 4, 5, 6, 9 and 10 at widening intervals.` },
-      { name:`Elaboration & self-explanation`, how:`"Explain it in your own words to your partner" · "Teach it to someone at home tonight" · exit tickets that ask WHY we're in this stage, not just which.` },
-      { name:`Concrete analogy`, how:`The feast analogy gives an abstract process a concrete anchor students already understand.` },
-      { name:`Visible progress`, how:`A four-stage wall strip with a peg or arrow the class physically moves. Students see where they are in the term, every day.` }
-    ],
-    schedule: [
-      { w:`Week 1`, what:`INTRODUCE all four stages: words, icons, colours, hand actions, chant, wall strip. Daily Process Check begins.` },
-      { w:`Week 2`, what:`DEEP DIVE — Stage 1 FILL. What "filling the well" actually means, and why we don't draft yet.` },
-      { w:`Week 3`, what:`DEEP DIVE — Stage 2 FIND. Audience, and the handover from FILL to FIND.` },
-      { w:`Week 4`, what:`SPACED RECALL — 60-second quick-fire: four questions, four actions, no notes.` },
-      { w:`Week 5`, what:`ELABORATION — explain the process to a partner in your own words, using the feast analogy.` },
-      { w:`Week 6`, what:`SPACED RECALL + move the peg. "We've just finished a stage. Which one, and how do you know?"` },
-      { w:`Week 7`, what:`DEEP DIVE — Stage 3 SHAPE. Reading your own writing as an editor.` },
-      { w:`Week 8`, what:`DEEP DIVE — Stage 4 SHARE. Feedback and recrafting in cycles.` },
-      { w:`Week 9`, what:`THE CYCLE — teach that 3 and 4 loop. Students draw the process as a cycle from memory.` },
-      { w:`Week 10`, what:`ASSESS — "Explain our writing process to someone who has never heard of it." Written in the reflection, and spoken to a partner.` }
-    ],
-    check: {
-      title: `The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)`,
-      steps: [
-        `"Hands — which stage are we in?" Whole class does the action. No talking.`,
-        `"Name it." Whole class: the stage word and its question.`,
-        `One student: "How do you know we're in that stage?" — the answer must point at what they are actually doing today.`
+    "analogy": {
+      "title": "Writing is like cooking a meal",
+      "parts": [
+        "Gather the ingredients. You can't cook with an empty bench.",
+        "Find out who's coming to dinner. You'd cook differently for a toddler than for your nana.",
+        "Taste it and adjust it. Too bland? Needs something? Fix it.",
+        "Serve it, and watch their face."
       ],
-      note: `Sixty seconds, every day, fifty times a term. That is what makes it explainable rather than just displayed on a wall.`
+      "end": "The meal isn't finished when it's cooked. It's finished when someone eats it.",
+      "teacher": "Writing a piece is like cooking a meal for someone you love. FILL — you go out and gather the ingredients; you can't cook with an empty bench. FIND — you find out who's coming to dinner, because you'd cook differently for a toddler than for your nana. SHAPE — you taste it and adjust it; too bland, needs something sharp, that bit's burnt. SHARE — you set the table, you serve it, and you watch their face. The cooking isn't finished when the food is made. It's finished when someone eats it."
     },
-    assessment: {
-      title: `Week 10 — can they explain it?`,
-      prompt: `Explain our writing process to someone who has never heard of it. Name all four stages, say what a writer actually does in each one, and give one example from your own narrative this term.`,
-      success: [
-        `Names all four stages in order, with the question that belongs to each`,
-        `Explains in their own words what a writer DOES in each stage — not just the label`,
-        `Gives a real example from their own piece for at least two stages`,
-        `Knows that Stages 3 and 4 repeat in cycles until the piece is ready`
+    "cycle": "After feedback in SHARE, you go back to SHAPE and make it better — then share again. Good writers go round this loop more than once.",
+    "cycleTeacher": "The process is a cycle, not a straight line. Stages 3 and 4 loop: analyse → feedback → recraft → analyse again, as many times as the piece needs. Teach this explicitly in Week 9 — students who think writing is a one-way line stop too early.",
+    "memoryMoves": [
+      {
+        "name": "Dual coding",
+        "how": "Every stage has a word, a colour, an icon and a hand action. Students meet it four ways at once, so recall has four hooks instead of one."
+      },
+      {
+        "name": "Embodied learning",
+        "how": "The four hand actions are used every day. Ask \"which stage?\" and the whole class answers with hands before anyone speaks."
+      },
+      {
+        "name": "Chant and rhythm",
+        "how": "Call-and-response, 20 seconds. Rhythm and rhyme make verbal sequences stick — this is why we remember songs from years ago."
+      },
+      {
+        "name": "Retrieval practice",
+        "how": "The 60-second Process Check in every lesson. Students recall the stage from memory before the teacher says it. Retrieval, not re-reading, is what builds durable memory."
+      },
+      {
+        "name": "Spaced repetition",
+        "how": "Full teaching in Weeks 1, 2, 3, 7 and 8; deliberate spaced recalls in Weeks 4, 5, 6, 9 and 10 at widening intervals."
+      },
+      {
+        "name": "Elaboration & self-explanation",
+        "how": "\"Explain it in your own words to your partner\" · \"Teach it to someone at home tonight\" · exit tickets that ask WHY we're in this stage, not just which."
+      },
+      {
+        "name": "Concrete analogy",
+        "how": "The feast analogy gives an abstract process a concrete anchor students already understand."
+      },
+      {
+        "name": "Visible progress",
+        "how": "A four-stage wall strip with a peg or arrow the class physically moves. Students see where they are in the term, every day."
+      }
+    ],
+    "schedule": [
+      {
+        "w": "Week 1",
+        "what": "INTRODUCE all four stages: words, icons, colours, hand actions, chant, wall strip. Daily Process Check begins."
+      },
+      {
+        "w": "Week 2",
+        "what": "DEEP DIVE — Stage 1 FILL. What \"filling the well\" actually means, and why we don't draft yet."
+      },
+      {
+        "w": "Week 3",
+        "what": "DEEP DIVE — Stage 2 FIND. Audience, and the handover from FILL to FIND."
+      },
+      {
+        "w": "Week 4",
+        "what": "SPACED RECALL — 60-second quick-fire: four questions, four actions, no notes."
+      },
+      {
+        "w": "Week 5",
+        "what": "ELABORATION — explain the process to a partner in your own words, using the feast analogy."
+      },
+      {
+        "w": "Week 6",
+        "what": "SPACED RECALL + move the peg. \"We've just finished a stage. Which one, and how do you know?\""
+      },
+      {
+        "w": "Week 7",
+        "what": "DEEP DIVE — Stage 3 SHAPE. Reading your own writing as an editor."
+      },
+      {
+        "w": "Week 8",
+        "what": "DEEP DIVE — Stage 4 SHARE. Feedback and recrafting in cycles."
+      },
+      {
+        "w": "Week 9",
+        "what": "THE CYCLE — teach that 3 and 4 loop. Students draw the process as a cycle from memory."
+      },
+      {
+        "w": "Week 10",
+        "what": "ASSESS — \"Explain our writing process to someone who has never heard of it.\" Written in the reflection, and spoken to a partner."
+      }
+    ],
+    "check": {
+      "title": "The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)",
+      "steps": [
+        "\"Hands — which stage are we in?\" Whole class does the action. No talking.",
+        "\"Name it.\" Whole class: the stage word and its question.",
+        "One student: \"How do you know we're in that stage?\" — the answer must point at what they are actually doing today."
+      ],
+      "note": "Sixty seconds, every day, fifty times a term. That is what makes it explainable rather than just displayed on a wall."
+    },
+    "assessment": {
+      "title": "Week 10 — can they explain it?",
+      "prompt": "Explain our writing process to someone who has never heard of it. Name all four stages, say what a writer actually does in each one, and give one example from your own narrative this term.",
+      "success": [
+        "Names all four stages in order, with the question that belongs to each",
+        "Explains in their own words what a writer DOES in each stage — not just the label",
+        "Gives a real example from their own piece for at least two stages",
+        "Knows that Stages 3 and 4 repeat in cycles until the piece is ready"
       ]
+    },
+    "setup": {
+      "title": "Before Week 1 — three things to make (20 minutes, once)",
+      "items": [
+        {
+          "thing": "The wall strip",
+          "how": "Four A4 cards in a row along the wall, left to right, at kid height: 🪣 FILL (teal) · 🎯 FIND (blue) · 🔍 SHAPE (orange) · 🎁 SHARE (purple). On each card: the stage number, the stage word, and its question in big letters. Nothing else — no explanations, no clip art. They read it fifty times this term; keep it clean."
+        },
+        {
+          "thing": "The peg",
+          "how": "A clothes peg, a magnet or a paper arrow that sits under one card. It marks the stage the class is standing in right now. It only moves when a student moves it and says why."
+        },
+        {
+          "thing": "The chant card",
+          "how": "One card by your teaching spot with the four calls and responses on it, so you never have to remember them. That's it — you're set up for the term."
+        }
+      ],
+      "note": "Cover the wall strip with a cloth or flip it around whenever you want a real memory test. Recall is only recall if they can't read the answer."
+    },
+    "routine": {
+      "title": "The 60-second Process Check — run this the same way in every lesson",
+      "intro": "This is a routine, not a lesson. It is the same four moves every day, it takes one minute, and it goes straight after the Warm-Up Bridge. The only thing that changes day to day is the extra question in step 4, which is written on each day's lesson.",
+      "steps": [
+        {
+          "n": 1,
+          "label": "Ask with your hands",
+          "say": "\"Hands — which stage are we in?\"",
+          "do": "Students answer silently with the hand action for the stage they think we're in. Nobody speaks. You scan the room in three seconds — you'll instantly see who's guessing off their neighbour. If it's messy, don't correct anyone: just do the correct action yourself and say \"with me\", and the class copies."
+        },
+        {
+          "n": 2,
+          "label": "Name it together",
+          "say": "\"Name it.\"",
+          "do": "Whole class, out loud together: the stage number, the stage word and its question — e.g. \"Stage one, FILL — What will I write about?\" This is choral, so the unsure students are carried by the confident ones. That's the point, not a problem."
+        },
+        {
+          "n": 3,
+          "label": "One student justifies it",
+          "say": "\"[Name] — how do you know we're in that stage today?\"",
+          "do": "Pick one student (rotate through the roll so everyone gets asked across the term). The answer must point at what the class is ACTUALLY DOING today, not at the wall. A good answer: \"Because we're still collecting seeds — we haven't started writing the story yet.\" A weak answer: \"Because it says so on the wall.\" If you get the weak one, say \"That's where it's written. How do you KNOW?\" and let them try again. Anyone may help after ten seconds."
+        },
+        {
+          "n": 4,
+          "label": "Today's extra question",
+          "say": "(Written on today's lesson — see the card below.)",
+          "do": "One quick question that connects the stage to today's work. Take one or two answers, don't discuss it, move straight into the I Do. If you're short of time, this is the step you drop."
+        }
+      ],
+      "note": "Sixty seconds. Don't let it become a discussion — the value is in doing it fifty times, not in doing it thoroughly once. On the days marked \"Process spotlight\" you also teach the longer piece underneath, and the lesson's other timings are shortened to make room. On a day marked “teach this first”, the spotlight is taught BEFORE the routine — the lesson card tells you when and why."
     }
   },
 
@@ -224,7 +428,7 @@ window.__WF_T1_WEEKS[1] = {
       { code:`Oral Language — Verbal reasoning`, label:`Narrative retelling`, detail:`NZC Phase 2 Oral Language: "give descriptions, recounts and narrative retellings with specific details to actively engage listeners." Oral storytelling precedes written composition throughout Stage 1.` }
     ],
     process:{ stage:1, spotlight:`INTRODUCE THE WHOLE PROCESS (4 min). Reveal the wall strip: FILL · FIND · SHAPE · SHARE. Give each stage its question, its icon and its hand action. Teach the chant call-and-response twice. Then say plainly: "This term we will walk through all four. Today we are standing in FILL — and every day I will ask you where we are." Place the peg on Stage 1.`,
-      check:`Hands up — which stage? (FILL). What's the question? ("What do I want to say?")` },
+      check:`Hands up — which stage? (FILL). What's the question? ("What will I write about?")` },
     bridge:`In this morning's warm-up you upgraded plain adjectives. Watch how a real writer chooses one perfect word instead of three ordinary ones.`,
     iDo:{ mins:6, title:`I Do — Watch Me Tell a Ninety-Second Story`,
       instruction:`I'm going to tell you a true story from my own life. Time me — it will take less than two minutes. Then I'll show you what I left out.`,
@@ -397,7 +601,7 @@ window.__WF_T1_WEEKS[2] = {
       { code:`Writing — Language features and devices`, label:`Vivid images`, detail:`NZC Phase 2: "use figurative language such as simile and metaphor to purposefully create vivid images and effects to engage the reader." Showing rather than telling is the foundation this sits on.` },
       { code:`Writing — Sentence structures`, label:`Verbs that carry meaning`, detail:`Phase 2 writers are expected to vary structure and word class for effect; replacing "was + emotion" with an action verb is the single highest-impact revision at this level.` }
     ],
-    process:{ stage:1, check:`FILL — and what's the question that belongs to this stage? ("What do I want to say?")` },
+    process:{ stage:1, check:`FILL — and what's the question that belongs to this stage? ("What will I write about?")` },
     bridge:`Action verbs versus state verbs — this is today's lesson exactly. "I was scared" is a state. "My hands shook" is an action.`,
     iDo:{ mins:5, title:`I Do — Watch Me Swap a Feeling for a Picture`,
       instruction:`I'm going to write a telling sentence, then throw it away and try again three times.`,
@@ -473,7 +677,7 @@ window.__WF_T1_WEEKS[2] = {
       { code:`Key competency — Managing self`, label:`Knowing your values`, detail:`"Know your own values and why they are important to you." Students justify their choice against what matters to them — the Aroha thread of this unit.` }
     ],
     process:{ stage:1, spotlight:`HANDOVER (2 min). "We are at the end of FILL. Next week we cross into FIND. What changes? Point at the wall strip and say the new question." Move the peg to sit between Stage 1 and Stage 2.`,
-      check:`Finishing FILL, starting FIND. What is FIND's question? ("Who do I want to say it to?")` },
+      check:`Finishing FILL, starting FIND. What is FIND's question? ("Who am I writing for?")` },
     bridge:`This week's warm-ups gave us precise verbs and cleaner sentences — the two tools showing needs most.`,
     iDo:{ mins:3, title:`I Do — Choosing, Out Loud`,
       instruction:`I have two moments I could write. Watch me choose one and genuinely let the other go.`,
@@ -691,7 +895,7 @@ window.__WF_T1_WEEKS[4] = {
       { code:`Writing — Writing craft (Word choice)`, label:`Where and when`, detail:`NZC Phase 2: "select and use words and phrases that clearly express where and when things happen." Three exact details place a reader faster than ten general ones.` },
       { code:`Writing — Writing to entertain`, label:`Grouping ideas`, detail:`NZC Phase 2: "introduce a topic, and group information together using simple paragraphs." Setting is a paragraph with a job, not decoration.` }
     ],
-    process:{ stage:2, check:`FIND. What's the question? ("Who do I want to say it to?") How is that changing your setting choices?` },
+    process:{ stage:2, check:`FIND. What's the question? ("Who am I writing for?") How is that changing your setting choices?` },
     bridge:`Pronouns this morning. Watch out — if you write "he" too early, your reader doesn't know who he is yet.`,
     iDo:{ mins:5, title:`I Do — The Three-Detail Rule`,
       instruction:`I'm going to read you a bloated setting, then the trimmed one. Count the details in each.`,
@@ -960,7 +1164,7 @@ window.__WF_T1_WEEKS[6] = {
       { code:`Writing — Writing to entertain`, label:`Concluding statement`, detail:`NZC Phase 2: texts "have a concluding statement." In narrative this means resolution plus reflection, not "and then I went home."` },
       { code:`Writing — Writing craft (Word choice)`, label:`Deliberate final words`, detail:`Word choice at the end of a text carries disproportionate weight; Phase 2 writers are expected to choose words for effect and connotation.` }
     ],
-    process:{ stage:2, check:`FIND. This is the last week of drafting — what comes next, and what's its question? (SHAPE: "How do I want to say it?")` },
+    process:{ stage:2, check:`FIND. This is the last week of drafting — what comes next, and what's its question? (SHAPE: "How can I make it better?")` },
     bridge:`Prefixes and suffixes this morning — un-, re-, -less. Endings often live in words like unfinished, returned, fearless.`,
     iDo:{ mins:8, title:`I Do — Four Endings, One Story`,
       instruction:`Four endings for my story. One of them is deliberately terrible.`,
@@ -1011,7 +1215,7 @@ window.__WF_T1_WEEKS[6] = {
       { code:`Writing — Writing to entertain`, label:`Grouping ideas`, detail:`NZC Phase 2: "introduce a topic, and group information together using simple paragraphs" — in narrative, grouping follows time, place, speaker and focus.` }
     ],
     process:{ stage:2, spotlight:`SPACED RECALL + PEG MOVE (3 min). "We finish a whole stage this week. Which one are we finishing, and which one are we walking into?" A student comes up and physically moves the peg, and has to justify the move out loud.`,
-      check:`Finishing FIND. Next is SHAPE — "How do I want to say it?"` },
+      check:`Finishing FIND. Next is SHAPE — "How can I make it better?"` },
     bridge:`Who / where / when phrases this morning — those phrases are how you signal a new paragraph has moved us somewhere new.`,
     iDo:{ mins:5, title:`I Do — The Four Triggers`,
       instruction:`Watch me read a draft and mark every place a new paragraph should start. There are only four reasons.`,
@@ -1108,7 +1312,7 @@ window.__WF_T1_WEEKS[7] = {
       { code:`Key competency — Using language, symbols & text`, label:`Matching features to purpose`, detail:`"Identify the purpose for which a text was constructed" and "match a text's features with its purpose."` }
     ],
     process:{ stage:3, spotlight:`DEEP DIVE — STAGE 3: SHAPE (4 min). Move the peg. "In FILL you were a collector. In FIND you were a teller. In SHAPE you are an EDITOR — and an editor is allowed to be honest." Teach the clay hand action. Ask: what's the difference between being mean about your writing and being honest about it?`,
-      check:`SHAPE. What's the question? ("How do I want to say it?")` },
+      check:`SHAPE. What's the question? ("How can I make it better?")` },
     bridge:`Colons and semicolons this morning — watch for one in today's model, and ask why the writer chose it.`,
     iDo:{ mins:7, title:`I Do — Annotate the Mentor Text`,
       instruction:`Same text we read in Week 1. This time we're not reading it for the story — we're reading it for the machinery.`,
@@ -1209,7 +1413,7 @@ window.__WF_T1_WEEKS[7] = {
       { code:`Key competency — Relating to others`, label:`Respect and listening`, detail:`"Show respect for others' ways of being · listen carefully and paraphrase ideas of others." The writer's job while receiving feedback is to listen and record, not defend.` }
     ],
     process:{ stage:3, spotlight:`HANDOVER (2 min). "SHAPE has told us what needs fixing. SHARE is where we get help and actually fix it — and it repeats. Two stages, working together." Move the peg to the boundary.`,
-      check:`Finishing SHAPE, entering SHARE — "Is it ready to give away?"` },
+      check:`Finishing SHAPE, entering SHARE — "Is it ready for my reader?"` },
     bridge:`All four warm-ups this week were about accuracy — next week is about impact. Both matter, in that order.`,
     iDo:{ mins:4, title:`I Do — Teach the Protocol`,
       instruction:`Three steps, plus one thing the writer must do and one thing the writer must NOT do.`,
@@ -1256,7 +1460,7 @@ window.__WF_T1_WEEKS[8] = {
       { code:`Writing — Writing processes (Revising)`, label:`Using peer feedback`, detail:`NZC Phase 2: revisions are made "using audience and peer feedback" — feedback is only useful if it is specific enough to act on.` }
     ],
     process:{ stage:4, spotlight:`DEEP DIVE — STAGE 4: SHARE (4 min). "SHARE isn't just the end — it's a loop. Ask for help, recraft, ask again." Teach the open-hands action. Ask: "Why is it called SHARE if we're not publishing until Week 10?" (Because sharing with your helpers is how it gets ready.)`,
-      check:`SHARE. What's the question? ("Is it ready to give away?")` },
+      check:`SHARE. What's the question? ("Is it ready for my reader?")` },
     bridge:`Homophones — their/there, your/you're. Note them if you spot one in a peer's piece, but don't lead with them. We're after impact first.`,
     iDo:{ mins:4, title:`I Do — Restate the Protocol`,
       instruction:`Same shape as Friday's fishbowl, with one addition — the writer's own question comes first.`,
@@ -1687,7 +1891,7 @@ window.__WF_DATA[1].process.routine = {
     { n:1, label:`Ask with your hands`, say:`"Hands — which stage are we in?"`,
       do:`Students answer silently with the hand action for the stage they think we're in. Nobody speaks. You scan the room in three seconds — you'll instantly see who's guessing off their neighbour. If it's messy, don't correct anyone: just do the correct action yourself and say "with me", and the class copies.` },
     { n:2, label:`Name it together`, say:`"Name it."`,
-      do:`Whole class, out loud together: the stage number, the stage word and its question — e.g. "Stage one, FILL — What do I want to say?" This is choral, so the unsure students are carried by the confident ones. That's the point, not a problem.` },
+      do:`Whole class, out loud together: the stage number, the stage word and its question — e.g. "Stage one, FILL — What will I write about?" This is choral, so the unsure students are carried by the confident ones. That's the point, not a problem.` },
     { n:3, label:`One student justifies it`, say:`"[Name] — how do you know we're in that stage today?"`,
       do:`Pick one student (rotate through the roll so everyone gets asked across the term). The answer must point at what the class is ACTUALLY DOING today, not at the wall. A good answer: "Because we're still collecting seeds — we haven't started writing the story yet." A weak answer: "Because it says so on the wall." If you get the weak one, say "That's where it's written. How do you KNOW?" and let them try again. Anyone may help after ten seconds.` },
     { n:4, label:`Today's extra question`, say:`(Written on today's lesson — see the card below.)`,
@@ -1707,8 +1911,8 @@ window.__WF_DATA[1].process.routine = {
     prep:`Wall strip up but covered (a cloth, or the cards turned around). Peg in your hand. Chant card by your teaching spot.`,
     steps:[
       { do:`Uncover the wall strip. Say: "This is how writers work. Not just us — all of them. Four stages, and we're going to walk through all four this term."` },
-      { do:`Go card by card. For each one: read the stage word, read its question, then do the hand action and have the class copy it. Keep it fast — about 30 seconds per card. FILL (two cupped hands, like holding water) — "What do I want to say?" FIND (hands to your eyes like binoculars) — "Who do I want to say it to?" SHAPE (both hands moulding a ball of clay) — "How do I want to say it?" SHARE (open hands pushed forward, offering) — "Is it ready to give away?"` },
-      { do:`Teach the chant, twice. You call, they respond. First time is a mess; second time is usually good. Don't do it a third time today — leave them wanting it.`, say:`"Stage one!" → "What do I want to say — I FILL!" · "Stage two!" → "Who am I saying it to — I FIND!" · "Stage three!" → "How do I want to say it — I SHAPE!" · "Stage four!" → "Is it ready to give away — I SHARE!"` },
+      { do:`Go card by card. For each one: read the stage word, read its question, then do the hand action and have the class copy it. Keep it fast — about 30 seconds per card. FILL (two cupped hands, like holding water) — "What will I write about?" FIND (hands to your eyes like binoculars) — "Who am I writing for?" SHAPE (both hands moulding a ball of clay) — "How can I make it better?" SHARE (open hands pushed forward, offering) — "Is it ready for my reader?"` },
+      { do:`Teach the chant, twice. You call, they respond. First time is a mess; second time is usually good. Don't do it a third time today — leave them wanting it.`, say:`"Stage one!" → "What will I write? — I FILL!" · "Stage two!" → "Who is it for? — I FIND!" · "Stage three!" → "How can it be better? — I SHAPE!" · "Stage four!" → "Is it ready? — I SHARE!"` },
       { do:`Put the peg under card one. Say the promise out loud, because it's what makes the daily routine work.`, say:`"Today we're standing in FILL. Every single day this term I'm going to ask you where we are — and by the end of the term you'll be able to explain all four to someone who's never heard of them."` }
     ],
     watchFor:`Don't explain what the stages MEAN today — that's Weeks 2, 3, 7 and 8. Today is only names, questions and actions. Four minutes, then straight into the lesson.`

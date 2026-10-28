@@ -1,0 +1,61 @@
+/* Writing Focus — Weekly Rubric (A4 sheet; screen preview + print) */
+.rb-opts{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-bottom:.9rem}
+.rb-opts label{display:flex;gap:.45rem;align-items:center;font-size:.95rem;cursor:pointer}
+.rb-opts input{width:1.1rem;height:1.1rem;accent-color:#10b981}
+.rb-names label{display:block;font-size:.88rem;margin-bottom:.35rem}
+.rb-names textarea{width:100%;font:inherit;font-size:.95rem;padding:.5rem .7rem;border:2px solid #0B0B0F;border-radius:8px;background:#fff;color:#0B0B0F;resize:vertical}
+.rb-tip{font-size:.82rem;opacity:.7;margin-top:.7rem}
+.rb-paper{background:#fff;color:#000;width:100%;max-width:794px;margin:0 auto 2rem;padding:28px 30px;border:3px solid #000;border-radius:6px;box-shadow:8px 8px 0 #000;overflow-x:auto}
+.rb-paper td[data-l],.rb-paper [data-ov]{cursor:pointer}
+.rb-paper td[data-l]:hover{outline:2px solid #3b82f6;outline-offset:-2px}
+
+/* the sheet itself (sized for A4 printable area 186 × 273 mm) */
+.rb-sheet{font-family:"Atkinson Hyperlegible",Verdana,sans-serif;color:#000;font-size:11.2pt;line-height:1.28}
+.rb-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:2.5px solid #000;padding-bottom:5px;margin-bottom:5px}
+.rb-kick{font-size:9.8pt;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#444}
+.rb-title{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-weight:800;font-size:19.5pt;line-height:1.1}
+.rb-sub{font-size:10.4pt;color:#333}
+.rb-key{display:flex;gap:8px;font-size:9.8pt;font-weight:700;line-height:1.15;flex-shrink:0}
+.rb-key span{display:flex;gap:4px;align-items:flex-start}
+.rb-key small{font-weight:400;color:#444}
+.rb-key i{width:10px;height:10px;border:1.2px solid #000;border-radius:2px;margin-top:1px;flex-shrink:0}
+.k-d{background:#FFE9C7}.k-a{background:#DDF7E2}.k-f{background:#E6DDFF}
+.rb-name{display:flex;gap:16px;margin:4px 0 5px;font-size:12.3pt}
+.rb-name span{flex:1;border-bottom:1px solid #000;padding-bottom:1px}
+.rb-name span:last-child{flex:0 0 32%}
+.rb-ev{font-size:10.4pt;margin-bottom:5px;background:#f3f3f3;border-radius:4px;padding:3px 6px}
+.rb-t{width:100%;border-collapse:collapse;table-layout:fixed;border:1.5px solid #000;background:#fff;box-shadow:none;border-radius:0}
+.rb-t th{font-size:11.1pt;text-transform:uppercase;letter-spacing:.08em;padding:4px 6px;border:1px solid #000;text-align:left;color:#000;background:#eee}
+.rb-t th.h-d{background:#FFE9C7}.rb-t th.h-a{background:#DDF7E2}.rb-t th.h-f{background:#E6DDFF}
+.rb-t td{border:1px solid #000;padding:5px 6px;vertical-align:top;font-size:10.8pt;color:#000}
+.rb-t td.crit b{display:block;font-size:11.4pt;line-height:1.22}
+.rb-t .nz{display:block;margin-top:4px;font-size:9.1pt;color:#444;line-height:1.2}
+.rb-t td em{display:block;margin-top:3px;font-size:9.9pt;color:#333}
+.rb-t .nx{display:block;margin-top:4px;padding-top:3px;border-top:1px dashed #999;font-size:9.9pt}
+.rb-t .bx,.rb-overall .bx{display:inline-flex;align-items:center;justify-content:center;width:11px;height:11px;border:1.3px solid #000;border-radius:2px;margin-right:4px;vertical-align:-2px;font-size:10.4pt;font-weight:700;line-height:1}
+.rb-t td.on.c-d{background:#FFE9C7}.rb-t td.on.c-a{background:#DDF7E2}.rb-t td.on.c-f{background:#E6DDFF}
+.rb-overall{display:flex;gap:16px;align-items:center;margin:6px 0 4px;font-size:11.7pt}
+.rb-overall .ov{display:inline-flex;align-items:center}
+.rb-overall .ov.on{font-weight:700}
+.rb-com{margin-top:3px;font-size:11.1pt}
+.rb-com .ln{border-bottom:1px solid #777;height:15px}
+.rb-parent{margin-top:7px;border:1.5px solid #000;border-radius:6px;padding:5px 8px;background:#FAFAF5}
+.rb-ph{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-weight:800;font-size:12.3pt;margin-bottom:2px}
+.rb-parent p{font-size:10.8pt;margin:2px 0}
+
+/* print: one sheet per A4 page */
+.rb-print .rb-sheet{break-after:page;page-break-after:always;max-height:273mm;overflow:hidden}
+.rb-print .rb-sheet:last-child{break-after:auto;page-break-after:auto}
+@media print{
+  .rb-print .rb-sheet,.rb-print .rb-t th,.rb-print td.on,.rb-print .rb-key i,.rb-print .rb-ev,.rb-print .rb-parent{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+.rb-t td{padding:7px 8px}
+.rb-t tr td{height:44mm}
+.rb-com .ln{height:22px}
+.rb-sheet{display:flex;flex-direction:column}
+.rb-head>div:first-child{flex:1 1 auto;min-width:0}
+.rb-key{flex:0 0 auto;max-width:48%;flex-wrap:wrap;justify-content:flex-end}
+.rb-sheet .rb-t,.rb-sheet .rb-t tr,.rb-sheet .rb-t td{background:#fff;box-shadow:none;border-radius:0}
+.rb-sheet .rb-t .nz{color:#333 !important;opacity:1}
+.rb-t tr td{height:48mm}

@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/process.css" />
+<link rel="stylesheet" href="css/focus-theme.css" />
+<link rel="stylesheet" href="css/focus-rubric.css" />
 <style>
 *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -289,7 +293,8 @@ tr:last-child td{border-bottom:none}
 }
 </style>
 </head>
-<body>
+<body class="ink">
+<div class="wp-bg"></div>
 <div class="app-shell">
   <header class="site-header">
     <a class="hub-link" href="hub.html">← Writing Hub</a>
@@ -308,6 +313,7 @@ tr:last-child td{border-bottom:none}
     <div class="tabs">
       <button class="tab active" data-view="lesson">Lesson</button>
       <button class="tab" data-view="prompt">Weekly Prompt</button>
+      <button class="tab" data-view="rubric">Weekly Rubric</button>
       <button class="tab" data-view="process">Writing Process</button>
       <button class="tab" data-view="map">Term Map</button>
       <button class="tab" data-view="teacher">Teacher</button>
@@ -322,6 +328,24 @@ tr:last-child td{border-bottom:none}
 <script src="focus-term2-data.js"></script>
 <script src="focus-term3-data.js"></script>
 <script src="focus-term4-data.js"></script>
+<script src="focus-kids-t1.js"></script>
+<script src="focus-kids-t2.js"></script>
+<script src="focus-kids-t3.js"></script>
+<script src="focus-kids-t4.js"></script>
+<script src="focus-script-t1a.js"></script>
+<script src="focus-script-t1b.js"></script>
+<script src="focus-script-t2a.js"></script>
+<script src="focus-script-t2b.js"></script>
+<script src="focus-script-t3a.js"></script>
+<script src="focus-script-t3b.js"></script>
+<script src="focus-script-t4a.js"></script>
+<script src="focus-script-t4b.js"></script>
+<script src="js/process-view.js"></script>
+<script src="focus-rubric-t12.js"></script>
+<script src="focus-rubric-t34.js"></script>
+<script src="focus-rubric-next.js"></script>
+<script src="js/focus-ui.js"></script>
+<script src="js/focus-rubric-ui.js"></script>
 <script>
 (function(){
   var DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
@@ -354,7 +378,7 @@ tr:last-child td{border-bottom:none}
     T=+this.value; data=window.__WF_DATA[T];
     W=1; D="Monday"; buildWeeks(); render(); window.scrollTo({top:0});
   };
-  selWeek.onchange=function(){W=+this.value;if(VIEW!=="lesson"&&VIEW!=="prompt")VIEW="lesson";syncTabs();render();};
+  selWeek.onchange=function(){W=+this.value;if(VIEW!=="lesson"&&VIEW!=="prompt"&&VIEW!=="rubric")VIEW="lesson";syncTabs();render();};
   selDay.onchange=function(){D=this.value;VIEW="lesson";syncTabs();render();};
   Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){
     b.onclick=function(){VIEW=b.dataset.view;syncTabs();render();window.scrollTo({top:0});};});
@@ -400,6 +424,7 @@ tr:last-child td{border-bottom:none}
       '<div class="pr-label">WALT</div><div>'+esc(day.walt)+'</div>'+
       '<div class="pr-label">NZC link</div><div>'+esc(day.nzLink)+'</div>'+
       '<div class="pr-label">Curriculum focus</div><ul>'+day.aos.map(function(a){return '<li><b>'+esc(a.code)+'</b> — '+esc(a.label)+'</li>';}).join("")+'</ul>';
+    h+=WFUI.kidsPrint(WFUI.kid(T,w,dy));
     h+=prBox("Warm-Up Bridge",2,'<div>'+esc(day.bridge)+'</div>'+(wk.warmups[dy]?'<div class="pr-label">Today’s warm-up: '+esc(wk.warmups[dy])+'</div>':''));
     h+=prBox("Process Check — Stage "+st.n+" "+st.key,sp?(1+(sp.mins||4)):1,
       '<div><b>“'+esc(st.question)+'”</b> · hand action: '+esc(st.action)+'</div>'+
@@ -499,17 +524,9 @@ tr:last-child td{border-bottom:none}
     });
     if(pending===0){ go(); } else { setTimeout(go,8000); }
   }
-  var PROC_IMG={FILL:"images/process/fill",FIND:"images/process/find",SHAPE:"images/process/shape",SHARE:"images/process/share"};
-  function procImg(key){ var b=PROC_IMG[(key||"").toUpperCase()]; return b?b+".webp":""; }
-  function procImgPrint(key){ var b=PROC_IMG[(key||"").toUpperCase()]; return b?b+"-print.png":""; }
-  function wallCardsHTML(){
-    var st=data.process.stages;
-    return '<div class="ws">'+st.map(function(s){
-      return '<div class="wc-page"><img src="'+procImgPrint(s.key)+'" alt="Stage '+s.n+' — '+esc(s.key)+'"></div>';
-    }).join("")+'</div>';
-  }
   function toolbarHTML(){
     return '<div class="toolbar">'+
+      (VIEW==="lesson"?'<button class="tbtn tbtn--present" id="pPresent">▶ Present lesson</button>':'')+
       '<button class="tbtn tbtn--solid" id="pLesson">🖨 Print this lesson</button>'+
       '<button class="tbtn" id="pWeek">🖨 Print the whole week</button>'+
       '<button class="tbtn" id="pSheet">📝 Print student worksheet</button>'+
@@ -522,17 +539,21 @@ tr:last-child td{border-bottom:none}
     if(a)a.onclick=function(){doPrint(lessonPrintHTML(W,D));};
     if(b)b.onclick=function(){doPrint(weekPrintHTML(W));};
     if(c)c.onclick=function(){doPrint(worksheetHTML(W));};
+    ["pPresent","pPresent2"].forEach(function(id){var e=document.getElementById(id);
+      if(e)e.onclick=function(){WFUI.presentLesson({T:T,W:W,D:D,data:data});};});
   }
 
   function renderLesson(){
     var wk=data.weeks[W],day=wk.days[D],col=DAYCOL[D];
     var warm=wk.warmups[D], st=data.process.stages[(day.process.stage||1)-1];
 
-    var h=toolbarHTML()+'<div class="lh"><div class="lh__meta">'+
+    var h=toolbarHTML()+'<div class="lh"><div class="wf-hero">'+WFUI.art(WFUI.weekArt(T,W),"kb","✍️")+'<div class="wf-hero__shade"></div><div class="wf-hero__body"><div class="lh__meta">'+
       '<span class="badge" style="background:'+col+'">'+D+'</span>'+
       '<span class="meta-txt">Term '+T+' · Week '+W+' · '+esc(wk.title)+'</span>'+
       '<span class="meta-txt" style="margin-left:auto">'+esc(wk.stage)+'</span></div>'+
-      '<h1 class="lh__topic">'+esc(day.focus)+'</h1>'+
+      '<h1 class="lh__topic">'+esc(day.focus)+'</h1></div></div>'+
+      WFUI.kidsPanel(WFUI.kid(T,W,D))+
+      '<div class="wf-teacher-h"><h2>TEACHER’S LESSON SCRIPT</h2><p>25 minutes · read this, show the panel above</p></div>'+
       '<div class="walt"><b>WALT</b>'+esc(day.walt)+'</div>'+
       '<div class="nz"><button class="nz-btn" id="nzBtn">NZC link ▾</button><span>'+esc(wk.eq)+'</span></div>'+
       '<div class="ao-panel" id="nzPanel"><strong>Curriculum focus:</strong> '+esc(day.nzLink)+'</div>'+
@@ -560,7 +581,7 @@ tr:last-child td{border-bottom:none}
     var spFirst = !!(sp && typeof sp==="object" && sp.first);
     h+=cardOpen("process","🧭","Process Check","The same 60-second routine, every lesson","var(--wed)",sp?(1+spMins):1,"proc-card")+
        '<div class="blk" style="display:flex;gap:.8rem;align-items:flex-start">'+
-       (procImg(st.key)?'<a class="pc-thumb-wrap" href="'+procImg(st.key)+'" target="_blank" rel="noopener"><img class="pc-thumb" src="'+procImg(st.key)+'" alt="Stage '+st.n+' — '+esc(st.key)+' wall card"><span class="pc-thumb-cap">Tap to open full size</span></a>':'')+
+       WP.lessonArt(st)+
        '<div><span class="stage-pill" style="background:'+STCOL[st.n]+'">'+st.icon+' Today we are in Stage '+st.n+' — '+esc(st.key)+'</span>'+
        '<div style="margin-top:.55rem;font-size:1.04rem"><b>“'+esc(st.question)+'”</b> · hand action: '+esc(st.action)+'</div>'+
        '<div style="margin-top:.3rem;font-size:.84rem;color:var(--text-muted)">Point at this card on the wall as they answer.</div></div></div>'+
@@ -631,9 +652,9 @@ tr:last-child td{border-bottom:none}
 
   function renderPrompt(){
     var wk=data.weeks[W],p=wk.prompt;
-    var h=toolbarHTML()+'<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--fri)">Weekly Prompt</span>'+
+    var h=toolbarHTML()+'<div class="lh"><div class="wf-hero wf-hero--prompt">'+WFUI.art(WFUI.weekArt(T,W),"kb","💡")+'<div class="wf-hero__shade"></div><div class="wf-hero__body"><div class="lh__meta"><span class="badge" style="background:var(--fri)">Weekly Prompt</span>'+
       '<span class="meta-txt">Term '+T+' · Week '+W+'</span></div>'+
-      '<h1 class="lh__topic">'+esc(wk.title)+'</h1><div class="lh__stage">'+esc(wk.stage)+'</div></div>';
+      '<h1 class="lh__topic">'+esc(wk.title)+'</h1><div class="lh__stage">'+esc(wk.stage)+'</div></div></div></div>';
     h+='<div class="panel"><div class="panel__head"><span style="font-size:1.4rem">💡</span><h2>The Prompt</h2></div><div class="panel__body">'+
       '<div class="layer"><div class="layer__label">Layer 1 — the prompt</div><div class="prompt-big">'+esc(p.text)+'</div></div>'+
       '<div class="layer"><div class="layer__label">Layer 2 — question ladder (start here if you’re stuck)</div><ul class="ladder">'+
@@ -660,86 +681,20 @@ tr:last-child td{border-bottom:none}
   }
 
   function renderProcess(){
-    var pr=data.process;
-    var h='<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--wed)">Our Writing Process</span>'+
-      '<span class="meta-txt">Taught explicitly · checked every lesson · assessed Week 10</span></div>'+
-      '<h1 class="lh__topic">'+esc(pr.mnemonic)+'</h1>'+
-      '<div class="walt"><b>Why we teach it</b>'+esc(pr.intro)+'</div>'+
-      '<div class="nz"><span>'+esc(pr.mnemonicNote)+'</span></div></div>';
-
-    h+='<div class="wallcards"><h3>The four wall cards</h3>'+
-      '<p>These are the classroom posters for FILL · FIND · SHAPE · SHARE. Print one per A4 page and put them up in order before Week 1 — the whole routine points at them. They are line drawings on purpose: a student can colour one in and it becomes theirs.</p>'+
-      '<img src="images/process/all-four.webp" alt="The four writing-process wall cards: FILL, FIND, SHAPE and SHARE" loading="lazy">'+
-      '<div class="toolbar" style="margin:.9rem 0 0"><button class="tbtn tbtn--solid" id="pCards">🖨 Print the four wall cards (A4)</button></div></div>';
-
-    h+='<div class="stage-grid">'+pr.stages.map(function(s){
-      var im=procImg(s.key);
-      return '<div class="stage-box" style="border-top-color:'+s.colour+'">'+
-        (im?'<a class="stage-box__imglink" href="'+im+'" target="_blank" rel="noopener"><img class="stage-box__img" src="'+im+'" alt="Stage '+s.n+' — '+esc(s.key)+': '+esc(s.question)+'" loading="lazy"></a><span class="stage-box__zoom">Tap to open full size</span>':'')+
-        '<div class="stage-box__n" style="color:'+s.colour+'">'+s.icon+' '+esc(s.key)+'</div>'+
-        '<div class="stage-box__q">Stage '+s.n+' — “'+esc(s.question)+'”</div>'+
-        '<div class="stage-box__kid">'+esc(s.kid)+'</div>'+
-        '<div class="stage-box__meta"><b>Hand action:</b> '+esc(s.action)+'</div>'+
-        '<div class="stage-box__meta"><b>Teacher language:</b> '+esc(s.teacherLang)+'</div>'+
-        '<div class="stage-box__meta"><b>'+esc(s.weeks)+'</b> · '+esc(s.acs)+'</div>'+
-        '<ul>'+s.looksLike.map(function(l){return '<li>'+esc(l)+'</li>';}).join("")+'</ul></div>';}).join("")+'</div>';
-
-    h+='<div class="chant"><h3>THE CHANT — call and response, 20 seconds</h3>'+
-      pr.chant.map(function(c){return '<div class="chant-row"><span class="chant-call">'+esc(c.call)+'</span><span>'+esc(c.response)+'</span></div>';}).join("")+
-      '</div>';
-
-    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🍽️</span><h2>'+esc(pr.analogy.title)+'</h2></div>'+
-      '<div class="panel__body"><div class="instruction">'+esc(pr.analogy.text)+'</div></div></div>';
-
-    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🔁</span><h2>It’s a cycle, not a line</h2></div>'+
-      '<div class="panel__body"><div class="instruction">'+esc(pr.cycle)+'</div></div></div>';
-
-    if(pr.setup){
-      h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🧰</span><h2>'+esc(pr.setup.title)+'</h2></div>'+
-        '<div class="panel__body"><ul class="pill-list">'+pr.setup.items.map(function(i){
-          return '<li><b>'+esc(i.thing)+'</b><br><span style="font-size:.94rem;color:var(--text-muted)">'+esc(i.how)+'</span></li>';}).join("")+
-        '</ul><div class="watch" style="margin-top:.9rem"><b>Tip:</b> '+esc(pr.setup.note)+'</div></div></div>';
-    }
-    if(pr.routine){
-      h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">⏱️</span><h2>'+esc(pr.routine.title)+'</h2></div>'+
-        '<div class="panel__body"><div class="instruction" style="margin-bottom:1rem">'+esc(pr.routine.intro)+'</div>'+
-        '<ul class="routine">'+pr.routine.steps.map(function(s){
-          return '<li><span class="rn">'+s.n+'</span><div><div class="r-label">'+esc(s.label)+'</div>'+
-            '<span class="say">'+esc(s.say)+'</span><div class="r-do">'+esc(s.do)+'</div></div></li>';}).join("")+
-        '</ul><div class="watch" style="margin-top:.9rem">'+esc(pr.routine.note)+'</div></div></div>';
-    }
-
-    h+='<div class="t-sec"><h3>How we make it stick</h3><div class="t-sub">The learning techniques behind the design — worth knowing, because they’re why the routine looks the way it does.</div>'+
-      '<table><tr><th>Technique</th><th>How it shows up</th></tr>'+
-      pr.memoryMoves.map(function(m){return '<tr><td><b>'+esc(m.name)+'</b></td><td>'+esc(m.how)+'</td></tr>';}).join("")+'</table></div>';
-
-    h+='<div class="t-sec"><h3>Teaching &amp; recall schedule</h3><div class="t-sub">Full teaching in five weeks; spaced recalls at widening intervals in the others.</div>'+
-      '<table><tr><th>Week</th><th>What happens</th></tr>'+
-      pr.schedule.map(function(s){return '<tr><td><b>'+esc(s.w)+'</b></td><td>'+esc(s.what)+'</td></tr>';}).join("")+'</table></div>';
-
-    h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">✅</span><h2>'+esc(pr.assessment.title)+'</h2></div>'+
-      '<div class="panel__body"><div class="prompt-big" style="font-size:1.1rem">'+esc(pr.assessment.prompt)+'</div>'+
-      '<div class="layer__label" style="margin-top:1rem">A strong answer…</div><ul class="pill-list">'+
-      pr.assessment.success.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul></div></div>';
-
-    main.innerHTML=h;
-    var pc=document.getElementById("pCards");
-    if(pc)pc.onclick=function(){doPrint(wallCardsHTML());};
-    // warm the high-resolution print files so the print dialog never opens on empty pages
-    data.process.stages.forEach(function(st){ var im=new Image(); im.src=procImgPrint(st.key); });
+    WP.render(main,{data:data,T:T,W:W,D:D,doPrint:doPrint});
   }
 
   function renderMap(){
     var m=data.meta;
-    var h='<div class="lh"><div class="lh__meta"><span class="badge" style="background:var(--thu)">Term '+T+'</span>'+
+    var h='<div class="lh"><div class="wf-hero">'+WFUI.art(WFUI.termArt(T),"kb","🗺️")+'<div class="wf-hero__shade"></div><div class="wf-hero__body"><div class="lh__meta"><span class="badge" style="background:var(--thu)">Term '+T+'</span>'+
       '<span class="meta-txt">'+esc(m.topic)+' · 10 weeks</span></div>'+
-      '<h1 class="lh__topic">'+esc(m.title)+'</h1>'+
+      '<h1 class="lh__topic">'+esc(m.title)+'</h1></div></div>'+
       '<div class="walt"><b>Throughline</b>'+esc(m.throughline)+'</div></div>';
     h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">🧭</span><h2>The Writing Process Across the Term</h2></div><div class="panel__body"><ul class="pill-list">'+
       m.arc.map(function(a){return '<li><b>'+esc(a.s)+'</b> · '+esc(a.t)+'<br><span style="font-size:.88rem;color:var(--text-muted)">'+esc(a.d)+'</span></li>';}).join("")+'</ul></div></div>';
     h+='<div class="t-sec"><h3>Week by Week</h3><div class="t-sub">Click any week to jump to Monday.</div>';
     for(var i=1;i<=10;i++){var wk=data.weeks[i];
-      h+='<div class="map-row" data-week="'+i+'"><div class="map-num" style="color:'+STCOL[wk.stageNum]+'">'+i+'</div><div><div class="map-t">'+esc(wk.title)+'</div>'+
+      h+='<div class="map-row" data-week="'+i+'">'+WFUI.art(WFUI.weekArt(T,i),"","✍️")+'<div class="map-num" style="color:'+STCOL[wk.stageNum]+'">'+i+'</div><div><div class="map-t">'+esc(wk.title)+'</div>'+
          '<div class="map-s">'+esc(wk.stage)+' · '+esc(wk.eq)+'</div></div></div>';}
     h+='</div>';
     h+='<div class="panel"><div class="panel__head"><span style="font-size:1.3rem">✝️</span><h2>Faith &amp; Values</h2></div><div class="panel__body">'+
@@ -782,9 +737,11 @@ tr:last-child td{border-bottom:none}
 
   function render(){
     selTerm.value=T;selWeek.value=W;selDay.value=D;save();
+    document.body.classList.toggle("wp-mode",VIEW==="process");
     if(VIEW==="lesson")renderLesson();
     else if(VIEW==="prompt")renderPrompt();
     else if(VIEW==="process")renderProcess();
+    else if(VIEW==="rubric")WFR.render(main,{data:data,T:T,W:W,D:D,doPrint:doPrint});
     else if(VIEW==="map")renderMap();
     else renderTeacher();
   }
@@ -796,7 +753,9 @@ tr:last-child td{border-bottom:none}
     if(e.key==="ArrowLeft")step(-1);
   });
 
-  load();buildWeeks();syncTabs();render();
+  load();
+  try{var qv=new URLSearchParams(location.search).get("view");if(qv&&/^(lesson|prompt|rubric|process|map|teacher)$/.test(qv))VIEW=qv;}catch(e){}
+  buildWeeks();syncTabs();render();
 })();
 </script>
 </body>

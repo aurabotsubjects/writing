@@ -1,0 +1,356 @@
+/* Writing Focus — Term 1 (Narrative) · TEACHING SCRIPT for the ▶ Present slides, Weeks 1–5.
+   i = I Do {s: teacher lines, m: model text (optional), t: why-it-works points}
+   wi = We Do intro line (optional)   w = We Do [question, strong answer, why it works]
+   y = You Do exemplar {s: teacher line, e: example of a good one, w: why it's good}
+   c = closing [question, sample answer] */
+window.__WF_SCRIPT = window.__WF_SCRIPT || {};
+window.__WF_SCRIPT[1] = window.__WF_SCRIPT[1] || {};
+Object.assign(window.__WF_SCRIPT[1], {
+1:{
+ Monday:{
+  i:{s:["I'm going to tell you a true story from my life. It takes less than two minutes. Listen for how SMALL it is.","When I finish, I'll show you everything I left out — because that's the secret."],
+     t:["I didn't tell you about the whole holiday, the drive, or dinner. I told you about ninety seconds.","You leaned in when the seagull arrived. That's the HEART of the story — the moment everything changed.","Small and true beats big and boring. A whole day is a list. One moment is a story."]},
+  w:[["Where does the mentor story actually start — at the beginning of the day, or later?","Later — right in the middle of the action, close to the moment that matters.","Good writers skip the boring bits (waking up, breakfast, the car ride) and start near the important moment."],
+     ["Which sentence is the moment everything changes?","The sentence where the problem or surprise arrives — like the seagull swooping in and taking the ice cream.","Every good story has one turning point. Finding it shows you what the whole story is really about."],
+     ["How long did this whole story last in real life — minutes, hours or days?","Only a few minutes.","This proves a story doesn't need a big event. A few minutes, told well, is enough for a whole piece of writing."],
+     ["How do you know that's the heart? What did the writer do to make you slow down there?","They used more detail and more sentences at that moment than anywhere else.","Writers slow down at the most important part. Lots of detail = 'pay attention, this matters'."]],
+  y:{s:"Your jotter is yours — I'll never mark it. Here are my five moment seeds so you can see how short they are.",
+     e:"1. The night the power went out and we ate cold baked beans by torchlight.\n2. When my brother let go of the back of my bike.\n3. The seagull and the hokey pokey ice cream.\n4. Finding a wētā in my school shoe.\n5. Waving at Nana's car until it turned the corner.  ⭐",
+     w:"Each seed is ONE line about ONE small moment. They're specific — you can picture each one. I starred the one I most want to tell: it has a strong feeling in it."},
+  c:["Which of your seeds has a story hiding inside it?","\"The day my koro let me steer the ute — because I was scared AND excited at the same time.\""]
+ },
+ Tuesday:{
+  i:{s:["Two sentences about the same moment. Close your eyes and tell me which one you can actually SEE."],
+     m:"Version 1: \"We went to the beach and it was fun.\"\nVersion 2: \"The tide had gone out so far that the sand looked like it went on forever.\"",
+     t:["Version 1 could be about anybody's day at any beach. It's VAGUE.","Version 2 gives one exact picture — the tide far out, the endless sand. It's SPECIFIC.","The test: if your sentence could describe anyone's day, it isn't specific yet."]},
+  wi:"We're building a 'Worth Telling' chart that stays on our wall all term. What makes a story worth telling?",
+  w:[["What did our mentor story have that made us care? (Idea 1)","Something CHANGED — things weren't the same at the end as at the start.","If nothing changes, it's just a description. Change is what makes it a story."],
+     ["Idea 2?","Someone FELT something strongly — scared, embarrassed, proud, heartbroken.","Readers care about feelings. A strong feeling pulls the reader in."],
+     ["Idea 3?","It happened in a REAL PLACE we can picture.","A real place makes the story believable and easy to see."],
+     ["Idea 4?","There was a problem, a surprise, or a turn.","The problem or surprise is the engine of the story — it's why we keep reading."],
+     ["Can a story still work if it's missing one of these?","Yes — but it usually needs at least three of the four to be really strong.","The chart is a guide for choosing ideas, not a strict rule."]],
+  y:{s:"Test your seeds against the chart. Here's me testing one of mine.",
+     e:"Seed: \"Finding a wētā in my school shoe.\"\n✔ Something changed (I never put my shoes on without checking again!)\n✔ Strong feeling (I screamed)\n✔ Real place (the back step at home)\n✔ A surprise\n= 4 out of 4. It passes!",
+     w:"I checked my seed against EACH thing on the chart and gave a reason for each tick. Seeds with three or more ticks are worth keeping."},
+  c:["Did any of your seeds change after today?","\"I crossed out 'my birthday' because nothing really changed — but 'losing my tooth at the pools' passed all four.\""]
+ },
+ Wednesday:{
+  i:{s:["This is my real jotter. It's messy, and it's got a shopping list in it. Here's what I wrote on the way to my car yesterday."],
+     t:["A noticing is anything my brain stopped on for half a second — like the dead cicada.","A wondering is a question I don't know the answer to — like why the car park smells like rain.","I wrote them fast, in bits, with no worrying about spelling. Collect now, tidy never."]},
+  wi:"We're going on a five-minute noticing walk — eyes and ears only, no talking. Then we share.",
+  w:[["Something you could SEE that most people would walk past.","\"A trail of ants carrying a crumb across the step.\"","It's small, exact and easy to miss. That's what makes it a great noticing."],
+     ["Something you could HEAR that isn't a person.","\"The flag rope clinking against the pole.\"","Sounds are easy to forget. Writing them down gives you details nobody else will have."],
+     ["Something that has changed since last week.","\"The puddle by the bike stand has dried into a cracked mud pattern.\"","Noticing change trains your eyes — and change is what stories are made of."],
+     ["Which noticing on our board has a story hiding inside it?","The ants — where are they taking the crumb? Who dropped it?","A noticing with a question inside it can grow into a story."]],
+  y:{s:"Three columns in your jotter. Here's what mine looks like.",
+     e:"NOTICINGS: the cicada shell on the fence · steam off the drink bottle · Mrs T's laugh\nWONDERINGS: Why do cicadas leave their shells? · Where does the steam go?\nFEELINGS: proud (finished my run) · grumpy (lost my pen) · calm (sitting under the tree)",
+     w:"Short words and fragments are fine. Each column has three real entries from today. Feelings have a reason attached."},
+  c:["Where did you see love — aroha — today?","\"When Sam gave his spare lunch to Mia because she forgot hers.\""]
+ },
+ Thursday:{
+  i:{s:["I'm only reading you the first three sentences of our mentor text. Then I'll think out loud about WHY the writer started there."],
+     t:["She started right in the action — not with 'One day'. So we're hooked straight away.","She gave us a picture we could see, not a list of facts.","I asked of every sentence: why did the writer choose THIS, and what would be lost without it?"]},
+  wi:"Three levels of questions. Each one gets harder.",
+  w:[["ON the page: what actually happened in this story?","Answer from the facts in the text — who, what, where. e.g. 'A girl lost her dog at the park and found him under the slide.'","Level 1 is about checking we understood the plot. The answer is right there in the words."],
+     ["BETWEEN the lines: how did the character feel — and how do we know, if the writer never told us?","She was panicking — we know because her 'hands wouldn't stop shaking' and she 'called his name three times'.","Writers SHOW feelings through actions and body clues. We work out the feeling like a detective."],
+     ["BEYOND the page: what does this writer want us to understand about people?","That you don't know how much you love something until you nearly lose it.","Level 3 is the big message. It's the hardest because it's not written anywhere — we have to think about it."]],
+  y:{s:"Write about your strongest seed for five minutes without stopping. Here's the start of my first telling — notice how messy it is.",
+     e:"I was seven and I had a hokey pokey double scoop and we were at the Mount and it was hot and then the seagull came from behind and I didn't even see it and it took the WHOLE top scoop and I just stood there...",
+     w:"It's not perfect — it's not supposed to be! I kept the pen moving and got the whole moment down. Fixing comes much later."},
+  c:["How did it feel to write without stopping?","\"Weird at first, but then I remembered stuff I'd forgotten.\""]
+ },
+ Friday:{
+  i:{s:["Listening is a skill. Here's what good listening looks like with your body."],
+     m:"Eyes up. Body turned towards the teller. Nothing in your hands. No interrupting — not even to agree.",
+     t:["When your body faces the teller, they feel brave enough to keep going.","Empty hands mean you're not distracted.","The listener's only job: catch the PICTURE."]},
+  wi:"I'll tell you a true story badly on purpose. Work out what's missing.",
+  w:[["What's missing from my dull story? (Clue 1)","No specific place — it could have happened anywhere.","Without a place, the reader can't picture it."],
+     ["Clue 2?","Nothing changed between the start and the end.","If nothing changes, there's no story — just a list of events."],
+     ["Clue 3?","I told you the feeling ('I was sad') instead of showing it.","Showing (tears, a lump in my throat) lets the listener feel it too."],
+     ["Which of these would fix my story fastest?","Adding a change — because that turns a description into a story.","Change is the most important ingredient. The others make it better; change makes it a story."]],
+  y:{s:"In groups of four, tell your moment in 60 seconds — no notes. Listeners say back the picture they remember.",
+     e:"Teller: \"…and when I opened the shoe, a giant wētā crawled up my sock.\"\nListener: \"The picture I can still see is the wētā climbing up your sock.\"",
+     w:"The listener names one exact picture. That tells the teller which part of their story is strongest — the bit to keep."},
+  c:["Which moment do you most want to write this term?","\"The wētā in my shoe — everyone remembered it, so it's my strongest story.\""]
+ }
+},
+2:{
+ Monday:{
+  i:{s:["Close your eyes. I'm going to walk you into one of my memories, one sense at a time.","Then I'll show you the sentences I got out of it."],
+     t:["I didn't reach for fancy adjectives. I went back INTO the memory and wrote down what was there.","Each sense gave me a different detail: the clock, the pipe tobacco, the wet wool coats.","Those small details make the reader feel like they're standing in the hallway with me."]},
+  wi:"Let's fill a five-senses map together about swimming sports — a memory we all share.",
+  w:[["SEE — what was in the corner of the picture, not the middle?","\"A pile of wet towels with one lonely jandal on top.\"","The middle of the picture is what everyone sees. The corner is where the fresh details hide."],
+     ["HEAR — what was happening in the background?","\"The whistle echoing off the water, and Mr K's megaphone crackling.\"","Background sounds make a scene feel real and alive."],
+     ["SMELL / TASTE — the one everybody forgets!","\"Chlorine stinging my nose, and the taste of pool water when I swallowed some.\"","Smell and taste are the strongest memory triggers. Readers instantly remember their own pools."],
+     ["FEEL — on your skin, and in your stomach.","\"The cold concrete under my feet, and my stomach flipping before the race.\"","Feelings on the skin and inside the body help the reader feel the moment, not just see it."]],
+  y:{s:"Same five boxes, your moment. Here's my map for the seagull story.",
+     e:"SEE: the cone tipping, white wings, sand stuck to my scoop\nHEAR: the seagull's screech, Dad laughing\nSMELL: sunscreen and salty air\nTASTE: the one lick of hokey pokey I got\nFEEL: hot sand, sticky fingers, my face going red\n⭕ Circled: the one lick I got",
+     w:"Every box has at least two details. I circled the detail nobody else could have written — that's my best ingredient."},
+  c:["Which sense was hardest to remember?","\"Smell — but when I thought about it, I remembered the sunscreen.\""]
+ },
+ Tuesday:{
+  i:{s:["Here's a TELLING sentence: 'I was really excited.' Watch me throw it away and try three better ones."],
+     m:"TELL: \"I was really excited.\"\nSHOW 1: \"I couldn't stop bouncing on my toes.\"\nSHOW 2: \"I checked the clock for the fifth time in a minute.\"\nSHOW 3: \"My grin was so wide my cheeks hurt.\"",
+     t:["Each SHOW version uses the body or an action instead of naming the feeling.","The reader works out the feeling themselves — and that makes them feel it too.","Test: if you can put 'felt' in front of it, it's telling."]},
+  wi:"Show-don't-tell relay! I say a telling sentence, you fire back a showing one.",
+  w:[["\"He was angry.\"","\"He slammed his bag on the desk so hard the pencils jumped.\"","The slammed bag and jumping pencils SHOW anger through action. We see it happen."],
+     ["\"She was nervous.\"","\"She chewed the end of her plait and kept glancing at the door.\"","Chewing and glancing are body clues. The reader recognises nervousness without being told."],
+     ["\"It was boring.\"","\"I counted the ceiling tiles. Twice.\"","Counting tiles twice shows how slow time felt — and it's funny, which makes it memorable."],
+     ["\"They were proud.\"","\"Dad held the certificate up to show the whole room, grinning.\"","Holding it up for everyone shows pride in action."],
+     ["Which showing version made the picture sharpest — and what part of the body did it use?","The ceiling tiles — it used the eyes (counting), and the word 'Twice' made it funny.","The best showing sentences use one exact action that only fits that feeling."]],
+  y:{s:"Go back to your first telling. Underline every feeling word, then rewrite two to show instead.",
+     e:"BEFORE: \"I was really embarrassed.\"\nAFTER: \"My face burned and I stared at my ice cream cone like it might fix itself.\"",
+     w:"The feeling word is gone. Now there's a body clue (face burning) and an action (staring at the cone). The reader feels the embarrassment."},
+  c:["Which part of the body did the work in your best sentence?","\"My hands — 'my hands wouldn't stop shaking'.\""]
+ },
+ Wednesday:{
+  i:{s:["I'm going to tell you a family story I wasn't even there for. Listen for HOW I know it."],
+     t:["I know it because it's been told to me forty times. Families keep their best stories alive by retelling them.","Stories that survive have something special — they're funny, brave, or explain who we are.","These handed-down stories are often the best ones to write."]},
+  wi:"Some family stories last fifty years and some are forgotten by Tuesday. Why?",
+  w:[["Reason 1 a story survives?","It's genuinely funny, every time it's told.","People love retelling funny stories, so they keep getting passed on."],
+     ["Reason 2?","Someone was brave, or foolish, or both.","Bravery and foolishness make strong characters — people remember them."],
+     ["Reason 3?","It explains why our family does something the way we do.","These stories become part of the family's identity."],
+     ["Reason 4?","Someone in it is no longer here.","Retelling the story keeps that person close. That's why these stories matter so much."],
+     ["Which of these does YOUR family story have?","\"Ours is funny AND brave — Nana chased a cow out of the kitchen with a broom.\"","Naming why it survived helps you know what to focus on when you write it."]],
+  y:{s:"Two jotter tasks: one line of a family story, and your special place. Here's mine.",
+     e:"Family story: \"Grandad walked 11 km to his own wedding because the bus didn't come.\"\nMy tūrangawaewae: Nana's back porch in Kaikōura\n1. The paint is peeling in long curls.\n2. You can hear the sea but can't see it.\n3. The step creaks on the third board.",
+     w:"The family story is one clear line. The place is named exactly and has three specific details you could only know by being there."},
+  c:["Who in your family tells the best stories?","\"My aunty — she always does the voices.\""]
+ },
+ Thursday:{
+  i:{s:["Three minutes, my pen never stops. You'll see me write rubbish — and that's the point."],
+     t:["When I got stuck, I wrote the last word again until a new one came.","I never crossed out — crossing out is the editor sneaking in.","Freewriting gets the ideas out BEFORE your inner critic can stop them."]},
+  wi:"Let's agree the freewrite rules so nobody breaks them by accident.",
+  w:[["Rule 1?","No crossing out. Ever.","Crossing out stops the flow. You can fix things later."],
+     ["Rule 2?","No stopping — if the pen stops, write 'I don't know what to write' until it moves.","Keeping the pen moving tricks your brain into finding the next idea."],
+     ["Rule 3?","No worrying about spelling, punctuation or neatness.","Spelling is a job for later. Today is about ideas."],
+     ["Rule 4?","No reading back over it while you're writing.","Reading back makes you want to fix things — which stops you writing."],
+     ["Which rule will be hardest for you personally?","\"Not crossing out — I always want to fix my mistakes.\"","Knowing your hardest rule helps you watch out for it."]],
+  y:{s:"Eight minutes on your moment. When you finish, underline the one sentence you didn't expect to write.",
+     e:"...and the seagull just stood there on the bin eating MY scoop and looking at me like I was the rude one and I think that's when I started laughing instead of crying...\n\n⬆ Underlined: \"I think that's when I started laughing instead of crying.\"",
+     w:"That surprising sentence shows the REAL story — it's not just about losing an ice cream, it's about the moment my feeling changed."},
+  c:["Did you find a sentence you didn't know was in there?","\"Yes — 'I was more scared of Mum being upset than of the dog.'\""]
+ },
+ Friday:{
+  i:{s:["I've got two moments I could write. Watch me choose one — and really let the other one go."],
+     m:"Moment A: the seagull and the ice cream.\nMoment B: the last time I saw my grandmother.",
+     t:["Moment B matters more to me, but I'm not ready to write it well yet.","Moment A has a clear change and a strong feeling — it passes our chart.","Choosing means letting go. You can always write the other one another time."]},
+  wi:"In pairs, pitch your top two moments in 60 seconds each. Your partner picks the one they want to hear.",
+  w:[["Pitch 1: \"One moment I could write about is… and it matters because…\"","\"One moment I could write about is when I got lost at the A&P show, and it matters because it's the scariest thing that's happened to me.\"","A good pitch names the moment AND says why it matters — in one sentence."],
+     ["Partner: \"I want to hear more about ___, because ___.\"","\"I want to hear more about the A&P show, because I wanted to know how you got found.\"","The partner's reason tells the writer what's most interesting — that's useful information."],
+     ["Did your partner choose the one you expected?","\"No! They chose my second one — I didn't think it was that interesting.\"","Other people often see the story in our moments better than we do."]],
+  y:{s:"Fresh page. This gets read again in Week 10, so write it properly. Here's mine.",
+     e:"My moment for this term is when a seagull stole my ice cream at the Mount.\nIt matters because: 1. it's the first time I remember laughing at myself; 2. Dad still tells it; 3. it's funny but a bit sad too.\nI want my reader to feel: surprised, then laughing with me.",
+     w:"It names the moment, gives three real reasons, and says exactly what the reader should feel. That guides all my writing from now on."},
+  c:["Say your moment in one sentence.","\"My moment is finding a wētā in my shoe on the first day of school.\""]
+ }
+},
+3:{
+ Monday:{
+  i:{s:["Every story has a shape. I'm going to draw it — and name it twice."],
+     m:"Orientation → Complication → Climax → Resolution → Reflection\nSomething good → Something breaks → Something is put right → Something is made new",
+     t:["The first line is the story-writing words. The second is the bigger story we're all part of.","The 'break' is the problem. If your moment has no break, it might be a memory, not a story.","The break and the turn get the most words when we write."]},
+  wi:"Let's put the Prodigal Son (Luke 15) onto the arc together.",
+  w:[["Where's the GOOD at the start?","The son lives safely at home with a father who loves him.","Orientation shows how things are before the problem."],
+     ["Where's the BREAK?","He takes his share of money, leaves, wastes it all, and ends up starving, feeding pigs.","This is the complication — things go badly wrong."],
+     ["Where's the TURN?","He decides to go home. His father sees him far off and runs to hug him.","The climax/turn is the moment everything changes direction."],
+     ["Where's the NEW thing at the end?","The father throws a feast — the son is welcomed back as family, not a servant.","The resolution shows something put right and made new."],
+     ["Which part of the arc gets the most TIME in the telling?","The break and the turn.","Writers spend the most words where the feelings are strongest."]],
+  y:{s:"Draw the arc in your jotter. Put your moment on it in five short phrases. Here's mine.",
+     e:"1. Hot day at the Mount, double scoop\n2. Seagull swoops from behind ★\n3. Top scoop gone — I freeze\n4. Dad laughs, then I laugh\n5. Still check the sky when I eat ice cream",
+     w:"Five short phrases, not sentences. The star is on the point where everything changes. You can see the whole story at a glance."},
+  c:["Where does your moment turn?","\"When the lights went out in the middle of the movie.\""]
+ },
+ Tuesday:{
+  i:{s:["Watch me turn my arc into five plan boxes — and then delete one."],
+     t:["Each box holds key words, not sentences — just enough to remind me.","I deleted a box about the car ride because it didn't change anything.","Five boxes maximum. If you need a sixth, one isn't pulling its weight."]},
+  wi:"A volunteer brings their arc. We'll build their plan by asking good questions.",
+  w:[["\"What's actually in box one? Not the story — the picture.\"","\"Our backyard at night, torch beam, Dad holding the bucket.\"","Asking for the picture helps the writer start with something we can see."],
+     ["\"Where exactly does it turn? Which second?\"","\"When the eel grabbed the bait and the line went tight.\"","Pinpointing the exact second makes the turn sharp and clear."],
+     ["\"What can we cut that you won't miss?\"","\"The bit about driving to the river.\"","Cutting the travel part gets the reader to the action faster."],
+     ["What happens to the plan when the writer answers out loud?","It gets clearer and better every time they speak.","Talking helps writers discover what they really mean."]],
+  y:{s:"Five boxes, key words only. Then a partner tells your story back using only your boxes.",
+     e:"Box 1: back step, school shoes, early\nBox 2: foot in — something moves\nBox 3: giant wētā on my sock ★\nBox 4: scream, Mum runs out\nBox 5: now I shake my shoes every morning",
+     w:"Key words only. Each box moves the story forward. A partner could tell this story back without any extra help."},
+  c:["Could your partner follow your plan?","\"Yes, but they didn't know why I was scared — so I'm adding a box detail.\""]
+ },
+ Wednesday:{
+  i:{s:["Same three sentences, three different listeners. Listen for what changes."],
+     t:["To my best mate I used slang and exaggeration: 'NAILED me'.","To a five-year-old I used simple, clear words.","To my grandmother I was polite and a bit funny. The reader changes the words!"]},
+  wi:"Our real audience: the Week 10 celebration — the school community plus one family reader. What do they need?",
+  w:[["What does our audience need, since they weren't there?","Enough background to follow it — where we were, who was there.","Readers can't see inside our heads. We have to give them the setting."],
+     ["What should we avoid?","In-jokes that only our class understands.","Our audience won't know our class jokes, so those would confuse them."],
+     ["What kind of language?","Words that work for a Year 3 and an adult in the same room.","Clear, interesting words work for everyone. Slang or very hard words leave people out."],
+     ["What's one thing our audience does NOT need that you were going to include?","\"What I had for breakfast that morning.\"","Cutting unneeded details keeps the reader focused on the moment."]],
+  y:{s:"Write your Audience Card at the top of your plan. It stays there every time you write.",
+     e:"I am writing for: my class, families at the celebration, and my Nana.\nThey need to know: we were at Mount Maunganui and it was a really hot day.\nI want them to feel: surprised, then laughing with me.",
+     w:"It names real readers, says what background they need, and names a feeling. Now every sentence can aim at those readers."},
+  c:["What do you want your reader to feel?","\"Nervous with me, and then relieved.\""]
+ },
+ Thursday:{
+  i:{s:["I'll tell my whole story from my five boxes. Watch me find a problem while I'm talking."],
+     t:["I said 'um' twice at box three — that means box three isn't clear yet.","Telling it out loud showed me a gap: I never said where Dad was standing.","If you stumble in the same place twice, that place needs work."]},
+  wi:"Roles first, so the listener actually helps.",
+  w:[["What's the TELLER'S job?","Tell the story from the plan, not by reading it word for word.","Telling (not reading) shows whether your plan really works."],
+     ["What's the LISTENER'S job?","Hold the plan and tick each box as it arrives.","Ticking boxes shows if any part got skipped."],
+     ["What else does the listener do?","Name any box that got skipped, and any box that took ages.","Skipped boxes and slow boxes are exactly what the writer needs to fix."],
+     ["What's the difference between listening to enjoy and listening to help?","Listening to help means noticing gaps and confusing parts, not just enjoying.","Helpful listening gives the writer information to improve."]],
+  y:{s:"Tell your story to your partner, swap, then fix your plan while it's fresh.",
+     e:"After telling: \"The bit I couldn't explain was why I was scared of the dog. I need to add that it had already bitten my cousin.\"",
+     w:"The writer found a real gap by talking and wrote down exactly what to add. That's oral rehearsal doing its job."},
+  c:["Did telling it change your plan?","\"Yes — I moved my scary part earlier.\""]
+ },
+ Friday:{
+  i:{s:["Only three questions are allowed at a plan gallery. Here they are, and here's why."],
+     m:"1. Can I follow it?\n2. Where's the turn?\n3. What do I want to know more about?",
+     t:["Question 1 checks the plan makes sense to someone else.","Question 2 checks there's a clear change.","Question 3 shows the writer where readers are most interested. Always point at a specific box."]},
+  wi:"One plan on the screen. We'll run the three questions together.",
+  w:[["Can I follow it?","\"I could follow it until box three, where I lost who was talking.\"","Pointing at the exact box tells the writer exactly where to fix."],
+     ["Where's the turn?","\"The turn is box three — but it's the shortest box, and it might need to be the longest.\"","The most important moment should get the most detail."],
+     ["What do I want to know more about?","\"I want to know more about what was in the room.\"","This tells the writer where to add setting details."],
+     ["Which of those comments would help the writer most on Monday?","The turn comment — making the turn longer improves the whole story.","Fixing the most important part first gives the biggest improvement."]],
+  y:{s:"Visit three plans. Leave one sticky note on each.",
+     e:"Sticky note: \"Box 4 made me want to keep reading — the bit where the lights went out! Question: who screamed first?\"",
+     w:"It names a specific box that worked and asks one clear question. The writer knows what to keep and what to add."},
+  c:["Which box will you fix first?","\"Box 3 — people wanted more about the dog.\""]
+ }
+},
+4:{
+ Monday:{
+  i:{s:["I'm writing the SAME moment four different ways. Watch me, then watch me choose."],
+     t:["ACTION drops you into movement. DIALOGUE starts with a voice. SOUND starts with a noise. IMAGE starts with a picture.","All four avoid 'One day…' — they start in the moment.","I chose the IMAGE opening (the gate swinging) because my story is about a lost dog and the gate is the clue."]},
+  wi:"Here's a terrible opening: \"One day I went to the beach with my family and we had a really good time.\" Let's rescue it four ways.",
+  w:[["Rewrite it as an ACTION opening.","\"I sprinted down the dune so fast my jandals flew off.\"","It starts with movement, so the reader is instantly in the scene."],
+     ["As a DIALOGUE opening.","\"'Last one in is a soggy sandwich!' Dad yelled.\"","A voice makes the reader curious about who's speaking and what's happening."],
+     ["As a SOUND opening.","\"Crash. The first wave hit the sandcastle.\"","A sound word grabs attention and puts us right on the beach."],
+     ["As an IMAGE opening.","\"The sand was so hot it shimmered like water.\"","A clear picture lets the reader see the setting from the first line."],
+     ["Which version made you want the next sentence — and why?","The dialogue one — I want to know who ends up a soggy sandwich!","The best openings create a question the reader wants answered."]],
+  y:{s:"Write THREE openings of different types. Read them to a partner — they pick the strongest.",
+     e:"ACTION: \"I shoved my foot into my shoe and froze.\"\nDIALOGUE: \"'Why are you screaming?' Mum yelled from the kitchen.\"\nIMAGE: \"Something brown and spiky was climbing out of my school shoe.\"",
+     w:"Three different types, each starting right in the moment. Having choices lets you pick the best one."},
+  c:["Which opening made you want to read more?","\"Sam's dialogue one — 'Don't open the box!'\""]
+ },
+ Tuesday:{
+  i:{s:["I'll read a bloated setting, then a trimmed one. Count the details in each."],
+     t:["The bloated one had about ten details — and you can't picture any of them clearly.","The trimmed one had just two strong details: grass the colour of straw, and people hiding in the shade.","Three great details beat ten ordinary ones. Cross out anything that could belong to any old place."]},
+  wi:"Let's build a setting for the school field on a hot day. First everything, then we cut to three.",
+  w:[["Give me everything you can see, hear and smell.","Brown crunchy grass · heat shimmer · kids in the shade · sprinkler ticking · smell of cut grass · cicadas buzzing · hot bench","Collecting lots first gives us choices."],
+     ["Which three details do the most work?","Brown crunchy grass · everyone crowded in the shade · cicadas buzzing","These show heat in three different ways: sight, people's actions, and sound."],
+     ["Now rewrite it with only those three.","\"The grass crunched like cornflakes, and the cicadas buzzed so loudly that everyone had crammed into the one strip of shade.\"","Short, but you can feel the heat. That's the power of choosing."],
+     ["What did we lose in the cut? Did we lose anything that mattered?","We lost the sprinkler and the bench — but the scene is still clear.","Cutting is not losing. It's choosing the best."]],
+  y:{s:"Write your setting into your draft using exactly three details from your senses map.",
+     e:"\"The back step was still cold from the night, the morning birds were going crazy in the hedge, and my school shoes sat side by side, waiting.\"",
+     w:"Three specific details — cold step, noisy birds, waiting shoes. You can picture the exact place, and the shoes hint at what's coming."},
+  c:["Could your partner guess the place from your details?","\"Yes — they knew it was the marae kitchen straight away.\""]
+ },
+ Wednesday:{
+  i:{s:["Sixty seconds of me drafting fast. Watch what I do when I can't think of a word."],
+     t:["I left blanks ( ___ ) instead of stopping.","If I'd stopped to find the perfect word, I would have lost the whole sentence.","Momentum first. The perfect word will still be there on Friday."]},
+  wi:"Let's agree what to do in every situation, so nobody needs to put a hand up during a long write.",
+  w:[["Stuck for a word?","Squiggle or leave a blank and keep going.","Stopping kills your flow. You can fill the gap later."],
+     ["Finished a plan box?","Start the next box straight away — don't reread.","Rereading now leads to fixing, which stops drafting."],
+     ["Timer stops?","Draw a line. Don't tidy.","The line shows where you got to. Tidying is a job for SHAPE."],
+     ["Genuinely stuck?","Reread your plan, say the next bit in your head, write exactly that.","Your plan is your map. Saying it in your head turns ideas into words."],
+     ["Which of these will you personally need most today?","\"Stuck for a word — I always stop to find the perfect one.\"","Knowing your habit helps you catch it."]],
+  y:{s:"Longest write so far. Draft from your plan, box by box. Here's what a fast draft looks like.",
+     e:"\"I shoved my foot in and something MOVED. Something ___ and scratchy. I yanked my foot out so fast I fell off the step and there it was — a wētā as big as my ~~~ just sitting on my sock looking at me...\"",
+     w:"Blanks and squiggles, but the story keeps moving. It's messy and that's exactly right for a draft."},
+  c:["How many words did you write?","\"212 — my most ever!\""]
+ },
+ Thursday:{
+  i:{s:["Watch what I do BEFORE I add a single new sentence."],
+     t:["I reread only my LAST paragraph — not the whole thing.","That reminds me of the voice and where the story is up to.","Reading from the top makes you rewrite sentence one forever. Last paragraph only!"]},
+  wi:"Fast round the room — just the plan box you're finishing today.",
+  w:[["Example answer?","\"Box two — the bit before it goes wrong.\"","Naming your box gives you a clear goal for today."],
+     ["Another example?","\"Box three — I'm on the turn.\"","Knowing where you are helps you plan your time."],
+     ["Anyone still on box one?","Come to the table with me first.","Getting help early stops you falling behind."]],
+  y:{s:"Reread your last paragraph, then keep going. Finished early? Add one sense detail to each paragraph.",
+     e:"Added detail: \"I yanked my foot out\" → \"I yanked my foot out, and the wētā's scratchy legs dragged across my ankle.\"",
+     w:"The added sense detail (scratchy legs) makes the moment more real — without changing the story."},
+  c:["Which box did you finish today?","\"Box four — the scream!\""]
+ },
+ Friday:{
+  i:{s:["Today is praise only. No suggestions — not one.","Here's why: you can't take advice on something you're not yet proud of."],
+     m:"Writer reads → everyone claps → two people say one SPECIFIC thing that worked.",
+     t:["Specific praise tells the writer exactly what to keep doing.","'It was good' gives them nothing. 'The word crunched made me hear it' gives them a tool.","Always point at a word or sentence when you praise."]},
+  wi:"I'll read my opening. Give me two specific pieces of praise.",
+  w:[["\"The sentence that worked for me was…\"","\"The sentence that worked for me was 'it took the WHOLE top scoop' because I could see it happen.\"","It names the exact sentence AND says why — that's specific praise."],
+     ["\"The word that made me see it was…\"","\"'Swooped' — it made the seagull sound fast and sneaky.\"","Praising one word shows the writer their word choice is working."],
+     ["Did anyone want to give me advice?","Hold onto it — Week 8 is when advice becomes useful.","Praise first builds confidence. Advice comes once the draft is finished."]],
+  y:{s:"Read your opening in the Author's Chair. Listeners give two specific praises.",
+     e:"Listener: \"The word that made me see it was 'froze' — I could picture you stuck with one foot in the shoe.\"",
+     w:"It points at one word and explains what picture it created. The writer now knows that word is working."},
+  c:["Whose opening made you want to hear more?","\"Aroha's — I want to know who was knocking.\""]
+ }
+},
+5:{
+ Monday:{
+  i:{s:["Two versions of the same ten seconds. The first is one sentence. The second is eight. Count what's different."],
+     t:["The slow version added what my body did: hot concrete, heart in my throat, forgetting to breathe.","It added tiny moments: a car passing, then another one.","Slowing down at the big moment makes the reader hold their breath. Ask: what did my body do before my brain caught up?"]},
+  wi:"One boring sentence: \"I fell off my bike.\" Let's make it eight — no new events allowed!",
+  w:[["What happened in the half-second before?","\"The front wheel hit the stick and jerked sideways.\"","Showing the cause makes the fall believable and builds tension."],
+     ["What did it feel like on the way down?","\"For a second I was flying. The handlebars twisted out of my hands.\"","Stretching the falling moment slows time down for the reader."],
+     ["What was the first thing you heard afterwards?","\"The back wheel still ticking round. Then Mum's footsteps running.\"","Sounds after the moment show the shock — the world carries on."],
+     ["Is our eight-sentence version better or just longer — how do we tell?","Better, because every sentence adds a NEW detail about the same moment.","Longer is only better if each sentence adds something. No new events — just more detail."]],
+  y:{s:"Find the ten-second heart of your moment. Stretch it across at least six sentences.",
+     e:"\"Something moved. Something scratchy. I yanked my foot out. My heel hit the step. And there it sat on my sock — a wētā, its back legs raised like spiky arms. I couldn't even scream at first.\"",
+     w:"Six sentences on just a few seconds. It uses body actions (yanked, heel hit the step) and short sentences to make it feel slow and tense."},
+  c:["Which sentence in your slow motion is the slowest?","\"'I couldn't even scream at first.'\""]
+ },
+ Tuesday:{
+  i:{s:["First the punctuation rules, said out loud as I write. Then the harder part: deciding what a person would really say."],
+     m:"\"Did you shut it?\" Mum's voice came from the kitchen window, already sharp.\n\n\"I thought I did.\"",
+     t:["Speech marks go around the exact words spoken. The question mark goes INSIDE.","Each new speaker gets a new line.","'I thought I did' doesn't answer the question properly — that shows the character is guilty. Dialogue should show who someone is."]},
+  wi:"Two people arguing about something small. You give me the words, I'll punctuate them.",
+  w:[["Speaker A says something short.","\"Who ate the last biscuit?\" asked Mia.","Short and direct starts the argument quickly."],
+     ["Speaker B doesn't answer the question.","\"Why are you always counting the biscuits?\"","Dodging the question shows B is guilty — without saying so!"],
+     ["Speaker A repeats themselves.","\"Who. Ate. The. Last. Biscuit?\"","Repeating shows A is getting frustrated."],
+     ["Speaker B says something that ends it.","\"...It was stale anyway.\"","The ending line is funny and shows the truth. Dialogue reveals character."],
+     ["Now replace 'said angrily' with something the body did.","\"Mia crossed her arms.\" instead of \"Mia said angrily.\"","An action beat SHOWS the anger instead of telling it."]],
+  y:{s:"Add ONE short exchange (2–4 lines) to your draft. Check: new line for each speaker, punctuation inside the speech marks.",
+     e:"\"Why are you screaming?\" Mum called from the kitchen.\n\"There's a — it's in my — SHOE!\"\nShe came out holding the tea towel like a weapon.",
+     w:"New line for each speaker. Punctuation inside the speech marks. The broken-off words show panic, and the tea towel is a funny action beat."},
+  c:["Did your dialogue sound like a real person?","\"Yes — my sister actually talks like that.\""]
+ },
+ Wednesday:{
+  i:{s:["Close your eyes and listen. Tell me exactly where you tensed up."],
+     m:"\"He waited at the edge of the light, listening to the house settle around him, telling himself it was nothing. Nothing. Then the door moved.\"",
+     t:["The long first sentence builds slowly, like holding your breath.","'Nothing.' — one word on its own makes you pause.","'Then the door moved.' — short and sharp, it hits hard after the long one."]},
+  wi:"A breathless paragraph with no variation. Let's rebuild it as long–long–short.",
+  w:[["Read the original aloud. What does it sound like?","Flat and samey — like a list, with no tension.","When every sentence is the same length, nothing stands out."],
+     ["Where should the short sentence go — before the moment, or after?","Right AT the moment of shock — after the long build-up.","The long sentences build tension; the short one releases it."],
+     ["Read the rebuilt version. What changed in the SOUND?","It speeds up and stops suddenly, like a jump scare.","Sentence length controls pace. Short = fast and punchy."],
+     ["Why does the short sentence work better after the long ones?","Because the long ones make you wait, so the short one feels like a surprise.","Contrast is the trick — short only feels short next to long."]],
+  y:{s:"Find your tensest paragraph. Add one sentence of five words or fewer.",
+     e:"\"I pulled the shoe closer and tipped it upside down, shaking it over the step, waiting for whatever was inside to fall out. Nothing fell. I looked inside.\"",
+     w:"'Nothing fell.' and 'I looked inside.' are short after a long sentence. They make the reader feel the pause before the scare."},
+  c:["Read your short sentence to your neighbour.","\"'Then the lights went out.'\""]
+ },
+ Thursday:{
+  i:{s:["Learn the three-step unsticking routine — because I'm not rescuing anyone today!"],
+     m:"1. Reread the plan box.\n2. Say the next bit out loud (quietly).\n3. Write exactly what you just said.",
+     t:["The plan box reminds you where you're going.","Saying it out loud is easier than writing — your talking voice doesn't freeze.","Then you just copy down what you said. Your talking voice is a better writer than your stuck voice."]},
+  wi:"Round the room — which plan box are you finishing today?",
+  w:[["Example 1?","\"Box four — the bit after it goes wrong.\"","A clear goal helps you finish."],
+     ["Example 2?","\"I've finished my boxes, so I'm going back to add detail.\"","When the draft's done, adding detail is the next best job."],
+     ["What if you say 'I don't know'?","You're with me at the back table.","No shame — getting help is a smart move."]],
+  y:{s:"Draft towards the end of your story. Mark your hardest paragraph with an H.",
+     e:"Stuck → reread Box 5: \"Mum laughs, wētā goes outside\" → say it: \"Mum scooped it up in a cup and carried it to the hedge, still laughing.\" → write it!",
+     w:"The routine turned a stuck moment into a full sentence in under a minute."},
+  c:["Which paragraph is your hardest?","\"The ending — I don't know how to finish it.\""]
+ },
+ Friday:{
+  i:{s:["Three people, three jobs. Watch the shape before you do it."],
+     m:"Writer reads → Listener 1 says the image they saw → Listener 2 asks one question.",
+     t:["The image tells the writer what's working.","The question tells the writer what's missing.","An image and a question — that's the whole job. Short and useful."]},
+  wi:"I'll read my hardest paragraph. Someone gives me the image, someone gives me a question.",
+  w:[["\"The image I saw was…\"","\"The image I saw was the seagull standing on the bin, eating your ice cream.\"","It tells me that picture is clear and strong."],
+     ["\"My question is…\"","\"My question is: what did your dad do when it happened?\"","It shows me a gap — the reader wants to know about Dad."],
+     ["Which of those two will change my writing more?","The question — it shows me what to add.","Images tell you what's working; questions tell you what to improve."]],
+  y:{s:"In threes, read your H paragraph. Rotate roles. Write down the question you get.",
+     e:"Question written in jotter: \"Did the wētā bite you?\" → I'll add one sentence showing it didn't, but I thought it would.",
+     w:"The writer turned the question into a plan for Monday."},
+  c:["Finish this: 'One thing I'm going to change on Monday is…'","\"…adding what my brother said when he saw the wētā.\""]
+ }
+}
+});

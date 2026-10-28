@@ -66,6 +66,14 @@ h1 span{color:var(--thu)}
 .term__v{font-size:.78rem;color:var(--muted);margin-top:.35rem}
 .term__badge{position:absolute;top:.8rem;right:.9rem;font-size:.55rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:#0f766e}
+.proc4{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.proc4 a{display:flex;flex-direction:column;gap:.15rem;text-decoration:none;color:#0B0B0F;background:#F6F1E6;border:3px solid #0B0B0F;border-top:10px solid var(--c);border-radius:12px;padding:.8rem 1rem 1rem;box-shadow:5px 5px 0 #0B0B0F;transition:transform .15s,box-shadow .15s}
+.proc4 a:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #0B0B0F}
+.proc4 b{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;opacity:.55}
+.proc4 b:before{content:"Stage "}
+.proc4 span{font-family:var(--font-display);font-size:2.6rem;line-height:.95;letter-spacing:.04em;color:var(--c)}
+.proc4 i{font-style:normal;font-weight:700;font-size:1rem;line-height:1.25}
+.proc4 small{font-size:.78rem;color:var(--muted)}
 footer{padding:2rem;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 @media (max-width:720px){html{font-size:16px}.wrap{padding:2.5rem 1.2rem}}
 </style>
@@ -113,8 +121,13 @@ footer{padding:2rem;text-align:center;font-size:.72rem;letter-spacing:.14em;text
 
   <div class="strip" style="margin-bottom:1.5rem">
     <h2>OUR WRITING PROCESS</h2>
-    <p class="sub">FILL · FIND · SHAPE · SHARE — the same four stages in every term, taught explicitly and checked in every lesson. The wall cards print from the Writing Process tab inside Writing Focus.</p>
-    <img src="images/process/all-four.webp" alt="The four writing-process wall cards: FILL — what do I want to say? FIND — who do I want to say it to? SHAPE — how do I want to say it? SHARE — is it ready to give away?" style="display:block;width:100%;border-radius:14px;border:1px solid var(--border-hi);background:#fff" loading="lazy">
+    <p class="sub">FILL · FIND · SHAPE · SHARE — the same four stages every term, each with one question. Open the Writing Process tab inside Writing Focus to present it to the class or print the wall cards.</p>
+    <div class="proc4">
+      <a href="focus.html?view=process" style="--c:#2ec4b6"><b>1</b><span>FILL</span><i>What will I write about?</i><small>Gather your ideas</small></a>
+      <a href="focus.html?view=process" style="--c:#3b82f6"><b>2</b><span>FIND</span><i>Who am I writing for?</i><small>Find your reader, then draft</small></a>
+      <a href="focus.html?view=process" style="--c:#f97316"><b>3</b><span>SHAPE</span><i>How can I make it better?</i><small>Reread and improve</small></a>
+      <a href="focus.html?view=process" style="--c:#a855f7"><b>4</b><span>SHARE</span><i>Is it ready for my reader?</i><small>Get feedback, fix, publish</small></a>
+    </div>
   </div>
 
   <div class="strip" style="margin-bottom:1.5rem">

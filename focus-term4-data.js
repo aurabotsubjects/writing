@@ -42,93 +42,297 @@ window.__WF_DATA[4] = {
 
   /* ================= THE WRITING PROCESS — fourth genre, and the year's close ================= */
   process: {
-    intro: `Fourth genre, same four stages, final term. Poetry is where students discover that the process is bigger than the rules: a poem can be a fragment, can ignore a full stop, can be nine words long — and it still goes through FILL · FIND · SHAPE · SHARE. That is the year's last and best lesson about writing.`,
-    mnemonic: `FILL · FIND · SHAPE · SHARE`,
-    mnemonicNote: `Unchanged for the fourth term. Four genres, one process. By Week 10 students should be able to explain it, give an example of every stage from every term, and name the four things that never changed.`,
-    stages: [
-      { n:1, key:`FILL`, colour:`#2ec4b6`, icon:`🪣`,
-        question:`What do I want to say?`,
-        kid:`I notice. I slow down and look at something small until I see it properly — and I write down exactly what I saw, not what I'm supposed to say about it.`,
-        action:`Two cupped hands, like holding water.`,
-        looksLike:[`The noticing jotter — three small things a day`,`Looking at one object for two whole minutes`,`Collecting images, not opinions`,`Reading poems and stealing their moves`,`Fresh comparisons instead of borrowed ones`],
-        teacherLang:`"We're in FILL. Poets don't have better ideas than everyone else — they just look for longer."`,
-        acs:`Loane Ch 3 (jotters), Ch 7 (imaging & the senses) · Matthew 6:28 — consider the lilies`,
-        weeks:`Weeks 1–3` },
-      { n:2, key:`FIND`, colour:`#3b82f6`, icon:`🎯`,
-        question:`Who do I want to say it to?`,
-        kid:`I find my reader — and this term they will HEAR it, not just read it. I also find the shape: where the lines break, where the white space goes, how it looks on the page.`,
-        action:`Hands up to your eyes like binoculars, looking for your reader.`,
-        looksLike:[`Choosing a form: free verse, list poem, small-moment poem, shape poem`,`Line breaks tested by reading aloud`,`Drafting three poems, not one`,`Writing for the ear as well as the eye`],
-        teacherLang:`"We're in FIND. Say it aloud — the line break goes where your voice wants to breathe."`,
-        acs:`Loane Ch 5 (models, close reading) · Ch 10 (frameworks and language features)`,
-        weeks:`Weeks 3–6` },
-      { n:3, key:`SHAPE`, colour:`#f97316`, icon:`🔍`,
-        question:`How do I want to say it?`,
-        kid:`I ask one question about every single word: does this earn its place? In a poem, cutting is the main way of improving. Nine good words beat thirty ordinary ones.`,
-        action:`Both hands moulding a ball of clay, turning it as you shape it.`,
-        looksLike:[`Deconstructing model poems`,`The cutting pass — delete a third and see what survives`,`Testing line breaks by reading aloud`,`Replacing a tired image with a true one`,`Two personal goals per poem`],
-        teacherLang:`"We're in SHAPE. Every word has to earn its place — and most of them can't."`,
-        acs:`Loane Ch 9 (guided revision), Ch 11 (deconstruction) · Philippians 4:8`,
-        weeks:`Weeks 7–8` },
-      { n:4, key:`SHARE`, colour:`#a855f7`, icon:`🎁`,
-        question:`Is it ready to give away?`,
-        kid:`I read it to people and watch what lands. Then I make it beautiful on the page, put it in our anthology, and read it out loud at the celebration — and I write honestly about how I've changed as a writer this year.`,
-        action:`Open both hands and push them forward, offering.`,
-        looksLike:[`Helping Circle: "which image stayed with you?"`,`Reading a poem aloud so it lands — pace, pause, quiet`,`Best copies and the class anthology`,`The year-in-review reflection`,`The end-of-year celebration reading`],
-        teacherLang:`"We're in SHARE — for the last time this year. Give it away properly."`,
-        acs:`The Helping Circle (Gail Loane) · Psalm 19:14 · 1 Thessalonians 5:18`,
-        weeks:`Weeks 8–10` }
+    "intro": "Fourth genre, same four stages, final term. Poetry is where students discover that the process is bigger than the rules: a poem can be a fragment, can ignore a full stop, can be nine words long — and it still goes through FILL · FIND · SHAPE · SHARE. That is the year's last and best lesson about writing.",
+    "mnemonic": "FILL · FIND · SHAPE · SHARE",
+    "mnemonicNote": "Four stages. Four questions. Four hand actions. One chant.",
+    "stages": [
+      {
+        "n": 1,
+        "key": "FILL",
+        "colour": "#2ec4b6",
+        "icon": "🪣",
+        "question": "What will I write about?",
+        "big": "Gather your ideas",
+        "point": "Collect lots of ideas, then choose the best one. We are not writing the piece yet.",
+        "steps": [
+          "I notice, remember and wonder.",
+          "I jot ideas, words and pictures in my jotter.",
+          "I choose my best idea and say why."
+        ],
+        "notYet": "Writing the whole piece. Right now we just collect.",
+        "moveOn": "I have chosen ONE idea and I can tell someone about it.",
+        "action": "Cup your two hands together, like you're holding water.",
+        "actionShort": "Cupped hands",
+        "kid": "This term I slow down and really look at small things. I write down exactly what I see, hear and feel.",
+        "looksLike": [
+          "Noticing jotter: three small things a day",
+          "Looking at one object for two whole minutes",
+          "Collecting pictures in words, not opinions",
+          "Reading poems and borrowing their moves",
+          "Making fresh comparisons"
+        ],
+        "teacherLang": "\"We're in FILL. Poets don't have better ideas than everyone else — they just look for longer.\"",
+        "acs": "Loane Ch 3 (jotters), Ch 7 (imaging & the senses) · Matthew 6:28 — consider the lilies",
+        "weeks": "Weeks 1–3"
+      },
+      {
+        "n": 2,
+        "key": "FIND",
+        "colour": "#3b82f6",
+        "icon": "🎯",
+        "question": "Who am I writing for?",
+        "big": "Find your reader, then draft",
+        "point": "Decide who will read it and what you want them to feel or know. Then write your first draft fast — just get it all down.",
+        "steps": [
+          "I decide who my reader is.",
+          "I say my piece out loud to a partner first.",
+          "I write my first draft fast, for that reader."
+        ],
+        "notYet": "Fixing spelling or making it neat. A messy draft is fine.",
+        "moveOn": "My whole first draft is on the page, from beginning to end.",
+        "action": "Make binoculars with your hands and hold them to your eyes — you're looking for your reader.",
+        "actionShort": "Binocular hands",
+        "kid": "This term my reader will HEAR my poem. I choose a form and decide where the lines break by reading it aloud.",
+        "looksLike": [
+          "Choosing a form: free verse, list, small-moment or shape poem",
+          "Testing line breaks by reading aloud",
+          "Drafting three poems, not one",
+          "Writing for the ear as well as the eye"
+        ],
+        "teacherLang": "\"We're in FIND. Say it aloud — the line break goes where your voice wants to breathe.\"",
+        "acs": "Loane Ch 5 (models, close reading) · Ch 10 (frameworks and language features)",
+        "weeks": "Weeks 3–6"
+      },
+      {
+        "n": 3,
+        "key": "SHAPE",
+        "colour": "#f97316",
+        "icon": "🔍",
+        "question": "How can I make it better?",
+        "big": "Reread and improve",
+        "point": "Read your draft like an editor. Find what's working and what isn't, then change it to make it stronger.",
+        "steps": [
+          "I reread my draft slowly, like a reader would.",
+          "I check it against our success criteria.",
+          "I change words, sentences and order to make it stronger."
+        ],
+        "notYet": "Just copying it out neater. Shaping means making real changes.",
+        "moveOn": "I have made real changes and set two goals.",
+        "action": "Use both hands to mould an invisible ball of clay.",
+        "actionShort": "Moulding hands",
+        "kid": "This term I ask of every word: does this earn its place? In a poem, cutting is the best way to improve.",
+        "looksLike": [
+          "Studying model poems",
+          "The cutting pass: cut a third and see what's left",
+          "Testing line breaks aloud",
+          "Swapping a tired image for a true one",
+          "Two goals per poem"
+        ],
+        "teacherLang": "\"We're in SHAPE. Every word has to earn its place — and most of them can't.\"",
+        "acs": "Loane Ch 9 (guided revision), Ch 11 (deconstruction) · Philippians 4:8",
+        "weeks": "Weeks 7–8"
+      },
+      {
+        "n": 4,
+        "key": "SHARE",
+        "colour": "#a855f7",
+        "icon": "🎁",
+        "question": "Is it ready for my reader?",
+        "big": "Get feedback, fix, publish",
+        "point": "Get feedback, improve it again, check the small things, then give it to your reader.",
+        "steps": [
+          "I get feedback: two stars and a wish.",
+          "I fix it: add, cut, reorder or replace.",
+          "I check spelling and punctuation, then publish."
+        ],
+        "notYet": "Stopping after one go. Feedback and fixing can happen more than once.",
+        "moveOn": "My reader has it in their hands.",
+        "action": "Hold out both open hands and push them forward, like you're giving a gift.",
+        "actionShort": "Giving hands",
+        "kid": "This term I read my poems aloud, publish them in our class anthology, and reflect on how I've grown as a writer.",
+        "looksLike": [
+          "Helping Circle: Which picture stayed with you?",
+          "Reading aloud: pace, pause, quiet",
+          "Best copies and the class anthology",
+          "My year-in-review reflection",
+          "The end-of-year celebration reading"
+        ],
+        "teacherLang": "\"We're in SHARE — for the last time this year. Give it away properly.\"",
+        "acs": "The Helping Circle (Gail Loane) · Psalm 19:14 · 1 Thessalonians 5:18",
+        "weeks": "Weeks 8–10"
+      }
     ],
-    chant: [
-      { call:`Stage one!`, response:`WHAT do I want to say — I FILL!` },
-      { call:`Stage two!`, response:`WHO am I saying it to — I FIND!` },
-      { call:`Stage three!`, response:`HOW do I want to say it — I SHAPE!` },
-      { call:`Stage four!`, response:`Is it ready to give away — I SHARE!` }
+    "chant": [
+      {
+        "call": "Stage one!",
+        "response": "What will I write? — I FILL!"
+      },
+      {
+        "call": "Stage two!",
+        "response": "Who is it for? — I FIND!"
+      },
+      {
+        "call": "Stage three!",
+        "response": "How can it be better? — I SHAPE!"
+      },
+      {
+        "call": "Stage four!",
+        "response": "Is it ready? — I SHARE!"
+      }
     ],
-    analogy: {
-      title: `Four analogies, one process`,
-      text: `Term 1: writing is like cooking a meal for someone you love. Term 2: explaining is like giving directions. Term 3: persuading is like asking for something you really want. Term 4: writing a poem is like taking a photograph. FILL — you have to be there, looking, before there is anything to take. FIND — you choose the frame: what's in the picture, what's left out, where the edges are. SHAPE — you crop it, again and again, until only what matters is inside the frame. SHARE — you show it to someone, and you watch their face, because a photograph nobody looks at isn't finished either.`
-    },
-    cycle: `Still a cycle — and in poetry it is the tightest loop of the year. Read the poem aloud, hear a word that doesn't earn its place, cut it, read it again. SHAPE and SHARE spin around each other, sometimes several times in one lesson.`,
-    memoryMoves: [
-      { name:`Retrieval, one last time`, how:`Week 1 opens with the fourth cold recall of the year. For most students it is now automatic, and telling them so is worth doing: this is what a hundred and fifty retrievals produces.` },
-      { name:`Transfer to an unlike case`, how:`Poetry looks least like the other three genres, which makes it the strongest possible test: if the process survives here, students know it belongs to writing itself.` },
-      { name:`Four-genre comparison`, how:`Week 5 has students explain each stage four ways. Comparing across four contexts is what turns a memorised routine into transferable knowledge.` },
-      { name:`Performance as retrieval`, how:`Reading a poem aloud from memory or near-memory is retrieval under gentle pressure — and it is the friendliest version of it all year.` },
-      { name:`Self-explanation on their own work`, how:`The year-in-review reflection asks students to look at four terms of their own writing and explain what changed. That is metacognition with evidence, which is the highest form of it at this age.` },
-      { name:`Handing it on`, how:`Week 10 finishes by having students write the process down for next year's Year 5s. Teaching it forward is the last retrieval, and the one they remember.` }
-    ],
-    schedule: [
-      { w:`Week 1`, what:`COLD RECALL — the fourth and final one. Then re-establish the daily Process Check.` },
-      { w:`Week 2`, what:`TRANSFER — FILL for poetry. You are not collecting facts or memories now. You are collecting things you actually SAW.` },
-      { w:`Week 3`, what:`TRANSFER — FIND for poetry. The reader will HEAR this; the shape is on the page as well as in the words.` },
-      { w:`Week 4`, what:`SPACED RECALL — quick-fire, no notes.` },
-      { w:`Week 5`, what:`FOUR GENRES, ONE PROCESS — each stage explained four ways; the four constants revisited.` },
-      { w:`Week 6`, what:`SPACED RECALL + move the peg, justified out loud.` },
-      { w:`Week 7`, what:`TRANSFER — SHAPE for poetry. Cutting is the main move, and it is the hardest one to do to your own work.` },
-      { w:`Week 8`, what:`TRANSFER — SHARE for poetry. A poem is not finished until someone has heard it.` },
-      { w:`Week 9`, what:`THE WHOLE YEAR — the cycle drawn one final time, over four terms of the students' own work.` },
-      { w:`Week 10`, what:`ASSESS + HAND IT ON — explain the process across four genres, then write it down for next year's Year 5s.` }
-    ],
-    check: {
-      title: `The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)`,
-      steps: [
-        `"Hands — which stage are we in?" Whole class does the action. No talking.`,
-        `"Name it." Whole class: the stage word and its question.`,
-        `One student: "How do you know we're in that stage?" — pointing at what they are actually doing today.`
+    "analogy": {
+      "title": "Writing a poem is like taking a photograph",
+      "parts": [
+        "Be there, looking, before you take anything.",
+        "Choose the frame: what's in and what's left out.",
+        "Crop it until only what matters is left.",
+        "Show someone, and watch their face."
       ],
-      note: `Final term, same routine. A student runs it. On the last day of the year, hand the four cards to the students who can explain them best and let them teach the incoming class.`
+      "end": "A photo nobody looks at isn't finished.",
+      "teacher": "Term 1: writing is like cooking a meal for someone you love. Term 2: explaining is like giving directions. Term 3: persuading is like asking for something you really want. Term 4: writing a poem is like taking a photograph. FILL — you have to be there, looking, before there is anything to take. FIND — you choose the frame: what's in the picture, what's left out, where the edges are. SHAPE — you crop it, again and again, until only what matters is inside the frame. SHARE — you show it to someone, and you watch their face, because a photograph nobody looks at isn't finished either."
     },
-    assessment: {
-      title: `Week 10 — four genres, one process, and hand it on`,
-      prompt: `Explain our writing process to someone who has never heard of it. Give an example of every stage from a different term. Say what stayed exactly the same in all four genres. Then write the version you would give to next year's Year 5s.`,
-      success: [
-        `Names all four stages in order with the question that belongs to each`,
-        `Gives a real example of each stage, drawn from at least three of the four terms`,
-        `Names the four constants: you always fill before you draft · you always write to a particular someone · you always read it as the person who doesn't already agree · you always test it on a real human before you publish`,
-        `Explains the cycle, and can say what sends a writer backwards`,
-        `Writes a version a Year 5 could actually follow next February`
+    "cycle": "In poetry the loop is tight: read it aloud, hear a word that doesn't belong, cut it, read it again.",
+    "cycleTeacher": "Still a cycle — and in poetry it is the tightest loop of the year. Read the poem aloud, hear a word that doesn't earn its place, cut it, read it again. SHAPE and SHARE spin around each other, sometimes several times in one lesson.",
+    "memoryMoves": [
+      {
+        "name": "Retrieval, one last time",
+        "how": "Week 1 opens with the fourth cold recall of the year. For most students it is now automatic, and telling them so is worth doing: this is what a hundred and fifty retrievals produces."
+      },
+      {
+        "name": "Transfer to an unlike case",
+        "how": "Poetry looks least like the other three genres, which makes it the strongest possible test: if the process survives here, students know it belongs to writing itself."
+      },
+      {
+        "name": "Four-genre comparison",
+        "how": "Week 5 has students explain each stage four ways. Comparing across four contexts is what turns a memorised routine into transferable knowledge."
+      },
+      {
+        "name": "Performance as retrieval",
+        "how": "Reading a poem aloud from memory or near-memory is retrieval under gentle pressure — and it is the friendliest version of it all year."
+      },
+      {
+        "name": "Self-explanation on their own work",
+        "how": "The year-in-review reflection asks students to look at four terms of their own writing and explain what changed. That is metacognition with evidence, which is the highest form of it at this age."
+      },
+      {
+        "name": "Handing it on",
+        "how": "Week 10 finishes by having students write the process down for next year's Year 5s. Teaching it forward is the last retrieval, and the one they remember."
+      }
+    ],
+    "schedule": [
+      {
+        "w": "Week 1",
+        "what": "COLD RECALL — the fourth and final one. Then re-establish the daily Process Check."
+      },
+      {
+        "w": "Week 2",
+        "what": "TRANSFER — FILL for poetry. You are not collecting facts or memories now. You are collecting things you actually SAW."
+      },
+      {
+        "w": "Week 3",
+        "what": "TRANSFER — FIND for poetry. The reader will HEAR this; the shape is on the page as well as in the words."
+      },
+      {
+        "w": "Week 4",
+        "what": "SPACED RECALL — quick-fire, no notes."
+      },
+      {
+        "w": "Week 5",
+        "what": "FOUR GENRES, ONE PROCESS — each stage explained four ways; the four constants revisited."
+      },
+      {
+        "w": "Week 6",
+        "what": "SPACED RECALL + move the peg, justified out loud."
+      },
+      {
+        "w": "Week 7",
+        "what": "TRANSFER — SHAPE for poetry. Cutting is the main move, and it is the hardest one to do to your own work."
+      },
+      {
+        "w": "Week 8",
+        "what": "TRANSFER — SHARE for poetry. A poem is not finished until someone has heard it."
+      },
+      {
+        "w": "Week 9",
+        "what": "THE WHOLE YEAR — the cycle drawn one final time, over four terms of the students' own work."
+      },
+      {
+        "w": "Week 10",
+        "what": "ASSESS + HAND IT ON — explain the process across four genres, then write it down for next year's Year 5s."
+      }
+    ],
+    "check": {
+      "title": "The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)",
+      "steps": [
+        "\"Hands — which stage are we in?\" Whole class does the action. No talking.",
+        "\"Name it.\" Whole class: the stage word and its question.",
+        "One student: \"How do you know we're in that stage?\" — pointing at what they are actually doing today."
+      ],
+      "note": "Final term, same routine. A student runs it. On the last day of the year, hand the four cards to the students who can explain them best and let them teach the incoming class."
+    },
+    "assessment": {
+      "title": "Week 10 — four genres, one process, and hand it on",
+      "prompt": "Explain our writing process to someone who has never heard of it. Give an example of every stage from a different term. Say what stayed exactly the same in all four genres. Then write the version you would give to next year's Year 5s.",
+      "success": [
+        "Names all four stages in order with the question that belongs to each",
+        "Gives a real example of each stage, drawn from at least three of the four terms",
+        "Names the four constants: you always fill before you draft · you always write to a particular someone · you always read it as the person who doesn't already agree · you always test it on a real human before you publish",
+        "Explains the cycle, and can say what sends a writer backwards",
+        "Writes a version a Year 5 could actually follow next February"
       ]
+    },
+    "setup": {
+      "title": "Before Week 1 — the wall, and the four charts (15 minutes)",
+      "items": [
+        {
+          "thing": "The wall strip",
+          "how": "The same four cards, fourth term running: 🪣 FILL (teal) · 🎯 FIND (blue) · 🔍 SHAPE (orange) · 🎁 SHARE (purple). Unchanged. It is the last term it will be needed — many students no longer look at it."
+        },
+        {
+          "thing": "The peg",
+          "how": "Same peg. Put the strip up with no peg and let a student place it during Wednesday's cold recall."
+        },
+        {
+          "thing": "All four criteria charts",
+          "how": "Keep the narrative, explanation and argument charts on the wall. The poetry chart is built in Week 6 beside them, and in Week 10 the class compares all four. That comparison is the single most valuable ten minutes of the year — reserve the wall space in Week 1."
+        },
+        {
+          "thing": "The portfolios",
+          "how": "Find every student's Term 1, 2 and 3 published pieces now, before Week 9. The year-in-review reflection depends entirely on students physically holding four terms of their own work. Chasing them down in Week 9 is too late."
+        }
+      ],
+      "note": "Book the Week 10 celebration in Week 1 — a portfolio evening, a prize-giving slot, or a class-to-whānau reading in the last week. Poems written for a real audience come out better, and students need eight weeks of knowing it's coming."
+    },
+    "routine": {
+      "title": "The 60-second Process Check — unchanged, final term",
+      "intro": "Same four moves, same wording, every lesson, straight after the Warm-Up Bridge. This is its fourth term and roughly its two-hundredth run. A student should be leading it by now; if one isn't, hand it over in Week 1.",
+      "steps": [
+        {
+          "n": 1,
+          "label": "Ask with your hands",
+          "say": "\"Hands — which stage are we in?\"",
+          "do": "Silent hand action from the whole class. By now it should be instant. Where it isn't, that student joined recently and needs a peer to teach them — which is itself a good job to hand out."
+        },
+        {
+          "n": 2,
+          "label": "Name it together",
+          "say": "\"Name it.\"",
+          "do": "Whole class, out loud: \"Stage three, SHAPE — How can I make it better?\""
+        },
+        {
+          "n": 3,
+          "label": "One student justifies it",
+          "say": "\"[Name] — how do you know we're in that stage today?\"",
+          "do": "Rotate through the roll. In this final term, push the four-genre follow-up with everyone: \"…and what did that stage look like in Term 1? In Term 2?\" Students now have four sets of examples and should be able to reach for any of them."
+        },
+        {
+          "n": 4,
+          "label": "Today's extra question",
+          "say": "(Written on today's lesson.)",
+          "do": "One quick question linking the stage to today's work. One or two answers, then into the I Do."
+        }
+      ],
+      "note": "On the last day of the year, give the four wall cards to the students who can explain them best and let them teach the incoming class. The routine's final act is being handed on."
     }
   },
 
@@ -1687,7 +1891,7 @@ window.__WF_DATA[4].process.routine = {
     { n:1, label:`Ask with your hands`, say:`"Hands — which stage are we in?"`,
       do:`Silent hand action from the whole class. By now it should be instant. Where it isn't, that student joined recently and needs a peer to teach them — which is itself a good job to hand out.` },
     { n:2, label:`Name it together`, say:`"Name it."`,
-      do:`Whole class, out loud: "Stage three, SHAPE — How do I want to say it?"` },
+      do:`Whole class, out loud: "Stage three, SHAPE — How can I make it better?"` },
     { n:3, label:`One student justifies it`, say:`"[Name] — how do you know we're in that stage today?"`,
       do:`Rotate through the roll. In this final term, push the four-genre follow-up with everyone: "…and what did that stage look like in Term 1? In Term 2?" Students now have four sets of examples and should be able to reach for any of them.` },
     { n:4, label:`Today's extra question`, say:`(Written on today's lesson.)`,

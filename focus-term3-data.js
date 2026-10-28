@@ -41,93 +41,300 @@ window.__WF_DATA[3] = {
 
   /* ================= THE WRITING PROCESS — third genre, now with an oral end point ================= */
   process: {
-    intro: `Third genre, same four stages. By now most students can name FILL · FIND · SHAPE · SHARE without thinking. This term adds one genuinely new idea: the piece does not finish on the page. SHARE ends with a human being listening to you — which changes what SHAPE and SHARE have to check for.`,
-    mnemonic: `FILL · FIND · SHAPE · SHARE`,
-    mnemonicNote: `Unchanged for the third term running. What changes is the end point: in Term 1 the reader read it, in Term 2 a buddy read it, and this term someone LISTENS to it and has to be moved by it.`,
-    stages: [
-      { n:1, key:`FILL`, colour:`#2ec4b6`, icon:`🪣`,
-        question:`What do I want to say?`,
-        kid:`I find something that actually bothers me, and then I find out whether I'm right. I collect reasons and evidence — including the evidence for the other side, because I need to know what they'll say.`,
-        action:`Two cupped hands, like holding water.`,
-        looksLike:[`Issue bank: things that are unfair, wasteful, unsafe or unkind`,`Deconstructing real persuasive texts and speeches`,`Opinion vs reason vs evidence`,`Finding the strongest argument AGAINST me`,`Choosing the issue I can actually do something about`],
-        teacherLang:`"We're in FILL. An opinion is where you start, not what you hand in — go and find out if you're right."`,
-        acs:`Loane Ch 3 (jotters), Ch 4 (something to say) · Proverbs 31:8–9 — speak up for those who cannot`,
-        weeks:`Weeks 1–3` },
-      { n:2, key:`FIND`, colour:`#3b82f6`, icon:`🎯`,
-        question:`Who do I want to say it to?`,
-        kid:`I find the person who could actually say yes — not "everyone". Then I find the order that will move THEM: what they already think, what they're worried about, and what would change their mind.`,
-        action:`Hands up to your eyes like binoculars, looking for your reader.`,
-        looksLike:[`The Audience Card: who can say yes, what they already think, what they're afraid of`,`Claim → reasons → evidence → counter-argument → call to action`,`Oral rehearsal to a partner playing the decision-maker`,`Drafting: the hook, the claim, the PEEL paragraphs`],
-        teacherLang:`"We're in FIND. Stop writing to 'everyone'. Write to the one person who could make this happen."`,
-        acs:`Loane Ch 5 (models, close reading, audience awareness) · Micah 6:8 — act justly`,
-        weeks:`Weeks 3–6` },
-      { n:3, key:`SHAPE`, colour:`#f97316`, icon:`🔍`,
-        question:`How do I want to say it?`,
-        kid:`I read it as the person who disagrees with me. Where would they stop believing me? Where have I said "everyone knows" instead of giving proof? Does my tone make them want to listen, or want to argue?`,
-        action:`Both hands moulding a ball of clay, turning it as you shape it.`,
-        looksLike:[`Deconstructing a strong and a weak persuasive text`,`The evidence audit: claim without proof, exaggeration, name-calling`,`Rhetorical devices used deliberately — rule of three, rhetorical question, repetition`,`Tone check: firm, not rude (Proverbs 15:1)`,`Two personal goals`],
-        teacherLang:`"We're in SHAPE. Read it as the person who disagrees with you — they're the only reader who matters now."`,
-        acs:`Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)`,
-        weeks:`Weeks 7–8` },
-      { n:4, key:`SHARE`, colour:`#a855f7`, icon:`🎁`,
-        question:`Is it ready to give away?`,
-        kid:`I test it on real listeners, I recraft it, I turn it into a script I can say out loud — and then I stand up and give it away with my voice, not just my page.`,
-        action:`Open both hands and push them forward, offering.`,
-        looksLike:[`Helping Circle: "were you convinced? where did you doubt me?"`,`Turning the written text into a spoken script`,`ADD · CUT · REORDER · REPLACE`,`Cue cards, pace, pause, eye contact`,`Delivering the speech to a live audience`],
-        teacherLang:`"We're in SHARE — and this term SHARE has a stage in it. Someone is going to LISTEN to you."`,
-        acs:`The Helping Circle (Gail Loane) · Colossians 4:6 — full of grace, seasoned with salt`,
-        weeks:`Weeks 8–10` }
+    "intro": "Third genre, same four stages. By now most students can name FILL · FIND · SHAPE · SHARE without thinking. This term adds one genuinely new idea: the piece does not finish on the page. SHARE ends with a human being listening to you — which changes what SHAPE and SHARE have to check for.",
+    "mnemonic": "FILL · FIND · SHAPE · SHARE",
+    "mnemonicNote": "Four stages. Four questions. Four hand actions. One chant.",
+    "stages": [
+      {
+        "n": 1,
+        "key": "FILL",
+        "colour": "#2ec4b6",
+        "icon": "🪣",
+        "question": "What will I write about?",
+        "big": "Gather your ideas",
+        "point": "Collect lots of ideas, then choose the best one. We are not writing the piece yet.",
+        "steps": [
+          "I notice, remember and wonder.",
+          "I jot ideas, words and pictures in my jotter.",
+          "I choose my best idea and say why."
+        ],
+        "notYet": "Writing the whole piece. Right now we just collect.",
+        "moveOn": "I have chosen ONE idea and I can tell someone about it.",
+        "action": "Cup your two hands together, like you're holding water.",
+        "actionShort": "Cupped hands",
+        "kid": "This term I choose an issue I really care about, and I collect reasons and evidence — including what the other side would say.",
+        "looksLike": [
+          "Issue bank: things that are unfair, wasteful, unsafe or unkind",
+          "Reading real persuasive texts and speeches",
+          "Opinion vs reason vs evidence",
+          "Finding the strongest argument against me",
+          "Choosing an issue I can actually do something about"
+        ],
+        "teacherLang": "\"We're in FILL. An opinion is where you start, not what you hand in — go and find out if you're right.\"",
+        "acs": "Loane Ch 3 (jotters), Ch 4 (something to say) · Proverbs 31:8–9 — speak up for those who cannot",
+        "weeks": "Weeks 1–3"
+      },
+      {
+        "n": 2,
+        "key": "FIND",
+        "colour": "#3b82f6",
+        "icon": "🎯",
+        "question": "Who am I writing for?",
+        "big": "Find your reader, then draft",
+        "point": "Decide who will read it and what you want them to feel or know. Then write your first draft fast — just get it all down.",
+        "steps": [
+          "I decide who my reader is.",
+          "I say my piece out loud to a partner first.",
+          "I write my first draft fast, for that reader."
+        ],
+        "notYet": "Fixing spelling or making it neat. A messy draft is fine.",
+        "moveOn": "My whole first draft is on the page, from beginning to end.",
+        "action": "Make binoculars with your hands and hold them to your eyes — you're looking for your reader.",
+        "actionShort": "Binocular hands",
+        "kid": "This term my reader is the person who could say YES. I plan what will change their mind, then I draft.",
+        "looksLike": [
+          "Audience Card: who can say yes, what they think now, what worries them",
+          "Plan: claim → reasons → evidence → other side → call to action",
+          "Practising with a partner who plays the decision-maker",
+          "Drafting: hook, claim, PEEL paragraphs"
+        ],
+        "teacherLang": "\"We're in FIND. Stop writing to 'everyone'. Write to the one person who could make this happen.\"",
+        "acs": "Loane Ch 5 (models, close reading, audience awareness) · Micah 6:8 — act justly",
+        "weeks": "Weeks 3–6"
+      },
+      {
+        "n": 3,
+        "key": "SHAPE",
+        "colour": "#f97316",
+        "icon": "🔍",
+        "question": "How can I make it better?",
+        "big": "Reread and improve",
+        "point": "Read your draft like an editor. Find what's working and what isn't, then change it to make it stronger.",
+        "steps": [
+          "I reread my draft slowly, like a reader would.",
+          "I check it against our success criteria.",
+          "I change words, sentences and order to make it stronger."
+        ],
+        "notYet": "Just copying it out neater. Shaping means making real changes.",
+        "moveOn": "I have made real changes and set two goals.",
+        "action": "Use both hands to mould an invisible ball of clay.",
+        "actionShort": "Moulding hands",
+        "kid": "This term I read it like someone who disagrees with me. Where would they stop believing me? Is my tone firm but polite?",
+        "looksLike": [
+          "Comparing a strong and a weak persuasive text",
+          "Evidence check: claims with no proof, exaggeration, name-calling",
+          "Persuasive tools on purpose: rule of three, questions, repetition",
+          "Tone check: firm, not rude (Proverbs 15:1)",
+          "Setting two goals"
+        ],
+        "teacherLang": "\"We're in SHAPE. Read it as the person who disagrees with you — they're the only reader who matters now.\"",
+        "acs": "Loane Ch 9 (guided revision), Ch 10 (frameworks & language features), Ch 11 (deconstruction)",
+        "weeks": "Weeks 7–8"
+      },
+      {
+        "n": 4,
+        "key": "SHARE",
+        "colour": "#a855f7",
+        "icon": "🎁",
+        "question": "Is it ready for my reader?",
+        "big": "Get feedback, fix, publish",
+        "point": "Get feedback, improve it again, check the small things, then give it to your reader.",
+        "steps": [
+          "I get feedback: two stars and a wish.",
+          "I fix it: add, cut, reorder or replace.",
+          "I check spelling and punctuation, then publish."
+        ],
+        "notYet": "Stopping after one go. Feedback and fixing can happen more than once.",
+        "moveOn": "My reader has it in their hands.",
+        "action": "Hold out both open hands and push them forward, like you're giving a gift.",
+        "actionShort": "Giving hands",
+        "kid": "This term I turn my writing into a speech, practise it, and deliver it to a live audience.",
+        "looksLike": [
+          "Helping Circle: Were you convinced? Where did you doubt me?",
+          "Turning my writing into a speech script",
+          "ADD · CUT · REORDER · REPLACE",
+          "Cue cards, pace, pauses, eye contact",
+          "Giving my speech to an audience"
+        ],
+        "teacherLang": "\"We're in SHARE — and this term SHARE has a stage in it. Someone is going to LISTEN to you.\"",
+        "acs": "The Helping Circle (Gail Loane) · Colossians 4:6 — full of grace, seasoned with salt",
+        "weeks": "Weeks 8–10"
+      }
     ],
-    chant: [
-      { call:`Stage one!`, response:`WHAT do I want to say — I FILL!` },
-      { call:`Stage two!`, response:`WHO am I saying it to — I FIND!` },
-      { call:`Stage three!`, response:`HOW do I want to say it — I SHAPE!` },
-      { call:`Stage four!`, response:`Is it ready to give away — I SHARE!` }
+    "chant": [
+      {
+        "call": "Stage one!",
+        "response": "What will I write? — I FILL!"
+      },
+      {
+        "call": "Stage two!",
+        "response": "Who is it for? — I FIND!"
+      },
+      {
+        "call": "Stage three!",
+        "response": "How can it be better? — I SHAPE!"
+      },
+      {
+        "call": "Stage four!",
+        "response": "Is it ready? — I SHARE!"
+      }
     ],
-    analogy: {
-      title: `The three analogies — and the Term 3 one`,
-      text: `Term 1: writing is like cooking a meal for someone you love. Term 2: explaining is like giving directions. Term 3: persuading is like asking for something you really want. FILL — you work out what you're actually asking for, and why you deserve it. FIND — you work out WHO to ask, and what they care about, because you'd ask your nana differently from your principal. SHAPE — you rehearse it in your head as if they'd already said no, and fix the bit they'd say no to. SHARE — you look them in the eye and ask. And you ask well, because how you ask changes the answer as much as what you're asking for.`
-    },
-    cycle: `Still a cycle. And this term there's a new loop: every time you say your speech aloud and it doesn't sound right, you're going straight back to SHAPE. Speaking is the fastest editor there is — the ear catches what the eye lets through.`,
-    memoryMoves: [
-      { name:`Retrieval before re-teaching`, how:`Week 1 opens with a cold recall, no wall strip, after the break — for the third time. It should be fast now, and it's worth telling them so.` },
-      { name:`Transfer, again`, how:`Two genres down, a third to go. Each spotlight asks what the stage does when the purpose is to MOVE someone rather than to entertain or inform.` },
-      { name:`Dual coding`, how:`Same word, colour, icon and hand action for the third term running. Do not redesign it.` },
-      { name:`Retrieval practice`, how:`The same 60-second Process Check in every lesson. A hundred and fifty repetitions by the end of this term.` },
-      { name:`Spaced repetition`, how:`Recall in Weeks 1, 4, 6 and 9; transfer teaching in Weeks 2, 3, 7 and 8; assessment in Week 10.` },
-      { name:`Elaboration across genres`, how:`Week 5 asks students to explain the process THREE ways — for a story, an explanation and a speech. Comparing across contexts is what makes knowledge flexible rather than memorised.` },
-      { name:`Performance as retrieval`, how:`Delivering a speech from cue cards is retrieval under pressure: you cannot read a script you've internalised — you rebuild it live.` }
-    ],
-    schedule: [
-      { w:`Week 1`, what:`COLD RECALL — all four stages after the break, no notes. Then re-establish the daily Process Check.` },
-      { w:`Week 2`, what:`TRANSFER — FILL for persuasion. In Term 2 you collected facts; now you collect facts AND the other side's facts.` },
-      { w:`Week 3`, what:`TRANSFER — FIND for persuasion. "Everyone" is not an audience. Who could actually say yes?` },
-      { w:`Week 4`, what:`SPACED RECALL — 60-second quick-fire, no notes.` },
-      { w:`Week 5`, what:`THREE GENRES — explain each stage as it worked for a story, an explanation and a speech.` },
-      { w:`Week 6`, what:`SPACED RECALL + move the peg, justified out loud.` },
-      { w:`Week 7`, what:`TRANSFER — SHAPE for persuasion. Read it as the person who disagrees with you.` },
-      { w:`Week 8`, what:`TRANSFER — SHARE for persuasion. This term SHARE has a stage in it: your voice is part of the piece.` },
-      { w:`Week 9`, what:`THE CYCLE — plus the speaking loop: every rehearsal sends you back to SHAPE.` },
-      { w:`Week 10`, what:`ASSESS — explain the process across all three terms, and what stayed the same every time.` }
-    ],
-    check: {
-      title: `The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)`,
-      steps: [
-        `"Hands — which stage are we in?" Whole class does the action. No talking.`,
-        `"Name it." Whole class: the stage word and its question.`,
-        `One student: "How do you know we're in that stage?" — pointing at what they are actually doing today.`
+    "analogy": {
+      "title": "Persuading is like asking for something you really want",
+      "parts": [
+        "Work out exactly what you're asking for, and why it matters.",
+        "Work out WHO to ask and what they care about.",
+        "Practise as if they've already said no — then fix that part.",
+        "Look them in the eye and ask, politely."
       ],
-      note: `Third term, same routine, same wording. By now you can hand it to a student to run.`
+      "end": "How you ask changes the answer.",
+      "teacher": "Term 1: writing is like cooking a meal for someone you love. Term 2: explaining is like giving directions. Term 3: persuading is like asking for something you really want. FILL — you work out what you're actually asking for, and why you deserve it. FIND — you work out WHO to ask, and what they care about, because you'd ask your nana differently from your principal. SHAPE — you rehearse it in your head as if they'd already said no, and fix the bit they'd say no to. SHARE — you look them in the eye and ask. And you ask well, because how you ask changes the answer as much as what you're asking for."
     },
-    assessment: {
-      title: `Week 10 — three genres, one process`,
-      prompt: `Explain our writing process to someone who has never heard of it. Then explain what each stage looked like in all three terms — a story, an explanation and a speech — and say what stayed exactly the same every time.`,
-      success: [
-        `Names all four stages in order, with the question that belongs to each`,
-        `Gives a real example of each stage from at least two different terms`,
-        `Names what stays the same across every genre (you always fill before you draft; you always write for a specific someone; you always read it as the person who doesn't already agree; you always test it on a real person before you publish)`,
-        `Knows the process is a cycle, and can say what sends a writer backwards`
+    "cycle": "Every time you say your speech out loud and it doesn't sound right, go back to SHAPE. Your ears catch what your eyes miss.",
+    "cycleTeacher": "Still a cycle. And this term there's a new loop: every time you say your speech aloud and it doesn't sound right, you're going straight back to SHAPE. Speaking is the fastest editor there is — the ear catches what the eye lets through.",
+    "memoryMoves": [
+      {
+        "name": "Retrieval before re-teaching",
+        "how": "Week 1 opens with a cold recall, no wall strip, after the break — for the third time. It should be fast now, and it's worth telling them so."
+      },
+      {
+        "name": "Transfer, again",
+        "how": "Two genres down, a third to go. Each spotlight asks what the stage does when the purpose is to MOVE someone rather than to entertain or inform."
+      },
+      {
+        "name": "Dual coding",
+        "how": "Same word, colour, icon and hand action for the third term running. Do not redesign it."
+      },
+      {
+        "name": "Retrieval practice",
+        "how": "The same 60-second Process Check in every lesson. A hundred and fifty repetitions by the end of this term."
+      },
+      {
+        "name": "Spaced repetition",
+        "how": "Recall in Weeks 1, 4, 6 and 9; transfer teaching in Weeks 2, 3, 7 and 8; assessment in Week 10."
+      },
+      {
+        "name": "Elaboration across genres",
+        "how": "Week 5 asks students to explain the process THREE ways — for a story, an explanation and a speech. Comparing across contexts is what makes knowledge flexible rather than memorised."
+      },
+      {
+        "name": "Performance as retrieval",
+        "how": "Delivering a speech from cue cards is retrieval under pressure: you cannot read a script you've internalised — you rebuild it live."
+      }
+    ],
+    "schedule": [
+      {
+        "w": "Week 1",
+        "what": "COLD RECALL — all four stages after the break, no notes. Then re-establish the daily Process Check."
+      },
+      {
+        "w": "Week 2",
+        "what": "TRANSFER — FILL for persuasion. In Term 2 you collected facts; now you collect facts AND the other side's facts."
+      },
+      {
+        "w": "Week 3",
+        "what": "TRANSFER — FIND for persuasion. \"Everyone\" is not an audience. Who could actually say yes?"
+      },
+      {
+        "w": "Week 4",
+        "what": "SPACED RECALL — 60-second quick-fire, no notes."
+      },
+      {
+        "w": "Week 5",
+        "what": "THREE GENRES — explain each stage as it worked for a story, an explanation and a speech."
+      },
+      {
+        "w": "Week 6",
+        "what": "SPACED RECALL + move the peg, justified out loud."
+      },
+      {
+        "w": "Week 7",
+        "what": "TRANSFER — SHAPE for persuasion. Read it as the person who disagrees with you."
+      },
+      {
+        "w": "Week 8",
+        "what": "TRANSFER — SHARE for persuasion. This term SHARE has a stage in it: your voice is part of the piece."
+      },
+      {
+        "w": "Week 9",
+        "what": "THE CYCLE — plus the speaking loop: every rehearsal sends you back to SHAPE."
+      },
+      {
+        "w": "Week 10",
+        "what": "ASSESS — explain the process across all three terms, and what stayed the same every time."
+      }
+    ],
+    "check": {
+      "title": "The 60-second Process Check (every lesson, straight after the Warm-Up Bridge)",
+      "steps": [
+        "\"Hands — which stage are we in?\" Whole class does the action. No talking.",
+        "\"Name it.\" Whole class: the stage word and its question.",
+        "One student: \"How do you know we're in that stage?\" — pointing at what they are actually doing today."
+      ],
+      "note": "Third term, same routine, same wording. By now you can hand it to a student to run."
+    },
+    "assessment": {
+      "title": "Week 10 — three genres, one process",
+      "prompt": "Explain our writing process to someone who has never heard of it. Then explain what each stage looked like in all three terms — a story, an explanation and a speech — and say what stayed exactly the same every time.",
+      "success": [
+        "Names all four stages in order, with the question that belongs to each",
+        "Gives a real example of each stage from at least two different terms",
+        "Names what stays the same across every genre (you always fill before you draft; you always write for a specific someone; you always read it as the person who doesn't already agree; you always test it on a real person before you publish)",
+        "Knows the process is a cycle, and can say what sends a writer backwards"
       ]
+    },
+    "setup": {
+      "title": "Before Week 1 — the wall, plus one new thing (15 minutes)",
+      "items": [
+        {
+          "thing": "The wall strip",
+          "how": "The same four cards, third term running: 🪣 FILL (teal) · 🎯 FIND (blue) · 🔍 SHAPE (orange) · 🎁 SHARE (purple). Do not redesign it. Its sameness is the whole point."
+        },
+        {
+          "thing": "The peg",
+          "how": "Same peg. Put the strip up with no peg on it and let a student place it during Wednesday's cold recall."
+        },
+        {
+          "thing": "The three charts",
+          "how": "Keep the Term 1 narrative and Term 2 explanation criteria charts up. In Week 6 you'll build the argument chart beside them, and in Week 10 the class compares all three. That comparison is the year's biggest learning moment — protect the wall space."
+        },
+        {
+          "thing": "A speaking spot",
+          "how": "New this term: mark an actual place in the room where people stand to speak — a taped square, the front of the mat, a lectern made from a crate. Students read from it every Friday from Week 4, so that by Week 10 standing there is ordinary rather than terrifying."
+        }
+      ],
+      "note": "Book your Week 10 audience now, in Week 1. A speech day with a real audience — another class, the principal, whānau, or the person the arguments are addressed to — is worth ten lessons of persuasion theory."
+    },
+    "routine": {
+      "title": "The 60-second Process Check — unchanged, third term",
+      "intro": "Same four moves, same wording, every lesson, straight after the Warm-Up Bridge. By now a student can run it. Hand it over — having a student ask the class \"which stage are we in?\" is a stronger retrieval cue than hearing it from you for the hundredth time.",
+      "steps": [
+        {
+          "n": 1,
+          "label": "Ask with your hands",
+          "say": "\"Hands — which stage are we in?\"",
+          "do": "Silent hand action from the whole class. Three-second scan. By Term 3 this should be near-instant; if it isn't, that tells you who joined the class recently and needs a partner to teach them."
+        },
+        {
+          "n": 2,
+          "label": "Name it together",
+          "say": "\"Name it.\"",
+          "do": "Whole class, out loud: \"Stage two, FIND — Who am I writing for?\""
+        },
+        {
+          "n": 3,
+          "label": "One student justifies it",
+          "say": "\"[Name] — how do you know we're in that stage today?\"",
+          "do": "Rotate through the roll. This term push the follow-up with everyone, not just the strong students: \"…and how is that different from what FIND looked like in Term 1?\" Three terms of examples means every student now has something to compare."
+        },
+        {
+          "n": 4,
+          "label": "Today's extra question",
+          "say": "(Written on today's lesson.)",
+          "do": "One quick question linking the stage to today's work. One or two answers, then straight into the I Do."
+        }
+      ],
+      "note": "Hand the whole routine to a rotating student \"process leader\" from Week 3. It costs you nothing and it doubles the retrieval value for whoever is leading. On a day marked “teach this first”, the spotlight is taught BEFORE the routine — the lesson card tells you when and why."
     }
   },
 
@@ -1688,7 +1895,7 @@ window.__WF_DATA[3].process.routine = {
     { n:1, label:`Ask with your hands`, say:`"Hands — which stage are we in?"`,
       do:`Silent hand action from the whole class. Three-second scan. By Term 3 this should be near-instant; if it isn't, that tells you who joined the class recently and needs a partner to teach them.` },
     { n:2, label:`Name it together`, say:`"Name it."`,
-      do:`Whole class, out loud: "Stage two, FIND — Who do I want to say it to?"` },
+      do:`Whole class, out loud: "Stage two, FIND — Who am I writing for?"` },
     { n:3, label:`One student justifies it`, say:`"[Name] — how do you know we're in that stage today?"`,
       do:`Rotate through the roll. This term push the follow-up with everyone, not just the strong students: "…and how is that different from what FIND looked like in Term 1?" Three terms of examples means every student now has something to compare.` },
     { n:4, label:`Today's extra question`, say:`(Written on today's lesson.)`,
