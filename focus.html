@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/process.css" />
 <link rel="stylesheet" href="css/focus-theme.css" />
 <link rel="stylesheet" href="css/focus-rubric.css" />
+<link rel="stylesheet" href="css/focus-texts.css" />
 <style>
 *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -346,6 +347,11 @@ tr:last-child td{border-bottom:none}
 <script src="focus-rubric-next.js"></script>
 <script src="js/focus-ui.js"></script>
 <script src="js/focus-rubric-ui.js"></script>
+<script src="focus-texts-t1.js"></script>
+<script src="focus-texts-t2.js"></script>
+<script src="focus-texts-t3.js"></script>
+<script src="focus-texts-t4.js"></script>
+<script src="js/focus-texts-ui.js"></script>
 <script>
 (function(){
   var DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
@@ -506,6 +512,7 @@ tr:last-child td{border-bottom:none}
     '</div>';
     return h+'</div>';
   }
+  window.__wfDoPrint=function(h){doPrint(h);};
   function doPrint(html){
     var pa=document.getElementById("printArea");
     pa.innerHTML=html;document.body.classList.add("printing");
@@ -561,6 +568,11 @@ tr:last-child td{border-bottom:none}
         return '<button class="ao-tag" data-ao="'+i+'" style="color:'+col+';border-color:'+col+'">'+esc(a.label)+'</button>';}).join("")+'</div>'+
       day.aos.map(function(a,i){return '<div class="ao-panel" id="ao'+i+'"><strong>'+esc(a.code)+'</strong> — '+esc(a.detail)+'</div>';}).join("")+
       '</div>';
+    h+=(window.WFT?WFT.panel(T,W,D,data):"");
+    if(D==="Friday") h+='<div class="wft-panel" style="background:#E8F1FF"><div class="wft-head"><span class="wft-ic">📝</span><div><h2>FRIDAY WRITING CHECK · SPLIT THE CLASS</h2>'+
+      '<p><b>Round 1 (12 min):</b> Group A does the Share/Helping Circle below · Group B does this week\'s Writing Check on iPads.<br><b>Round 2 (12 min):</b> swap. '+
+      'The check is short (three short answers and one small piece of writing, 300 words max) and matches this week\'s rubric.</p>'+
+      '<div class="wft-btns" style="margin-top:.6rem"><a class="tbtn tbtn--solid" style="text-decoration:none" href="checks.html?t='+T+'&w='+W+'">📝 Open this week\'s Writing Check (teacher)</a></div></div></div></div>';
 
     var steps=[["bridge","🔗","Bridge",2],["process","🧭","Process",1],["ido","👁","I Do",day.iDo.mins],
                ["wedo","🤝","We Do",day.weDo.mins],["youdo","✍️","You Do",day.youDo.mins],["close","⭐","Close",2]];

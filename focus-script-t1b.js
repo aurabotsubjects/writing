@@ -5,7 +5,7 @@ Object.assign(window.__WF_SCRIPT[1], {
 6:{
  Monday:{
   i:{s:["Four endings for my story. One of them is terrible on purpose — see if you can spot it."],
-     t:["CIRCLE BACK returns to something from the start (the gate).","CHANGED IMAGE shows how things are different now.","HONEST THOUGHT shares a private feeling. LAST LINE OF SPEECH ends on a voice.","The terrible one ('we went home and had tea') just STOPS. A good ending gives the reader something to carry out of the room."]},
+     t:["CIRCLE BACK returns to something from the start (the sky the seagull came from).","CHANGED IMAGE shows how things are different now.","HONEST THOUGHT shares a private feeling. LAST LINE OF SPEECH ends on a voice.","The terrible one ('we went home and had tea') just STOPS. A good ending gives the reader something to carry out of the room."]},
   wi:"Four endings for our mentor text. Three I wrote, one is real. Vote, then defend with a reason.",
   w:[["Which ending do you think is the real one? Give a reason, not a feeling.","The one that circles back to the first image — because good writers often finish where they started, but changed.","A reason uses evidence: 'it links to the opening' is a reason; 'I like it' is a feeling."],
      ["What did the real ending do that mine didn't?","It didn't explain the lesson — it left a picture that made us think.","Strong endings trust the reader to understand. They don't need to say 'and I learned…'."],
@@ -17,7 +17,7 @@ Object.assign(window.__WF_SCRIPT[1], {
  },
  Tuesday:{
   i:{s:["Watch me write a final line, then cut it down — twice."],
-     m:"v1: \"That day taught me that I should always be more careful with things I love, because you never know when you might lose them.\"\nv2: \"I learned to be careful with the things I love.\"\nv3: \"I still check that gate twice.\"",
+     m:"v1: \"That day taught me that I should always be more careful with my food at the beach, because you never know what might happen.\"\nv2: \"I learned to keep an eye out for seagulls.\"\nv3: \"I still check the sky.\"",
      t:["Version 1 TELLS the lesson in lots of words.","Version 2 is shorter but still tells.","Version 3 SHOWS the lesson through an action. It's the shortest and the strongest. If your last line has the word 'learned', try again without it."]},
   wi:"Five possible final lines for our class story. We write them, then vote and defend.",
   w:[["One that circles back to the first image.","\"The tree house is still there. Nobody's climbed it since.\"","It links back to the start, so the story feels complete."],
@@ -83,13 +83,13 @@ Object.assign(window.__WF_SCRIPT[1], {
      ["How does it end, and why doesn't that work?","'And then we went home.' — it just stops, it doesn't land.","A landing ending leaves the reader with a picture or thought."],
      ["If you could fix only ONE thing, which would change it most?","Replace the telling with showing at the scary moment — because that's the heart of the story.","Fix the heart first. Improving the most important part makes the biggest difference."]],
   y:{s:"On the strong example, label three techniques and say what each DOES.",
-     e:"1. Short sentence: 'Then the door moved.' → makes me jump; builds tension.\n2. Sense detail: 'smelled of wet wool' → puts me in the hallway.\n3. Action beat: 'She crossed her arms.' → shows she's annoyed without telling.",
+     e:"1. Short sentences: 'A car went past. Another one.' → slows time down; builds tension.\n2. Showing, not telling: 'My heart was doing something strange in my throat.' → I feel the panic without the word 'scared'.\n3. Circle-back ending: 'I still check that gate twice.' → shows the scare changed the writer for good.",
      w:"Each label names the technique AND its effect on the reader. That's reading like a writer."},
   c:["Which technique are you borrowing?","\"The short sentence after a long one.\""]
  },
  Tuesday:{
   i:{s:["My draft, our checklist, on the screen. I'm going to find something that isn't working and say it out loud."],
-     m:"\"Opening — tick. Setting — three details, tick. Showing… ah. Right here I've written 'I was terrified'. That's a tell. That's a grow.\"",
+     m:"\"Opening — tick. Setting — three details, tick. Showing… ah. Right here I've written 'I was really upset'. That's a tell. That's a grow.\"",
      t:["I only ticked what I could PROVE with a line from my writing.","Finding a fault isn't failing — it's a skill.","Now I know exactly what to fix."]},
   wi:"Back to the weak example, with our checklist. We'll find a glow and a grow.",
   w:[["Find one genuine GLOW.","\"The setting has a strong detail: 'the lino was cold under my feet'.\"","There's always something good. Naming it shows what to keep."],
@@ -159,7 +159,7 @@ Object.assign(window.__WF_SCRIPT[1], {
  },
  Tuesday:{
   i:{s:["One upgrade to yesterday — based on what I heard."],
-     m:"NOT a wish: \"Make it more interesting.\"\nA wish: \"I wanted to know what you were thinking while you stood at the gate.\"",
+     m:"NOT a wish: \"Make it more interesting.\"\nA wish: \"At the part where you were holding half a cone, I wanted to know what you were thinking.\"",
      t:["'Make it more interesting' — the writer has no idea what to do.","The real wish points at an exact place and says what's missing.","Every wish should be able to start with 'At the part where…'."]},
   wi:"Back into the same circles. Readers three and four today.",
   w:[["Turn this into a useful wish: \"It was a bit boring.\"","\"At the part where you waited for the bus, I wanted to know what you could hear.\"","It points at the exact part and gives a clear idea."],
@@ -200,7 +200,7 @@ Object.assign(window.__WF_SCRIPT[1], {
  },
  Friday:{
   i:{s:["Old version, new version, and the name of the move. That's the whole share."],
-     m:"BEFORE: \"I was terrified.\"\nAFTER: \"I couldn't remember how to breathe properly, so I just kept running.\"\nMOVE: replace.",
+     m:"BEFORE: \"I was really upset.\"\nAFTER: \"My bottom lip was going. I looked up at Dad to see what I was supposed to do.\"\nMOVE: replace.",
      t:["Seeing before and after shows how much the writing improved.","Naming the move makes it stick.","You can use the same move on any piece of writing."]},
   wi:"I'll read a pair. You tell me what changed and what it does to you as a reader.",
   w:[["BEFORE: \"We went home.\" AFTER: \"Nobody said a word the whole drive home.\" What's different?","The new one shows the mood (silence) instead of just reporting.","The reader now feels the tension in the car."],
@@ -216,8 +216,8 @@ Object.assign(window.__WF_SCRIPT[1], {
 9:{
  Monday:{
   i:{s:["Watch me cover my paragraph with a piece of paper — and write it again from scratch."],
-     m:"OLD: \"I ran down the road and I was looking everywhere and I couldn't see him and I was really worried.\"\nNEW (written fresh): \"I ran. Past the letterboxes, past the church, past the dairy where he sometimes waited for chips.\"",
-     t:["The old one was broken in lots of places — fixing it would take longer than rewriting.","Covering it stopped me copying the old words.","The new version shows the worry through action and place. When a paragraph is broken in more than two places, cover it and start again."]},
+     m:"OLD: \"I looked around and I couldn't see where it went and then I saw it on the bin and it was eating my ice cream and I was really upset.\"\nNEW (written fresh): \"It landed on the rubbish bin with my hokey pokey hanging out of its beak. Then it looked at me — like I was the rude one.\"",
+     t:["The old one was broken in lots of places — fixing it would take longer than rewriting.","Covering it stopped me copying the old words.","The new version SHOWS the moment — the bin, the beak, the look — instead of telling. When a paragraph is broken in more than two places, cover it and start again."]},
   wi:"Two versions on the board. Vote — then justify using our criteria words.",
   w:[["Which one shows instead of tells?","The new one — the running past places shows worry without saying 'worried'.","Showing is on our criteria list."],
      ["Which one varies its sentence length?","The new one — 'I ran.' is short, then a longer sentence follows.","Varied sentences control pace."],

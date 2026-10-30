@@ -51,9 +51,9 @@ Object.assign(window.__WF_SCRIPT[1], {
   i:{s:["I'm only reading you the first three sentences of our mentor text. Then I'll think out loud about WHY the writer started there."],
      t:["She started right in the action — not with 'One day'. So we're hooked straight away.","She gave us a picture we could see, not a list of facts.","I asked of every sentence: why did the writer choose THIS, and what would be lost without it?"]},
   wi:"Three levels of questions. Each one gets harder.",
-  w:[["ON the page: what actually happened in this story?","Answer from the facts in the text — who, what, where. e.g. 'A girl lost her dog at the park and found him under the slide.'","Level 1 is about checking we understood the plot. The answer is right there in the words."],
-     ["BETWEEN the lines: how did the character feel — and how do we know, if the writer never told us?","She was panicking — we know because her 'hands wouldn't stop shaking' and she 'called his name three times'.","Writers SHOW feelings through actions and body clues. We work out the feeling like a detective."],
-     ["BEYOND the page: what does this writer want us to understand about people?","That you don't know how much you love something until you nearly lose it.","Level 3 is the big message. It's the hardest because it's not written anywhere — we have to think about it."]],
+  w:[["ON the page: what actually happened in this story?","Answer from the facts in the text — who, what, where. e.g. 'Rusty got out through the open gate. The writer ran down the road and found him sitting outside the dairy.'","Level 1 is about checking we understood the plot. The answer is right there in the words."],
+     ["BETWEEN the lines: how did the character feel — and how do we know, if the writer never told us?","The writer was panicking — we know because 'my heart was doing something strange in my throat' and 'I couldn't remember how to breathe properly'.","Writers SHOW feelings through actions and body clues. We work out the feeling like a detective."],
+     ["BEYOND the page: what does this writer want us to understand about people?","That you don't know how much you love something until you nearly lose it — and love can look like checking a gate twice.","Level 3 is the big message. It's the hardest because it's not written anywhere — we have to think about it."]],
   y:{s:"Write about your strongest seed for five minutes without stopping. Here's the start of my first telling — notice how messy it is.",
      e:"I was seven and I had a hokey pokey double scoop and we were at the Mount and it was hot and then the seagull came from behind and I didn't even see it and it took the WHOLE top scoop and I just stood there...",
      w:"It's not perfect — it's not supposed to be! I kept the pen moving and got the whole moment down. Fixing comes much later."},
@@ -218,7 +218,7 @@ Object.assign(window.__WF_SCRIPT[1], {
 4:{
  Monday:{
   i:{s:["I'm writing the SAME moment four different ways. Watch me, then watch me choose."],
-     t:["ACTION drops you into movement. DIALOGUE starts with a voice. SOUND starts with a noise. IMAGE starts with a picture.","All four avoid 'One day…' — they start in the moment.","I chose the IMAGE opening (the gate swinging) because my story is about a lost dog and the gate is the clue."]},
+     t:["ACTION drops you into movement. DIALOGUE starts with a voice. SOUND starts with a noise. IMAGE starts with a picture.","All four avoid 'One day…' — they start in the moment.","I chose the SOUND opening, because I never SAW the seagull coming — I only heard it. So my reader should only hear it too."]},
   wi:"Here's a terrible opening: \"One day I went to the beach with my family and we had a really good time.\" Let's rescue it four ways.",
   w:[["Rewrite it as an ACTION opening.","\"I sprinted down the dune so fast my jandals flew off.\"","It starts with movement, so the reader is instantly in the scene."],
      ["As a DIALOGUE opening.","\"'Last one in is a soggy sandwich!' Dad yelled.\"","A voice makes the reader curious about who's speaking and what's happening."],
@@ -274,8 +274,8 @@ Object.assign(window.__WF_SCRIPT[1], {
      m:"Writer reads → everyone claps → two people say one SPECIFIC thing that worked.",
      t:["Specific praise tells the writer exactly what to keep doing.","'It was good' gives them nothing. 'The word crunched made me hear it' gives them a tool.","Always point at a word or sentence when you praise."]},
   wi:"I'll read my opening. Give me two specific pieces of praise.",
-  w:[["\"The sentence that worked for me was…\"","\"The sentence that worked for me was 'it took the WHOLE top scoop' because I could see it happen.\"","It names the exact sentence AND says why — that's specific praise."],
-     ["\"The word that made me see it was…\"","\"'Swooped' — it made the seagull sound fast and sneaky.\"","Praising one word shows the writer their word choice is working."],
+  w:[["\"The sentence that worked for me was…\"","\"The sentence that worked for me was 'I never saw the seagull coming' because it made me want to know what happened next.\"","It names the exact sentence AND says why — that's specific praise."],
+     ["\"The word that made me see it was…\"","\"'Hokey pokey' — I could taste it straight away.\"","Praising one word shows the writer their word choice is working."],
      ["Did anyone want to give me advice?","Hold onto it — Week 8 is when advice becomes useful.","Praise first builds confidence. Advice comes once the draft is finished."]],
   y:{s:"Read your opening in the Author's Chair. Listeners give two specific praises.",
      e:"Listener: \"The word that made me see it was 'froze' — I could picture you stuck with one foot in the shoe.\"",
@@ -286,7 +286,7 @@ Object.assign(window.__WF_SCRIPT[1], {
 5:{
  Monday:{
   i:{s:["Two versions of the same ten seconds. The first is one sentence. The second is eight. Count what's different."],
-     t:["The slow version added what my body did: hot concrete, heart in my throat, forgetting to breathe.","It added tiny moments: a car passing, then another one.","Slowing down at the big moment makes the reader hold their breath. Ask: what did my body do before my brain caught up?"]},
+     t:["The slow version added what my body did: my hand jerked, my bottom lip started to go.","It added tiny moments: a rush of air, a slap of wings, the cone suddenly light.","Slowing down at the big moment makes the reader hold their breath. Ask: what did my body do before my brain caught up?"]},
   wi:"One boring sentence: \"I fell off my bike.\" Let's make it eight — no new events allowed!",
   w:[["What happened in the half-second before?","\"The front wheel hit the stick and jerked sideways.\"","Showing the cause makes the fall believable and builds tension."],
      ["What did it feel like on the way down?","\"For a second I was flying. The handlebars twisted out of my hands.\"","Stretching the falling moment slows time down for the reader."],
@@ -299,8 +299,8 @@ Object.assign(window.__WF_SCRIPT[1], {
  },
  Tuesday:{
   i:{s:["First the punctuation rules, said out loud as I write. Then the harder part: deciding what a person would really say."],
-     m:"\"Did you shut it?\" Mum's voice came from the kitchen window, already sharp.\n\n\"I thought I did.\"",
-     t:["Speech marks go around the exact words spoken. The question mark goes INSIDE.","Each new speaker gets a new line.","'I thought I did' doesn't answer the question properly — that shows the character is guilty. Dialogue should show who someone is."]},
+     m:"\"Are you going to cry?\" Dad's voice was wobbling, already halfway to laughing.\n\n\"No.\"",
+     t:["Speech marks go around the exact words spoken. The question mark goes INSIDE.","Each new speaker gets a new line.","'No' isn't the truth — we all know I'm about to cry. That shows I'm embarrassed without saying so. Dialogue should show who someone is."]},
   wi:"Two people arguing about something small. You give me the words, I'll punctuate them.",
   w:[["Speaker A says something short.","\"Who ate the last biscuit?\" asked Mia.","Short and direct starts the argument quickly."],
      ["Speaker B doesn't answer the question.","\"Why are you always counting the biscuits?\"","Dodging the question shows B is guilty — without saying so!"],

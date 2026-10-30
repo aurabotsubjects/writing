@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Writing Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#14121F;--paper:#FFFBF2;--card:#fff;--line:#14121F;--mute:#5d5a6b;
+  --a:#3b82f6;--b:#10b981;--c:#f97316;--d:#a855f7;--yes:#10b981;--warn:#f59e0b;--bad:#ef4444;--acc:var(--a)}
+html{font-size:19px;-webkit-text-size-adjust:100%}
+body{font-family:"Atkinson Hyperlegible",Verdana,sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;line-height:1.45;
+  background-image:radial-gradient(circle at 10% 0%,rgba(59,130,246,.10),transparent 40%),radial-gradient(circle at 90% 100%,rgba(168,85,247,.10),transparent 45%)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.top{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;border-bottom:3px solid var(--line);background:#FFD36B}
+.top .logo{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.35rem;line-height:1}
+.top .who{margin-left:auto;font-weight:700;font-size:.9rem}
+.wrap{max-width:860px;margin:0 auto;padding:1.4rem 1.2rem 6rem}
+.card{background:var(--card);border:3px solid var(--line);border-radius:22px;box-shadow:7px 7px 0 var(--line);padding:1.5rem 1.6rem;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+h1{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:2rem;line-height:1.1;margin-bottom:.5rem}
+h2{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.45rem;line-height:1.15;margin-bottom:.4rem}
+p.sub{color:var(--mute);margin-bottom:1rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:800;font-size:1.1rem;padding:.9rem 1.5rem;border-radius:16px;border:3px solid var(--line);background:var(--acc);color:#fff;box-shadow:0 5px 0 var(--line);transition:transform .1s,box-shadow .1s;min-height:3.3rem}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--line)}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.go{background:var(--yes)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+input.code{font:800 2.2rem "Baloo 2",sans-serif;letter-spacing:.3em;text-transform:uppercase;text-align:center;width:100%;padding:.6rem;border:3px solid var(--line);border-radius:16px;background:#fff;margin:.6rem 0 1rem}
+.err{color:var(--bad);font-weight:700;min-height:1.5em;margin-top:.5rem}
+.names{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin-top:.8rem}
+.names button{padding:1rem .6rem;border:3px solid var(--line);border-radius:16px;background:#fff;font-weight:800;font-size:1.1rem;box-shadow:0 4px 0 var(--line);transition:.1s}
+.names button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.names button small{display:block;font-weight:400;font-size:.75rem;color:var(--mute)}
+.names button.done{opacity:.4}
+.pin{display:flex;gap:.7rem;justify-content:center;margin:1rem 0}
+.pin span{width:3.4rem;height:3.8rem;border:3px solid var(--line);border-radius:14px;display:grid;place-items:center;font:800 2rem "Baloo 2";background:#fff}
+.pin span.f{background:var(--acc);color:#fff}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:330px;margin:0 auto}
+.pad button{font:800 1.8rem "Baloo 2";padding:.5rem;border:3px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 4px 0 var(--line)}
+.pad button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.dots{display:flex;gap:.45rem;justify-content:center;margin-bottom:1rem}
+.dots i{width:2.4rem;height:.6rem;border-radius:6px;background:#ddd;border:2px solid var(--line)}
+.dots i.on{background:var(--acc)} .dots i.done{background:var(--yes)}
+.part{font-weight:800;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:.3rem}
+.q{font-size:1.3rem;font-weight:700;line-height:1.35;margin-bottom:.8rem}
+.help{margin:.2rem 0 .8rem}
+.help button{font-weight:700;color:var(--acc);text-decoration:underline;font-size:.95rem}
+.help div{display:none;margin-top:.5rem;background:#FFF3C4;border:2px dashed var(--warn);border-radius:12px;padding:.7rem .9rem}
+.help.on div{display:block;animation:pop .3s}
+textarea{width:100%;font:1.15rem/1.5 "Atkinson Hyperlegible",Verdana,sans-serif;padding:.9rem 1rem;border:3px solid var(--line);border-radius:16px;background:#fff;resize:vertical;min-height:7rem}
+textarea.big{min-height:15rem}
+textarea:focus{outline:4px solid rgba(59,130,246,.35)}
+.wc{display:flex;justify-content:space-between;align-items:center;margin-top:.4rem;font-size:.9rem;color:var(--mute)}
+.wc b{color:var(--ink)} .wc .over{color:var(--bad);font-weight:700}
+.meter{height:.6rem;border-radius:6px;background:#eee;border:2px solid var(--line);overflow:hidden;margin-top:.3rem}
+.meter i{display:block;height:100%;background:var(--yes);transition:width .2s}
+.show{margin:.4rem 0 1rem;display:grid;gap:.4rem}
+.show label{display:flex;gap:.6rem;align-items:center;background:#F2F7FF;border:2px solid #cfe0ff;border-radius:12px;padding:.55rem .8rem;font-weight:700;cursor:pointer}
+.show input{width:1.4rem;height:1.4rem;accent-color:var(--yes)}
+.nav{display:flex;justify-content:space-between;gap:.8rem;margin-top:1.3rem}
+.saved{font-size:.8rem;color:var(--mute);text-align:center;margin-top:.8rem}
+.rev{border:2px solid #ddd;border-radius:14px;padding:.8rem 1rem;margin-bottom:.7rem}
+.rev b{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.rev p{white-space:pre-wrap}
+.rev .empty{color:var(--bad);font-weight:700}
+.big-done{text-align:center}
+.big-done .e{font-size:5rem;animation:bounce 1s infinite alternate}
+@keyframes bounce{to{transform:translateY(-12px) rotate(8deg)}}
+.cf{position:fixed;width:12px;height:16px;border-radius:3px;z-index:50;pointer-events:none}
+.hidden{display:none!important}
+@media (max-width:600px){html{font-size:17px}.card{padding:1.1rem}}
+</style>
+</head>
+<body>
+<div class="top"><span style="font-size:1.6rem">✏️</span><div class="logo">Friday Writing Check</div><div class="who" id="who"></div></div>
+<div class="wrap" id="app"><div class="card"><h2>Loading…</h2></div></div>
+
+<script src="firebase-config.js"></script>
+<script src="checks-t12.js"></script>
+<script src="checks-t34.js"></script>
+<script type="module">
+import { openDB, sha, countWords } from "./js/check-db.js";
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const SHORT_MAX = 60, LONG_MAX = 300, LONG_AIM = [80, 150];
+let db, code = "", meta = null, sid = "", test = null, ans = null, step = 0, pushT = null;
+
+try { db = openDB(); } catch(e) { app.innerHTML = '<div class="card"><h2>Not set up yet</h2><p>Ask your teacher — the online drop box isn\'t connected.</p></div>'; throw e; }
+
+const params = new URLSearchParams(location.search);
+const LKEY = () => "wc-ans-" + code + "-" + sid;
+function saveLocal(){ try { localStorage.setItem(LKEY(), JSON.stringify(ans)); } catch(e){} }
+function loadLocal(){ try { return JSON.parse(localStorage.getItem(LKEY()) || "null"); } catch(e){ return null; } }
+
+/* ---------- 1. class code ---------- */
+function screenCode(msg){
+  $("#who").textContent = "";
+  app.innerHTML = `<div class="card"><h1>Kia ora! 👋</h1><p class="sub">Type the class code on the board.</p>
+    <input class="code" id="code" maxlength="6" autocomplete="off" autocapitalize="characters" value="${esc(params.get("c")||"")}" />
+    <button class="btn" id="go" style="width:100%">Next →</button><div class="err" id="err">${esc(msg||"")}</div></div>`;
+  const inp = $("#code"); inp.focus();
+  const go = async () => {
+    code = inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,"");
+    if (code.length < 4) { $("#err").textContent = "That code is too short."; return; }
+    $("#go").disabled = true; $("#err").textContent = "Checking…";
+    try { meta = await db.get(db.root + code + "/meta"); } catch(e) { meta = null; $("#err").textContent = "Can't reach the drop box. Check the Wi-Fi, then try again."; $("#go").disabled = false; return; }
+    if (!meta || !meta.open) { $("#err").textContent = "Hmm, that code isn't open. Check the board."; $("#go").disabled = false; return; }
+    test = ((window.__WF_CHECK||{})[meta.T]||{})[meta.W];
+    if (!test) { $("#err").textContent = "This week's check couldn't load. Tell your teacher."; return; }
+    screenNames();
+  };
+  $("#go").onclick = go; inp.onkeydown = e => { if (e.key === "Enter") go(); };
+}
+
+/* ---------- 2. pick your name ---------- */
+async function screenNames(){
+  const subs = await db.get(db.root + code + "/subs") || {};
+  const roster = Object.entries(meta.roster || {}).sort((a,b) => a[1].n.localeCompare(b[1].n));
+  app.innerHTML = `<div class="card"><h1>Find your name</h1><p class="sub">Term ${meta.T} · Week ${meta.W} · ${esc(test.t)}</p>
+    <div class="names">${roster.map(([id,s]) => `<button data-id="${id}" class="${subs[id]&&subs[id].status==="in"?"done":""}">${esc(s.n)}<small>${subs[id]&&subs[id].status==="in"?"handed in ✓":"Group "+esc(s.g||"")}</small></button>`).join("")}</div>
+    <div class="nav"><button class="btn ghost" id="back">← Back</button></div></div>`;
+  $("#back").onclick = () => screenCode();
+  app.querySelectorAll(".names button").forEach(b => b.onclick = () => { sid = b.dataset.id; screenPin(); });
+}
+
+/* ---------- 3. PIN ---------- */
+function screenPin(){
+  const s = meta.roster[sid]; let pin = "", tries = 0;
+  app.innerHTML = `<div class="card" id="pc"><h1>Hi ${esc(s.n)}!</h1><p class="sub">Type your 4-number PIN.</p>
+    <div class="pin" id="pin"><span></span><span></span><span></span><span></span></div>
+    <div class="pad">${[1,2,3,4,5,6,7,8,9,"←",0,"✓"].map(k => `<button data-k="${k}">${k}</button>`).join("")}</div>
+    <div class="err" id="err" style="text-align:center"></div>
+    <div class="nav"><button class="btn ghost" id="back">← Not me</button></div></div>`;
+  const draw = () => $("#pin").querySelectorAll("span").forEach((x,i) => { x.textContent = pin[i] ? "●" : ""; x.classList.toggle("f", !!pin[i]); });
+  const check = async () => {
+    const h = await sha(meta.salt + "|" + sid + "|" + pin);
+    if (h === s.h) return startTest();
+    tries++; pin = ""; draw(); $("#pc").classList.remove("shake"); void $("#pc").offsetWidth; $("#pc").classList.add("shake");
+    $("#err").textContent = tries >= 3 ? "Still not right — put your hand up and ask your teacher." : "Not quite — try again.";
+  };
+  app.querySelectorAll(".pad button").forEach(b => b.onclick = () => {
+    const k = b.dataset.k;
+    if (k === "←") pin = pin.slice(0,-1); else if (k === "✓") { if (pin.length === 4) check(); return; } else if (pin.length < 4) pin += k;
+    draw(); if (pin.length === 4) check();
+  });
+  $("#back").onclick = screenNames;
+}
+
+/* ---------- 4. the check ---------- */
+async function startTest(){
+  $("#who").textContent = meta.roster[sid].n;
+  const online = await db.get(db.root + code + "/subs/" + sid);
+  if (online && online.status === "in") return screenDone(true);
+  ans = loadLocal() || (online && online.a ? { a: online.a, ticks: online.ticks || [] } : null) || { a: ["","","",""], ticks: [] };
+  step = 0; screenIntro();
+  db.update(db.root + code + "/subs/" + sid, { status: "writing", at: Date.now() }).catch(()=>{});
+}
+function pushDraft(){ clearTimeout(pushT); pushT = setTimeout(() => {
+  db.update(db.root + code + "/subs/" + sid, { status: "writing", a: ans.a, ticks: ans.ticks, at: Date.now() }).catch(()=>{}); }, 4000); }
+
+function screenIntro(){
+  app.innerHTML = `<div class="card"><div class="part">Term ${meta.T} · Week ${meta.W}</div><h1>${esc(test.t)}</h1>
+    <p style="font-size:1.15rem;margin:.4rem 0 1rem">${esc(test.i)}</p>
+    <div class="rev"><b>What you'll do</b><p>Parts 1–3: short answers — one or two sentences each.\nPart 4: a small piece of writing — aim for ${LONG_AIM[0]}–${LONG_AIM[1]} words (no more than ${LONG_MAX}).</p></div>
+    <p class="sub">💡 Every question has a "Need help?" button. Your work saves as you type.</p>
+    <button class="btn go" id="start" style="width:100%">Let's start →</button></div>`;
+  $("#start").onclick = () => { step = 1; screenStep(); };
+}
+
+function dots(){ return `<div class="dots">${[1,2,3,4,5].map(i => `<i class="${i===step?"on":(i<step?"done":"")}"></i>`).join("")}</div>`; }
+
+function screenStep(){
+  if (step === 5) return screenReview();
+  const long = step === 4, max = long ? LONG_MAX : SHORT_MAX;
+  const qq = long ? test.w : test.q[step-1];
+  const qText = long ? qq.p : qq[1], help = long ? qq.h : qq[2];
+  app.innerHTML = `${dots()}<div class="card"><div class="part">Part ${step} of 4 · ${long ? "Small writing piece" : "Short answer"}</div>
+    <div class="q">${esc(qText)}</div>
+    <div class="help" id="help"><button>💡 Need help?</button><div>${esc(help)}</div></div>
+    ${long ? `<div class="show">${(qq.show||[]).map((s,i) => `<label><input type="checkbox" data-t="${i}" ${ans.ticks.includes(i)?"checked":""}> Try to show: ${esc(s)}</label>`).join("")}</div>` : ""}
+    <textarea id="ta" class="${long?"big":""}" placeholder="${long ? "Write here…" : "One or two sentences…"}">${esc(ans.a[step-1])}</textarea>
+    <div class="wc"><span id="wcT"></span><span id="wcAim">${long ? `Aim: ${LONG_AIM[0]}–${LONG_AIM[1]} words` : "1–2 sentences"}</span></div>
+    ${long ? `<div class="meter"><i id="mt"></i></div>` : ""}
+    <div class="nav"><button class="btn ghost" id="prev">← Back</button><button class="btn" id="next">${step===4?"Check my answers →":"Next →"}</button></div>
+    <div class="saved" id="saved">Saved on this iPad ✓</div></div>`;
+  $("#help button").onclick = () => $("#help").classList.toggle("on");
+  const ta = $("#ta");
+  const upd = () => {
+    let n = countWords(ta.value);
+    if (n > max) { const words = ta.value.match(/\S+\s*/g) || []; ta.value = words.slice(0, max).join("").replace(/\s+$/,""); n = max; }
+    $("#wcT").innerHTML = `<b>${n}</b> / ${max} words` + (n >= max ? ` <span class="over">— that's the limit</span>` : "");
+    if (long) { const m = $("#mt"); m.style.width = Math.min(100, n / LONG_AIM[1] * 100) + "%"; m.style.background = n < LONG_AIM[0] ? "#f59e0b" : (n <= LONG_AIM[1] ? "#10b981" : "#3b82f6"); }
+    ans.a[step-1] = ta.value; saveLocal(); pushDraft();
+  };
+  ta.oninput = upd; upd();
+  app.querySelectorAll(".show input").forEach(c => c.onchange = () => {
+    const i = +c.dataset.t; ans.ticks = ans.ticks.filter(x => x !== i); if (c.checked) ans.ticks.push(i); saveLocal(); pushDraft(); });
+  $("#prev").onclick = () => { step = step > 1 ? step - 1 : 0; step ? screenStep() : screenIntro(); };
+  $("#next").onclick = () => { step++; screenStep(); };
+  setTimeout(() => ta.focus(), 200);
+}
+
+function screenReview(){
+  const labels = ["Part 1","Part 2","Part 3","Part 4 — writing"];
+  const empty = ans.a.map(x => !x.trim());
+  app.innerHTML = `${dots()}<div class="card"><h1>Check before you hand in</h1><p class="sub">Read your answers. Tap a part to fix it.</p>
+    ${ans.a.map((x,i) => `<div class="rev" data-s="${i+1}" style="cursor:pointer"><b>${labels[i]} · ${countWords(x)} words</b>${x.trim() ? `<p>${esc(x)}</p>` : `<p class="empty">Nothing written yet — tap to answer</p>`}</div>`).join("")}
+    <div class="nav"><button class="btn ghost" id="prev">← Back</button><button class="btn go" id="hand">📮 Hand it in</button></div>
+    <div class="err" id="err"></div></div>`;
+  app.querySelectorAll(".rev").forEach(r => r.onclick = () => { step = +r.dataset.s; screenStep(); });
+  $("#prev").onclick = () => { step = 4; screenStep(); };
+  $("#hand").onclick = async () => {
+    if (empty.some(Boolean) && !confirm("Some parts are empty. Hand it in anyway?")) return;
+    $("#hand").disabled = true; $("#err").textContent = "Sending…";
+    try {
+      await db.set(db.root + code + "/subs/" + sid, { status: "in", a: ans.a, ticks: ans.ticks, at: Date.now(), words: ans.a.map(countWords) });
+      screenDone();
+    } catch(e) { $("#err").textContent = "It didn't send — check the Wi-Fi and tap again. Your work is still saved."; $("#hand").disabled = false; }
+  };
+}
+
+function screenDone(already){
+  app.innerHTML = `<div class="card big-done"><div class="e">🎉</div><h1>${already ? "Already handed in!" : "Handed in!"}</h1>
+    <p style="font-size:1.15rem">Ka pai, ${esc(meta.roster[sid].n)}. Your teacher has your writing.</p>
+    <p class="sub" style="margin-top:1rem">You can close this page now.</p></div>`;
+  if (!already) confetti();
+}
+function confetti(){ const cs=["#3b82f6","#10b981","#f97316","#a855f7","#FFD36B","#ef4444"];
+  for (let i=0;i<90;i++){ const d=document.createElement("div"); d.className="cf"; d.style.background=cs[i%6]; d.style.left=innerWidth/2+"px"; d.style.top=innerHeight/3+"px"; document.body.appendChild(d);
+    let a=Math.random()*Math.PI*2,v=6+Math.random()*12,vx=Math.cos(a)*v,vy=Math.sin(a)*v-8,x=0,y=0,r=0,t=0;
+    (function f(){t++;vy+=.45;x+=vx;y+=vy;r+=12;d.style.transform=`translate(${x}px,${y}px) rotate(${r}deg)`;d.style.opacity=1-t/90;t<90?requestAnimationFrame(f):d.remove();})(); } }
+
+screenCode();
+if (params.get("c")) $("#go").click();
+</script>
+</body>
+</html>

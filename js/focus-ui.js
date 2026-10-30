@@ -141,6 +141,8 @@
       (sc&&sc.i?sc.i.s.map(say).join(""):'')+
       (model?'<div class="model rv fit">'+esc(model)+'</div>':'')+
       (!sc&&day.iDo.tip?'<div class="tip rv"><span>💡</span><span>'+esc(day.iDo.tip)+'</span></div>':'')+'</div></div>'});
+    var TX=function(w){return window.WFT?WFT.slides(T,W,D,data,w):[];};
+    S=S.concat(TX("i"));
     if(sc&&sc.i&&sc.i.t&&sc.i.t.length){
       S.push({c:BLUE,html:'<div class="s-head">WHY DID THAT WORK?</div><div class="s-why">'+
         sc.i.t.map(function(x,i){return '<div class="it rv"><i>'+(i+1)+'</i><span>'+esc(x)+'</span></div>';}).join("")+
@@ -152,6 +154,7 @@
         '<div class="ph">TOGETHER</div><div class="pt">'+esc(strip(day.weDo.title))+'</div>'+
         say(sc.wi||day.weDo.instruction)+
         '<div class="ask rv">🗣 For each question: think → tell your partner → share. Then we look at a strong answer.</div></div></div>'});
+      S=S.concat(TX("we"));
       sc.w.forEach(function(x,i){
         S.push({c:GREEN,html:'<div class="s-head">TOGETHER · '+(i+1)+' OF '+sc.w.length+'</div><div class="s-we">'+
           '<div class="qrow"><div class="q fit">'+esc(x[0])+'</div>'+
@@ -165,6 +168,7 @@
         '<div class="ph">TOGETHER</div><div class="pt">'+esc(strip(day.weDo.title))+'</div>'+
         (qs.length?'<div class="qs">'+qs.map(function(q){return '<div class="rv">'+esc(q)+'</div>';}).join("")+'</div>':'')+
         (day.weDo.prompt?'<div class="ask rv">💬 '+esc(day.weDo.prompt)+'</div>':'')+'</div></div>'});
+      S=S.concat(TX("we"));
     }
     // ---------- You Do ----------
     var yd=(k.d||[]).slice(2); if(!yd.length) yd=(day.youDo.tasks||[]).slice(0,4);
@@ -174,6 +178,10 @@
         say(sc.y.s)+'<div class="eg rv fit">'+esc(sc.y.e)+'</div>'+
         '<div class="why rv"><b>WHY IT’S GOOD</b><div class="fit">'+esc(sc.y.w)+'</div></div></div>'});
     }
+    if(D==="Friday") S.push({c:"#3b82f6",html:'<div class="s-head">FRIDAY SPLIT · TWO ROUNDS</div><div class="s-split">'+
+      '<div class="col" style="--c:#BFDBFE"><b>GROUP A</b><span>Round 1: Helping Circle 💬</span><span>Round 2: Writing Check 📝</span></div>'+
+      '<div class="col" style="--c:#FDE68A"><b>GROUP B</b><span>Round 1: Writing Check 📝</span><span>Round 2: Helping Circle 💬</span></div>'+
+      '<div class="foot"><span>📝 Writing Check: iPad → type the code on the board → your name → your PIN</span><div class="timer" data-secs="720"><span></span><small>tap to start</small></div></div></div>'});
     S.push({c:ORANGE,html:'<div class="s-phase" style="--c:'+ORANGE+'">'+art(shared("f-youdo"),"kb","✍️")+'<div class="r">'+
       '<div class="ph">YOUR TURN</div><div class="pt">'+esc(strip(day.youDo.title))+'</div>'+
       '<div class="qs">'+yd.concat(bonus).map(function(q){return '<div class="rv">'+esc(q)+'</div>';}).join("")+'</div>'+

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Friday Writing Check — Teacher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#14121F;--paper:#FBF6EA;--card:#fff;--mute:#5d5a6b;--a:#3b82f6;--yes:#10b981;--warn:#f59e0b;--bad:#ef4444;
+  --D:#FFB85C;--A:#5BD48A;--F:#A98BFF;--N:#cfcfd6}
+html{font-size:17px}
+body{font-family:"Atkinson Hyperlegible",Verdana,sans-serif;background:var(--paper);color:var(--ink);line-height:1.45;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--a)}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;padding:.8rem 1.4rem;border-bottom:3px solid var(--ink);background:#FFD36B}
+.top .logo{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.4rem;line-height:1}
+.top .back{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:2px solid var(--ink);border-radius:20px;padding:.3rem .8rem;background:#fff}
+.tabs{display:flex;gap:.4rem;margin-left:auto;flex-wrap:wrap}
+.tab{font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .9rem;border:2.5px solid var(--ink);border-radius:12px;background:#fff;box-shadow:0 3px 0 var(--ink)}
+.tab.on{background:var(--ink);color:#fff}
+.wrap{max-width:1150px;margin:0 auto;padding:1.4rem 1.4rem 5rem}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:1.2rem 1.4rem;margin-bottom:1.3rem}
+h1{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.9rem;line-height:1.1;margin-bottom:.4rem}
+h2{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.15;margin-bottom:.5rem}
+h3{font-weight:800;font-size:1rem;margin:.6rem 0 .3rem}
+p.sub,.sub{color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:800;font-size:.95rem;padding:.6rem 1.1rem;border-radius:12px;border:2.5px solid var(--ink);background:var(--a);color:#fff;box-shadow:0 4px 0 var(--ink);transition:transform .1s}
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink)} .btn.go{background:var(--yes)} .btn.warn{background:var(--bad)} .btn.dark{background:var(--ink)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+input[type=text],input[type=password],select,textarea{font:inherit;padding:.55rem .75rem;border:2.5px solid var(--ink);border-radius:10px;background:#fff}
+textarea{width:100%;min-height:8rem;resize:vertical}
+.note{background:#FFF3C4;border:2px dashed var(--warn);border-radius:12px;padding:.7rem .9rem;margin:.7rem 0;font-size:.95rem}
+.ok{background:#DDF7E2;border:2px solid var(--yes);border-radius:12px;padding:.7rem .9rem;margin:.7rem 0}
+.err{color:var(--bad);font-weight:700}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1.5px solid #e2ded3;padding:.45rem .5rem;text-align:left;vertical-align:top}
+th{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.lv{display:inline-grid;place-items:center;min-width:1.9rem;height:1.9rem;padding:0 .3rem;border-radius:8px;border:2px solid var(--ink);font-weight:800;font-size:.85rem}
+.lv.D{background:var(--D)} .lv.A{background:var(--A)} .lv.F{background:var(--F)} .lv.N{background:var(--N)}
+.pill{display:inline-block;font-size:.75rem;font-weight:800;padding:.15rem .55rem;border-radius:20px;border:2px solid var(--ink)}
+.gA{background:#BFDBFE} .gB{background:#FDE68A}
+.st-in{color:#0f7a3a;font-weight:800} .st-writing{color:#b45309;font-weight:700} .st-none{color:#999}
+.code-big{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:4.5rem;letter-spacing:.18em;line-height:1;background:var(--ink);color:#FFD36B;border-radius:16px;padding:.6rem 1.2rem;display:inline-block}
+.qrbox{background:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:8px;display:inline-block}
+.qlist li{margin:.35rem 0 .35rem 1.2rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+.wk{border:2.5px solid var(--ink);border-radius:14px;padding:.9rem 1rem;background:#fff}
+.wk h3{margin-top:0}
+.chart{width:100%;height:auto;background:#fff;border:2px solid #e2ded3;border-radius:12px}
+.hidden{display:none!important}
+.lock{max-width:640px;margin:3rem auto}
+.choice{display:grid;gap:.8rem;margin:1rem 0}
+.choice button{text-align:left;padding:1rem 1.1rem;border:2.5px solid var(--ink);border-radius:14px;background:#fff;box-shadow:0 4px 0 var(--ink)}
+.choice button b{display:block;font-size:1.1rem}
+.choice button:hover{background:#F2F7FF}
+.choice button[disabled]{opacity:.45}
+.stu{display:flex;gap:.5rem;align-items:center}
+#printArea{display:none}
+@media print{
+  body.printing>*:not(#printArea){display:none!important}
+  body.printing #printArea{display:block}
+  @page{size:A4;margin:12mm}
+  .pa{font-size:10.5pt;line-height:1.4;color:#000}
+  .pa h1{font-size:18pt} .pa h2{font-size:13pt;margin-top:10px} .pa pre{white-space:pre-wrap;font-family:inherit}
+  .pa .pb{break-before:page}
+  .lc{display:grid;grid-template-columns:1fr 1fr;gap:8mm}
+  .lc>div{border:2px dashed #000;border-radius:8px;padding:6mm;break-inside:avoid}
+  .slip{border:2px solid #000;border-radius:8px;padding:5mm;margin-bottom:6mm;break-inside:avoid}
+  .lv{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:800px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><a class="back" href="index.html">← Writing Hub</a><span style="font-size:1.5rem">📝</span><div class="logo">Friday Writing Check · Teacher</div>
+  <div class="tabs hidden" id="tabs">
+    <button class="tab" data-v="friday">Friday check</button>
+    <button class="tab" data-v="class">Class & logins</button>
+    <button class="tab" data-v="results">Claude & results</button>
+    <button class="tab" data-v="progress">Progress</button>
+    <button class="tab" data-v="data">My data</button>
+    <button class="tab" id="lockBtn" title="Lock the app">🔒</button>
+  </div>
+</div>
+<div class="wrap" id="app"></div>
+<div id="printArea"></div>
+
+<script src="firebase-config.js"></script>
+<script src="qrcode.min.js"></script>
+<script src="focus-rubric-t12.js"></script>
+<script src="focus-rubric-t34.js"></script>
+<script src="checks-t12.js"></script>
+<script src="checks-t34.js"></script>
+<script type="module">
+import { openDB, sha, countWords } from "./js/check-db.js";
+const $ = s => document.querySelector(s), app = $("#app");
+const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const LV = {D:"Developing",A:"Achieved",F:"Flying",N:"Not enough evidence"}, LVN = {D:1,A:2,F:3};
+const TERMS = {1:"Narrative",2:"Explanation & Report",3:"Persuasive & Speeches",4:"Poetry & Reflection"};
+const CHECK = (T,W) => ((window.__WF_CHECK||{})[T]||{})[W];
+const RUB = (T,W) => ((window.__WF_RUBRIC||{})[T]||{})[W];
+const tid = (T,W) => "T"+T+"W"+W;
+let db = null; try { db = openDB(); } catch(e) { db = null; }
+
+/* =====================================================================
+   LOCAL STORAGE: a folder on this computer (Chrome/Edge) — or this browser
+   ===================================================================== */
+const idb = (() => { let p; const open = () => p || (p = new Promise((res, rej) => { const r = indexedDB.open("wc-local", 1);
+  r.onupgradeneeded = () => r.result.createObjectStore("kv"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }));
+  const tx = async (m, f) => { const d = await open(); return new Promise((res, rej) => { const t = d.transaction("kv", m); const q = f(t.objectStore("kv")); t.oncomplete = () => res(q && q.result); t.onerror = () => rej(t.error); }); };
+  return { get: k => tx("readonly", s => s.get(k)), set: (k, v) => tx("readwrite", s => s.put(v, k)), del: k => tx("readwrite", s => s.delete(k)),
+    keys: () => tx("readonly", s => s.getAllKeys()) }; })();
+
+class FolderStore {
+  constructor(dir){ this.dir = dir; this.kind = "folder"; }
+  async _parent(name, create){ const parts = name.split("/"); let d = this.dir;
+    for (const p of parts.slice(0,-1)) d = await d.getDirectoryHandle(p, { create }); return [d, parts[parts.length-1]]; }
+  async read(name){ try { const [d, f] = await this._parent(name, false); const fh = await d.getFileHandle(f); return JSON.parse(await (await fh.getFile()).text()); } catch(e){ return null; } }
+  async write(name, obj){ const [d, f] = await this._parent(name, true); const fh = await d.getFileHandle(f, { create: true });
+    const w = await fh.createWritable(); await w.write(JSON.stringify(obj, null, 1)); await w.close(); }
+  async list(dir){ const out = []; try { let d = this.dir; for (const p of dir.split("/").filter(Boolean)) d = await d.getDirectoryHandle(p);
+    for await (const [n, h] of d.entries()) if (h.kind === "file" && n.endsWith(".json")) out.push(dir.replace(/\/?$/,"/") + n); } catch(e){} return out.sort(); }
+  async remove(name){ try { const [d, f] = await this._parent(name, false); await d.removeEntry(f); } catch(e){} }
+}
+class BrowserStore {
+  constructor(){ this.kind = "browser"; }
+  async read(n){ const v = await idb.get("f:" + n); return v === undefined ? null : JSON.parse(JSON.stringify(v)); }
+  async write(n, o){ await idb.set("f:" + n, JSON.parse(JSON.stringify(o))); }
+  async list(dir){ const p = "f:" + dir.replace(/\/?$/,"/"); return (await idb.keys()).filter(k => String(k).startsWith(p)).map(k => k.slice(2)).sort(); }
+  async remove(n){ await idb.del("f:" + n); }
+}
+let store = null, cls = null, view = "friday", unlocked = false;
+const canFolder = "showDirectoryPicker" in window;
+
+/* =====================================================================
+   SETUP / UNLOCK
+   ===================================================================== */
+async function boot(){
+  const mode = localStorage.getItem("wc-mode");
+  if (mode === "browser") { store = new BrowserStore(); return unlockScreen(); }
+  if (mode === "folder") {
+    const dir = await idb.get("dir").catch(() => null);
+    if (dir) { store = new FolderStore(dir); const perm = await dir.queryPermission({ mode: "readwrite" }).catch(() => "denied");
+      if (perm === "granted") return unlockScreen(); return reconnectScreen(dir); }
+  }
+  setupScreen();
+}
+function setupScreen(){
+  app.innerHTML = `<div class="lock card"><h1>Set up your Writing Check</h1>
+    <p>Where should the class list, the tests and everyone's progress be kept? <b>Nothing is kept online</b> — only answers waiting to be collected sit in the short-term drop box while a check is open.</p>
+    <div class="choice">
+      <button id="mFolder" ${canFolder?"":"disabled"}><b>📁 A folder on this computer (recommended)</b>Pick or make a folder, e.g. "Writing Check Data" in Documents. Everything is saved there as files you can see, back up, or copy to another computer. ${canFolder?"":"<br><span class='err'>Needs Chrome or Edge — this browser can't connect folders.</span>"}</button>
+      <button id="mBrowser"><b>🌐 Inside this browser</b>Works in any browser, but you'll need to use "My data → Download backup" to move it or keep a copy.</button>
+    </div>
+    <details><summary style="cursor:pointer;font-weight:700">Moving from another computer?</summary>
+      <p class="sub" style="margin:.5rem 0">Copy your data folder across and choose it with the folder option — or choose either option and restore a backup file:</p>
+      <input type="file" id="restore" accept=".json,application/json"></details>
+    <p class="err" id="err"></p></div>`;
+  $("#mFolder").onclick = async () => { try { const dir = await window.showDirectoryPicker({ id: "wcheck", mode: "readwrite" });
+      await idb.set("dir", dir); localStorage.setItem("wc-mode", "folder"); store = new FolderStore(dir); afterStore(); } catch(e){ $("#err").textContent = e.name === "AbortError" ? "" : "Couldn't use that folder: " + e.message; } };
+  $("#mBrowser").onclick = () => { localStorage.setItem("wc-mode", "browser"); store = new BrowserStore(); afterStore(); };
+  $("#restore").onchange = async e => { const f = e.target.files[0]; if (!f) return;
+    try { const b = JSON.parse(await f.text()); if (b.type !== "writing-check-backup") throw 0;
+      if (!store) { localStorage.setItem("wc-mode", "browser"); store = new BrowserStore(); }
+      for (const [n, o] of Object.entries(b.files)) await store.write(n, o); alert("Backup restored. Log in with the password from that computer."); boot(); }
+    catch(_) { $("#err").textContent = "That isn't a Writing Check backup file."; } };
+}
+async function afterStore(){ (await store.read("wc-key.json")) ? unlockScreen() : passwordScreen(); }
+function reconnectScreen(dir){
+  app.innerHTML = `<div class="lock card"><h1>Reconnect your folder</h1><p>Your browser needs permission to open <b>${esc(dir.name)}</b> again.</p>
+    <div class="row" style="margin-top:1rem"><button class="btn" id="rc">📁 Reconnect "${esc(dir.name)}"</button><button class="btn ghost" id="other">Use a different folder</button></div></div>`;
+  $("#rc").onclick = async () => { if ((await dir.requestPermission({ mode: "readwrite" })) === "granted") unlockScreen(); };
+  $("#other").onclick = () => { localStorage.removeItem("wc-mode"); setupScreen(); };
+}
+function passwordScreen(){
+  app.innerHTML = `<div class="lock card"><h1>Choose a teacher password</h1><p class="sub">You'll type this each time you open the Writing Check on this computer.</p>
+    <div style="display:grid;gap:.6rem;margin:1rem 0"><input type="password" id="p1" placeholder="Password (at least 6 characters)"><input type="password" id="p2" placeholder="Type it again"></div>
+    <button class="btn go" id="save">Save and continue</button><p class="err" id="err"></p>
+    <div class="note">This password locks the app. Your files are kept on this computer (or in this browser), so also keep your computer itself locked.</div></div>`;
+  $("#save").onclick = async () => { const a = $("#p1").value, b = $("#p2").value;
+    if (a.length < 6) return $("#err").textContent = "Use at least 6 characters.";
+    if (a !== b) return $("#err").textContent = "Those don't match.";
+    const salt = crypto.getRandomValues(new Uint32Array(4)).join("-");
+    await store.write("wc-key.json", { type: "writing-check-key", v: 1, salt, hash: await sha(salt + "|" + a), created: new Date().toISOString() });
+    if (!(await store.read("class.json"))) await store.write("class.json", { salt: crypto.getRandomValues(new Uint32Array(3)).join(""), students: [] });
+    unlocked = true; start(); };
+}
+function unlockScreen(){
+  if (sessionStorage.getItem("wc-ok") === "1") { unlocked = true; return start(); }
+  app.innerHTML = `<div class="lock card"><h1>🔒 Teacher login</h1><p class="sub">${store.kind === "folder" ? "Data folder: <b>" + esc(store.dir.name) + "</b>" : "Data kept in this browser"}</p>
+    <div class="row" style="margin:1rem 0"><input type="password" id="pw" placeholder="Teacher password" style="flex:1"><button class="btn" id="go">Unlock</button></div>
+    <p class="err" id="err"></p><details><summary class="sub" style="cursor:pointer">Forgotten it?</summary><p class="sub">In your data folder, delete the file <b>wc-key.json</b> and reload — you'll be asked to choose a new password. Your class and results are kept.</p></details></div>`;
+  const go = async () => { const k = await store.read("wc-key.json");
+    if (!k) return passwordScreen();
+    if (await sha(k.salt + "|" + $("#pw").value) === k.hash) { sessionStorage.setItem("wc-ok", "1"); unlocked = true; start(); }
+    else $("#err").textContent = "That password isn't right."; };
+  $("#go").onclick = go; $("#pw").onkeydown = e => { if (e.key === "Enter") go(); }; $("#pw").focus();
+}
+$("#lockBtn").onclick = () => { sessionStorage.removeItem("wc-ok"); location.hash = ""; location.reload(); };
+
+async function start(){
+  cls = await store.read("class.json") || { salt: crypto.getRandomValues(new Uint32Array(3)).join(""), students: [] };
+  $("#tabs").classList.remove("hidden");
+  document.querySelectorAll(".tab[data-v]").forEach(b => b.onclick = () => go(b.dataset.v));
+  const h = location.hash.match(/report=([\w-]+)/);
+  if (h) return go("progress", h[1]);
+  go(cls.students.length ? "friday" : "class");
+}
+function go(v, arg){ view = v; document.querySelectorAll(".tab[data-v]").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  ({ friday, class: classView, results, progress, data: dataView })[v](arg); window.scrollTo(0,0); }
+async function saveClass(){ await store.write("class.json", cls); }
+
+/* =====================================================================
+   CLASS & LOGINS
+   ===================================================================== */
+const newPin = () => String(1000 + Math.floor(Math.random() * 9000));
+function classView(){
+  const S = cls.students;
+  app.innerHTML = `<div class="card"><h1>Class & logins</h1><p class="sub">Students log in on their iPads with the class code (shown on Fridays), their name and a 4-number PIN. Groups A and B take turns: one group shares in the Helping Circle while the other does the check.</p>
+    <div class="grid2" style="margin-top:1rem"><div><h3>Add students</h3><textarea id="names" placeholder="One first name per line (add an initial if two share a name)&#10;Ana&#10;Nikau&#10;Ruby T"></textarea>
+      <div class="row" style="margin-top:.5rem"><button class="btn" id="add">➕ Add to class</button></div></div>
+      <div><h3>Login cards</h3><p class="sub">Print one card per student with their PIN and the web address for their iPad.</p>
+      <div class="row" style="margin-top:.6rem"><button class="btn ghost" id="cards" ${S.length?"":"disabled"}>🖨 Print login cards</button><button class="btn ghost" id="regroup" ${S.length?"":"disabled"}>⇄ Re-split groups A/B</button></div>
+      <div class="note">Student web address: <b>${esc(studentURL())}</b></div></div></div></div>
+    <div class="card"><h2>${S.length} students</h2>${S.length ? `<table><tr><th>Name</th><th>Group</th><th>PIN</th><th>ID</th><th></th></tr>${S.map((s,i) => `<tr>
+      <td><input type="text" value="${esc(s.n)}" data-i="${i}" class="nm" style="width:100%"></td>
+      <td><select data-i="${i}" class="gp"><option ${s.g==="A"?"selected":""}>A</option><option ${s.g==="B"?"selected":""}>B</option></select></td>
+      <td><b style="font-size:1.1rem;letter-spacing:.1em">${s.pin}</b> <button class="btn ghost" style="padding:.2rem .5rem;font-size:.75rem" data-np="${i}">new</button></td>
+      <td class="sub">${s.id}</td><td><button class="btn ghost" style="padding:.2rem .6rem" data-del="${i}" title="Remove">✕</button></td></tr>`).join("")}</table>` : `<p class="sub">No students yet — add their names above.</p>`}</div>`;
+  $("#add").onclick = async () => { const names = $("#names").value.split("\n").map(s => s.trim()).filter(Boolean);
+    let n = S.reduce((m, s) => Math.max(m, +s.id.slice(1)), 0);
+    names.forEach(nm => { n++; const a = S.filter(s => s.g === "A").length, b = S.length - a; S.push({ id: "s" + String(n).padStart(2,"0"), n: nm, g: a <= b ? "A" : "B", pin: newPin() }); });
+    await saveClass(); classView(); };
+  app.querySelectorAll(".nm").forEach(e => e.onchange = async () => { S[e.dataset.i].n = e.value.trim(); await saveClass(); });
+  app.querySelectorAll(".gp").forEach(e => e.onchange = async () => { S[e.dataset.i].g = e.value; await saveClass(); });
+  app.querySelectorAll("[data-np]").forEach(e => e.onclick = async () => { S[e.dataset.np].pin = newPin(); await saveClass(); classView(); });
+  app.querySelectorAll("[data-del]").forEach(e => e.onclick = async () => { if (!confirm("Remove " + S[e.dataset.del].n + "? Their past results stay in your files.")) return; S.splice(e.dataset.del, 1); await saveClass(); classView(); });
+  const rg = $("#regroup"); if (rg) rg.onclick = async () => { S.sort((a,b) => a.n.localeCompare(b.n)).forEach((s,i) => s.g = i % 2 ? "B" : "A"); await saveClass(); classView(); };
+  const cd = $("#cards"); if (cd) cd.onclick = () => printHTML(`<div class="pa"><div class="lc">${S.map(s => `<div><div style="font-size:9pt;letter-spacing:.12em;text-transform:uppercase">Friday Writing Check · login card</div>
+      <div style="font-size:22pt;font-weight:800;margin:3mm 0">${esc(s.n)}</div><div>My PIN: <b style="font-size:20pt;letter-spacing:.2em">${s.pin}</b></div>
+      <div>My group: <b>${s.g}</b></div><div style="margin-top:3mm;font-size:9pt">On your iPad go to:<br><b>${esc(studentURL())}</b><br>then type the class code from the board.</div></div>`).join("")}</div></div>`);
+}
+function studentURL(){ return new URL("test.html", location.href).href.split("?")[0]; }
+
+/* =====================================================================
+   FRIDAY: open a check, watch it live, collect into the folder
+   ===================================================================== */
+const live = { code: null, unsub: null, T: 0, W: 0, subs: {} };
+function pickTW(){ const p = new URLSearchParams(location.search); const last = JSON.parse(localStorage.getItem("wc-tw") || "null") || {T:1,W:1};
+  return { T: +(p.get("t") || last.T), W: +(p.get("w") || last.W) }; }
+async function friday(){
+  if (!cls.students.length) return classView();
+  let { T, W } = live.code ? live : pickTW();
+  const draw = async () => {
+    const c = CHECK(T,W), r = RUB(T,W), rec = await store.read("checks/" + tid(T,W) + ".json");
+    const sessions = (await store.read("sessions.json")) || { open: [] };
+    const A = cls.students.filter(s => s.g === "A"), B = cls.students.filter(s => s.g === "B");
+    app.innerHTML = `${sessions.open.length && !live.code ? `<div class="note"><b>A check is still open online</b> (code ${sessions.open.map(o => esc(o.code) + " · " + tid(o.T,o.W)).join(", ")}). <button class="btn" id="resume" style="margin-left:.5rem">Resume it</button></div>` : ""}
+    <div class="card"><div class="row" style="justify-content:space-between"><div><h1>Friday Writing Check</h1><p class="sub">${TERMS[T]} · Week ${W} · <b>${esc(c ? c.t : "")}</b></p></div>
+      <div class="row"><select id="sT">${[1,2,3,4].map(t => `<option value="${t}" ${t===T?"selected":""}>Term ${t}</option>`).join("")}</select>
+      <select id="sW">${[...Array(10)].map((_,i) => `<option value="${i+1}" ${i+1===W?"selected":""}>Week ${i+1}</option>`).join("")}</select></div></div>
+      <div class="grid2" style="margin-top:.8rem"><div><h3>How the lesson runs (about 24 minutes)</h3><ol class="qlist">
+        <li><b>Round 1 (12 min):</b> Group A — Helping Circle · Group B — Writing Check on iPads</li><li><b>Round 2 (12 min):</b> swap.</li>
+        <li>Open the check below before the lesson. The code stays open for both rounds.</li></ol>
+        <p style="margin-top:.6rem"><span class="pill gA">Group A</span> ${A.map(s => esc(s.n)).join(", ") || "—"}</p><p style="margin-top:.3rem"><span class="pill gB">Group B</span> ${B.map(s => esc(s.n)).join(", ") || "—"}</p></div>
+        <div><h3>This week's check</h3>${c ? `<ol class="qlist">${c.q.map(q => `<li>${esc(q[1])}</li>`).join("")}<li><b>Writing (max 300 words):</b> ${esc(c.w.p)}</li></ol>` : `<p class="err">No check written for this week.</p>`}</div></div>
+      ${rec ? `<div class="ok">Saved in your ${store.kind==="folder"?"folder":"browser"}: ${Object.values(rec.subs||{}).filter(s => s.status === "in").length} handed in for ${tid(T,W)}.</div>` : ""}
+      <div class="row" style="margin-top:1rem">${live.code ? "" : `<button class="btn go" id="open" ${db && c ? "" : "disabled"}>▶ Open the check for students</button>`}</div>
+      ${db ? (db.mock ? `<div class="note">Test mode: using a pretend drop box on this computer only (?mock=1).</div>` : "") : `<div class="note">The online drop box isn't connected (firebase-config.js).</div>`}</div>
+    <div id="liveBox"></div>`;
+    $("#sT").onchange = e => { if (live.code) return alert("Finish the open check first."); T = +e.target.value; localStorage.setItem("wc-tw", JSON.stringify({T,W})); draw(); };
+    $("#sW").onchange = e => { if (live.code) return alert("Finish the open check first."); W = +e.target.value; localStorage.setItem("wc-tw", JSON.stringify({T,W})); draw(); };
+    const op = $("#open"); if (op) op.onclick = () => openCheck(T, W);
+    const rs = $("#resume"); if (rs) rs.onclick = () => { const o = sessions.open[0]; resume(o.code, o.T, o.W); };
+    if (live.code) drawLive();
+  };
+  draw();
+}
+async function openCheck(T, W){
+  const AB = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"; const code = [...crypto.getRandomValues(new Uint8Array(5))].map(x => AB[x % AB.length]).join("");
+  const roster = {};
+  for (const s of cls.students) roster[s.id] = { n: s.n, g: s.g, h: await sha(cls.salt + "|" + s.id + "|" + s.pin) };
+  try { await db.set(db.root + code + "/meta", { T, W, open: true, created: Date.now(), salt: cls.salt, roster }); }
+  catch(e) { alert("Couldn't open the drop box: " + e.message + "\n\nIf this keeps happening, the database rules may need the 'wcheck' path allowed — see SETUP.md."); return; }
+  const ss = (await store.read("sessions.json")) || { open: [] }; ss.open.push({ code, T, W, opened: Date.now() }); await store.write("sessions.json", ss);
+  resume(code, T, W);
+}
+function resume(code, T, W){
+  Object.assign(live, { code, T, W, subs: {} });
+  localStorage.setItem("wc-tw", JSON.stringify({ T, W }));
+  live.unsub && live.unsub();
+  live.unsub = db.onValue(db.root + code + "/subs", v => { live.subs = v || {}; drawLive(); autosave(); });
+  friday();
+}
+let saveT = null;
+function autosave(){ clearTimeout(saveT); saveT = setTimeout(collect, 1500); }
+async function collect(){
+  if (!live.code) return;
+  const name = "checks/" + tid(live.T, live.W) + ".json", c = CHECK(live.T, live.W);
+  const rec = (await store.read(name)) || { type: "writing-check-record", T: live.T, W: live.W, title: c.t, codes: [], subs: {} };
+  if (!rec.codes.includes(live.code)) rec.codes.push(live.code);
+  for (const [id, s] of Object.entries(live.subs)) {
+    const st = cls.students.find(x => x.id === id), old = rec.subs[id];
+    if (old && old.status === "in" && s.status !== "in") continue;
+    rec.subs[id] = { n: st ? st.n : id, g: st ? st.g : "", status: s.status, a: s.a || ["","","",""], ticks: s.ticks || [], at: s.at || null, words: (s.a || []).map(countWords) };
+  }
+  rec.saved = new Date().toISOString(); await store.write(name, rec);
+  const el = $("#savedMsg"); if (el) el.textContent = "Saved to your " + (store.kind === "folder" ? "folder" : "browser") + " at " + new Date().toLocaleTimeString();
+}
+function drawLive(){
+  const box = $("#liveBox"); if (!box || !live.code) return;
+  const url = studentURL() + "?c=" + live.code + (db.mock ? "&mock=1" : "");
+  const S = cls.students, n = S.filter(s => (live.subs[s.id]||{}).status === "in").length;
+  box.innerHTML = `<div class="card"><div class="grid2"><div><h2>Students: go to</h2><p style="font-size:1.1rem"><b>${esc(studentURL())}</b></p>
+      <p style="margin:.6rem 0 .3rem">and type the code:</p><div class="code-big">${live.code}</div></div>
+      <div style="text-align:center"><div class="qrbox" id="qr"></div><p class="sub">Or scan with the iPad camera</p></div></div></div>
+    <div class="card"><div class="row" style="justify-content:space-between"><h2>Live: ${n} of ${S.length} handed in</h2>
+      <div class="row"><button class="btn ghost" id="col">💾 Save now</button><button class="btn warn" id="fin">✔ Finish & delete the online copy</button></div></div>
+      <p class="sub" id="savedMsg">Everything is saved to your ${store.kind === "folder" ? "folder" : "browser"} automatically as it arrives.</p>
+      <table style="margin-top:.6rem"><tr><th>Student</th><th>Group</th><th>Status</th><th>Words (1·2·3·writing)</th></tr>
+      ${S.map(s => { const x = live.subs[s.id] || {}; const st = x.status === "in" ? `<span class="st-in">✓ handed in</span>` : x.status === "writing" ? `<span class="st-writing">✏️ writing…</span>` : `<span class="st-none">not started</span>`;
+        return `<tr><td>${esc(s.n)}</td><td><span class="pill g${s.g}">${s.g}</span></td><td>${st}</td><td class="sub">${(x.a||[]).map(countWords).join(" · ")}</td></tr>`; }).join("")}</table></div>`;
+  try { new QRCode($("#qr"), { text: url, width: 170, height: 170 }); } catch(e) {}
+  $("#col").onclick = collect;
+  $("#fin").onclick = async () => {
+    const out = S.filter(s => (live.subs[s.id]||{}).status !== "in").map(s => s.n);
+    if (out.length && !confirm("Not handed in yet: " + out.join(", ") + ".\n\nTheir unfinished work will still be saved. Finish now?")) return;
+    await collect(); live.unsub && live.unsub(); live.unsub = null;
+    try { await db.set(db.root + live.code, null); } catch(e) { alert("Saved on your computer, but couldn't delete the online copy: " + e.message); }
+    const ss = (await store.read("sessions.json")) || { open: [] }; ss.open = ss.open.filter(o => o.code !== live.code); await store.write("sessions.json", ss);
+    const T = live.T, W = live.W; live.code = null; alert("Done! " + tid(T,W) + " is saved, and the online copy has been deleted.");
+    go("results");
+  };
+}
+
+/* =====================================================================
+   CLAUDE: make the analysis pack, import the results file
+   ===================================================================== */
+function packText(rec){
+  const T = rec.T, W = rec.W, c = CHECK(T,W), r = RUB(T,W), id = tid(T,W);
+  const subs = Object.entries(rec.subs).filter(([,s]) => s.status === "in" || (s.a||[]).some(x => x && x.trim()));
+  const schema = { type: "writing-check-results", version: 1, test: id, term: T, week: W,
+    class: { summary: "2–3 sentences about the whole class", strengths: ["…"], nextSteps: ["…"], watch: ["names of students who need support or extension, with a reason"] },
+    students: [{ id: "s01", name: "Ana", overall: "A", skills: [1,2,3].map(n => ({ skill: n, level: "D | A | F | N", evidence: "a short quote from their answer (max 15 words)", comment: "one sentence to the teacher" })),
+      wellDone: ["specific praise written TO the student, quoting their writing"], nextSteps: ["0–2 specific, doable next steps written TO the student"], teacherNote: "optional private note" }] };
+  let t = `FRIDAY WRITING CHECK — ANALYSIS PACK FOR CLAUDE
+Test: ${id} · Term ${T} (${TERMS[T]}) · Week ${W}: "${c.t}"
+Years 5–6 · Aotearoa New Zealand · English — Writing (NZC Phase 2)
+Students in this pack: ${subs.length}
+
+============================================================
+INSTRUCTIONS FOR CLAUDE — please follow these exactly
+============================================================
+You are helping a Years 5–6 teacher in New Zealand mark a short weekly writing check. Students are 9–11 years old. They had about 12 minutes on an iPad: three short answers and one small piece of writing (300 words maximum).
+
+1. Judge each student ONLY on this week's three skills (below), and ONLY on the evidence in their answers. Don't judge things the check didn't ask for.
+2. Give each skill a level:
+   D = Developing (needs more practice) · A = Achieved (shows the skill) · F = Flying (goes beyond the expectation) · N = Not enough evidence (blank, too short to judge, or off-task).
+   Use the rubric descriptors and examples below. "Achieved" is the expected standard — give it whenever the skill is clearly shown, even if the writing isn't perfect. Spelling and punctuation only count when a skill is about them.
+3. For every student give:
+   • a level, a short evidence quote and a one-sentence comment for each skill;
+   • an overall level (usually the level that appears most often; use your judgement for ties);
+   • 1–2 "well done" points, written to the student, that quote or point at something they actually wrote;
+   • 0–2 "next steps", written to the student — specific and doable next week (e.g. "Try showing the feeling with what your hands did, like…"). If they are Flying in everything, give one stretch challenge instead.
+   Keep the student-facing language warm, simple and encouraging (they are 9–11). Use New Zealand English spelling.
+4. Then write a short class summary: common strengths, the most useful whole-class next steps, and any students to watch (needs support or extension).
+5. OUTPUT TWO THINGS:
+   A) A readable feedback report: for each student, a small rubric table (skill · level · comment) followed by "Well done" and "Next steps". Then the class summary.
+   B) A RESULTS FILE for the teacher's app. Create a downloadable file named
+      writing-check-results-${id}.json
+      (if you can't make a file, put it in ONE code block marked json). It must be valid JSON with exactly this structure, include EVERY student listed below, and use their ID exactly as given:
+${JSON.stringify(schema, null, 2)}
+
+============================================================
+THIS WEEK'S THREE SKILLS (the rubric)
+============================================================
+`;
+  r.r.forEach((x,i) => { t += `SKILL ${i+1}: ${x[0]}   (NZC: ${x[1]})
+  D Developing: ${x[2]}  e.g. ${x[3]}
+  A Achieved:   ${x[5]}  e.g. ${x[6]}
+  F Flying:     ${x[7]}  e.g. ${x[8]}
+
+`; });
+  t += `What students wrote about this week: ${r.ev}
+
+============================================================
+THE CHECK THE STUDENTS DID
+============================================================
+Intro they saw: ${c.i}
+`;
+  c.q.forEach((q,i) => { t += `Part ${i+1} (short answer · mainly shows SKILL ${q[0]+1}): ${q[1]}\n   (Help offered: ${q[2]})\n`; });
+  t += `Part 4 (small writing piece, aim 80–150 words, max 300 · mainly shows SKILL ${c.w.crit.map(x => x+1).join(" & ")}): ${c.w.p}
+   (Help offered: ${c.w.h})
+   Students were reminded to try to show: ${c.w.show.join(" · ")}
+
+============================================================
+STUDENT ANSWERS (${subs.length})
+============================================================
+`;
+  subs.sort((a,b) => a[1].n.localeCompare(b[1].n)).forEach(([sid, s]) => {
+    t += `\n--- STUDENT ${sid} · ${s.n} · ${s.status === "in" ? "handed in" : "NOT handed in (unfinished draft)"} ---\n`;
+    (s.a || []).forEach((x,i) => { t += `Part ${i+1}${i===3 ? " (" + countWords(x) + " words)" : ""}: ${x && x.trim() ? x.trim() : "[blank]"}\n`; });
+    if ((s.ticks||[]).length) t += `(They ticked that they tried to show: ${s.ticks.map(k => c.w.show[k]).filter(Boolean).join(" · ")})\n`;
+  });
+  t += `\n============================================================\nEnd of pack. Please produce the feedback report (A) and the results file (B).\n`;
+  return t;
+}
+function download(name, text, type){ const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: type || "text/plain" })); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+function printHTML(html){ const pa = $("#printArea"); pa.innerHTML = html; document.body.classList.add("printing"); setTimeout(() => { window.print(); setTimeout(() => { document.body.classList.remove("printing"); pa.innerHTML = ""; }, 500); }, 150); }
+
+async function results(focus){
+  const names = await store.list("checks/");
+  const recs = []; for (const n of names) { const r = await store.read(n); if (r) recs.push(r); }
+  recs.sort((a,b) => (b.T*100+b.W) - (a.T*100+a.W));
+  const res = {}; for (const r of recs) res[tid(r.T,r.W)] = await store.read("results/" + tid(r.T,r.W) + ".json");
+  app.innerHTML = `<div class="card"><h1>Claude & results</h1>
+    <ol class="qlist"><li><b>Make the pack</b> for a week: a PDF (or text file) with your instructions to Claude, this week's rubric, the questions and every student's answers.</li>
+    <li><b>Give it to Claude</b>: open claude.ai, attach the file and just say "Please do this."</li>
+    <li>Claude gives you a feedback report and a <b>results file</b> (writing-check-results-T?W?.json). Download it.</li>
+    <li><b>Add the results file here</b>. It's saved with your data and builds each student's progress graphs.</li></ol></div>
+    ${recs.length ? `<div class="cards">${recs.map(r => { const id = tid(r.T,r.W), ins = Object.values(r.subs).filter(s => s.status === "in").length, rr = res[id];
+      return `<div class="wk"><h3>${id} · ${esc(r.title)}</h3><p class="sub">${TERMS[r.T]} · ${ins} handed in${rr ? " · <b style='color:#0f7a3a'>results added ✓</b>" : ""}</p>
+        <div class="row" style="margin-top:.6rem"><button class="btn" data-pdf="${id}">📄 PDF for Claude</button><button class="btn ghost" data-txt="${id}">⬇ Text file</button></div>
+        <div class="row" style="margin-top:.5rem"><button class="btn go" data-imp="${id}">📥 Add Claude's results</button>${rr ? `<button class="btn ghost" data-view="${id}">👁 View</button>` : ""}</div>
+        <div class="row" style="margin-top:.5rem"><button class="btn ghost" data-ans="${id}">📋 Answers</button></div></div>`; }).join("")}</div>`
+      : `<div class="card"><p class="sub">No checks collected yet. Run one from the Friday tab.</p></div>`}
+    <div id="detail"></div>`;
+  const byId = id => recs.find(r => tid(r.T,r.W) === id);
+  app.querySelectorAll("[data-txt]").forEach(b => b.onclick = () => download("writing-check-pack-" + b.dataset.txt + ".txt", packText(byId(b.dataset.txt))));
+  app.querySelectorAll("[data-pdf]").forEach(b => b.onclick = () => { alert("In the print window, choose \"Save as PDF\" as the destination, then attach that PDF in Claude."); printHTML(`<div class="pa"><pre>${esc(packText(byId(b.dataset.pdf)))}</pre></div>`); });
+  app.querySelectorAll("[data-imp]").forEach(b => b.onclick = () => importBox(b.dataset.imp, byId(b.dataset.imp)));
+  app.querySelectorAll("[data-view]").forEach(b => b.onclick = () => viewResults(b.dataset.view, res[b.dataset.view], byId(b.dataset.view)));
+  app.querySelectorAll("[data-ans]").forEach(b => b.onclick = () => viewAnswers(byId(b.dataset.ans)));
+  if (focus && res[focus]) viewResults(focus, res[focus], byId(focus));
+}
+function importBox(id, rec){
+  $("#detail").innerHTML = `<div class="card"><h2>Add Claude's results for ${id}</h2>
+    <p>Choose the file Claude made <b>or</b> paste what Claude gave you (the code block is fine — extra text is ignored).</p>
+    <div class="row" style="margin:.7rem 0"><input type="file" id="rf" accept=".json,.txt,application/json"></div>
+    <textarea id="rt" placeholder='Paste here… { "type": "writing-check-results", … }'></textarea>
+    <div class="row" style="margin-top:.6rem"><button class="btn go" id="rsave">Save results</button></div><p class="err" id="rerr"></p></div>`;
+  $("#detail").scrollIntoView({ behavior: "smooth" });
+  $("#rf").onchange = async e => { const f = e.target.files[0]; if (f) $("#rt").value = await f.text(); };
+  $("#rsave").onclick = async () => {
+    let txt = $("#rt").value, obj;
+    try { const s = txt.indexOf("{"), e = txt.lastIndexOf("}"); obj = JSON.parse(txt.slice(s, e + 1)); } catch(_) { return $("#rerr").textContent = "That doesn't look like the results file. Copy everything from the first { to the last }."; }
+    if (obj.type !== "writing-check-results" || !Array.isArray(obj.students)) return $("#rerr").textContent = "This isn't a Writing Check results file.";
+    if (obj.test && obj.test !== id && !confirm("This file says it's for " + obj.test + ", not " + id + ". Save it as " + id + " anyway?")) return;
+    const known = Object.keys(rec.subs), unknown = obj.students.filter(s => !known.includes(s.id)).map(s => s.id + " " + (s.name||""));
+    if (unknown.length && !confirm("These IDs aren't in this week's check: " + unknown.join(", ") + ". Save anyway?")) return;
+    obj.test = id; obj.term = rec.T; obj.week = rec.W; obj.imported = new Date().toISOString(); obj.title = rec.title;
+    await store.write("results/" + id + ".json", obj);
+    results(id);
+  };
+}
+function lv(l){ l = String(l||"N").trim().charAt(0).toUpperCase(); if (!LV[l]) l = "N"; return `<span class="lv ${l}" title="${LV[l]}">${l}</span>`; }
+function viewResults(id, rr, rec){
+  const r = RUB(rec.T, rec.W);
+  $("#detail").innerHTML = `<div class="card"><div class="row" style="justify-content:space-between"><h2>${id} results · ${esc(rec.title)}</h2>
+      <div class="row"><button class="btn ghost" id="slips">🖨 Print feedback slips</button></div></div>
+    ${rr.class ? `<div class="ok"><b>Class summary.</b> ${esc(rr.class.summary||"")}${(rr.class.strengths||[]).length ? "<br><b>Strengths:</b> " + rr.class.strengths.map(esc).join(" · ") : ""}${(rr.class.nextSteps||[]).length ? "<br><b>Next steps:</b> " + rr.class.nextSteps.map(esc).join(" · ") : ""}${(rr.class.watch||[]).length ? "<br><b>Watch:</b> " + rr.class.watch.map(esc).join(" · ") : ""}</div>` : ""}
+    <table><tr><th>Student</th>${r.r.map((x,i) => `<th title="${esc(x[0])}">Skill ${i+1}</th>`).join("")}<th>Overall</th><th>Well done / next steps</th></tr>
+    ${rr.students.map(s => `<tr><td><b>${esc(s.name || s.id)}</b><br><a href="#report=${esc(s.id)}" data-rep="${esc(s.id)}" class="sub">progress →</a></td>
+      ${[0,1,2].map(i => { const k = (s.skills||[])[i] || {}; return `<td>${lv(k.level)}<div class="sub" style="font-size:.8rem;margin-top:.2rem">${esc(k.comment||"")}</div></td>`; }).join("")}
+      <td>${lv(s.overall)}</td><td style="font-size:.88rem">${(s.wellDone||[]).map(x => "⭐ " + esc(x)).join("<br>")}${(s.nextSteps||[]).length ? "<br>" + s.nextSteps.map(x => "➜ " + esc(x)).join("<br>") : ""}</td></tr>`).join("")}</table></div>`;
+  $("#detail").scrollIntoView({ behavior: "smooth" });
+  app.querySelectorAll("[data-rep]").forEach(a => a.onclick = e => { e.preventDefault(); location.hash = "report=" + a.dataset.rep; go("progress", a.dataset.rep); });
+  $("#slips").onclick = () => printHTML(`<div class="pa">${rr.students.map(s => `<div class="slip"><div style="display:flex;justify-content:space-between"><b style="font-size:14pt">${esc(s.name||s.id)}</b><span>${id} · ${esc(rec.title)} · Overall ${lv(s.overall)}</span></div>
+      <table style="margin:2mm 0">${r.r.map((x,i) => { const k = (s.skills||[])[i] || {}; return `<tr><td style="width:55%">${esc(x[0])}</td><td>${lv(k.level)}</td><td>${esc(k.comment||"")}</td></tr>`; }).join("")}</table>
+      ${(s.wellDone||[]).length ? `<div><b>Well done:</b> ${s.wellDone.map(esc).join(" ")}</div>` : ""}${(s.nextSteps||[]).length ? `<div><b>Next step:</b> ${s.nextSteps.map(esc).join(" ")}</div>` : ""}</div>`).join("")}</div>`);
+}
+function viewAnswers(rec){
+  const c = CHECK(rec.T, rec.W);
+  $("#detail").innerHTML = `<div class="card"><h2>${tid(rec.T,rec.W)} answers</h2>${Object.entries(rec.subs).sort((a,b) => a[1].n.localeCompare(b[1].n)).map(([id,s]) => `
+    <details style="border-top:1.5px solid #e2ded3;padding:.5rem 0"><summary style="cursor:pointer"><b>${esc(s.n)}</b> <span class="sub">${s.status === "in" ? "handed in" : "unfinished"} · writing ${countWords((s.a||[])[3])} words</span></summary>
+    ${(s.a||[]).map((x,i) => `<p style="margin:.4rem 0"><b>${i<3 ? "Part " + (i+1) : "Writing"}:</b> <span style="white-space:pre-wrap">${esc(x||"—")}</span></p>`).join("")}</details>`).join("")}</div>`;
+  $("#detail").scrollIntoView({ behavior: "smooth" });
+}
+
+/* =====================================================================
+   PROGRESS: graphs + explanation per student, from the imported results
+   ===================================================================== */
+async function allResults(){ const out = []; for (const n of await store.list("results/")) { const r = await store.read(n); if (r) out.push(r); }
+  return out.sort((a,b) => (a.term*100+a.week) - (b.term*100+b.week)); }
+function studentSeries(all, id){ return all.map(r => { const s = r.students.find(x => x.id === id); return s ? { r, s } : null; }).filter(Boolean); }
+const L1 = l => String(l||"N").trim().charAt(0).toUpperCase();
+function lineChart(points, w, h){
+  // points: [{label, v (1-3 or null)}]
+  const pad = 36, n = points.length, X = i => pad + (n < 2 ? (w - 2*pad)/2 : i * (w - 2*pad) / (n - 1)), Y = v => h - pad - (v - 1) * (h - 2*pad) / 2;
+  const valid = points.map((p,i) => p.v ? [X(i), Y(p.v)] : null).filter(Boolean);
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}">
+    ${[[3,"Flying","#A98BFF"],[2,"Achieved","#5BD48A"],[1,"Developing","#FFB85C"]].map(([v,t,c]) => `<line x1="${pad}" x2="${w-pad/2}" y1="${Y(v)}" y2="${Y(v)}" stroke="${c}" stroke-width="2" stroke-dasharray="5 5"/><text x="4" y="${Y(v)+4}" font-size="11" fill="#555">${t.charAt(0)}</text>`).join("")}
+    ${valid.length > 1 ? `<polyline points="${valid.map(p => p.join(",")).join(" ")}" fill="none" stroke="#14121F" stroke-width="3"/>` : ""}
+    ${points.map((p,i) => `${p.v ? `<circle cx="${X(i)}" cy="${Y(p.v)}" r="7" fill="${["","#FFB85C","#5BD48A","#A98BFF"][p.v]}" stroke="#14121F" stroke-width="2.5"><title>${esc(p.label)}</title></circle>` : ""}
+      <text x="${X(i)}" y="${h-10}" font-size="11" text-anchor="middle" fill="#555">${esc(p.label)}</text>`).join("")}</svg>`;
+}
+function barChart(rows, w, h){ // rows: [{label, D,A,F,N}]
+  const pad = 30, bw = Math.min(46, (w - 2*pad) / Math.max(1, rows.length) - 10);
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}">${rows.map((r,i) => { const tot = r.D + r.A + r.F + r.N || 1, x = pad + i * ((w - 2*pad) / rows.length) + 5; let y = h - pad;
+    return ["D","A","F","N"].map(k => { const hh = (h - 2*pad) * r[k] / tot; y -= hh; return hh ? `<rect x="${x}" y="${y}" width="${bw}" height="${hh}" fill="var(--${k})" stroke="#14121F" stroke-width="1.5"><title>${r.label}: ${r[k]} ${LV[k]}</title></rect>` : ""; }).join("") +
+      `<text x="${x + bw/2}" y="${h-10}" font-size="11" text-anchor="middle" fill="#555">${esc(r.label)}</text>`; }).join("")}</svg>`;
+}
+function explain(name, ser){
+  if (!ser.length) return `${esc(name)} has no analysed checks yet.`;
+  const v = ser.map(x => LVN[L1(x.s.overall)] || null).filter(Boolean), cnt = { D:0, A:0, F:0, N:0 };
+  ser.forEach(x => cnt[L1(x.s.overall)] = (cnt[L1(x.s.overall)]||0) + 1);
+  const avg = a => a.reduce((p,c) => p + c, 0) / (a.length || 1);
+  let trend = "";
+  if (v.length >= 4) { const k = Math.min(3, Math.floor(v.length/2)), a = avg(v.slice(0,k)), b = avg(v.slice(-k)); trend = b - a > .25 ? "Their results are <b>rising</b> — recent checks are stronger than the early ones." : a - b > .25 ? "Recent checks are <b>lower than earlier ones</b> — worth a conversation or some extra support." : "Their results have been <b>steady</b>."; }
+  const met = cnt.A + cnt.F;
+  // skill-level detail: which rubric skills tend to be D vs F
+  const lows = [], highs = [];
+  ser.forEach(x => (x.s.skills||[]).forEach((k,i) => { const l = L1(k.level), sk = (RUB(x.r.term, x.r.week)||{r:[]}).r[i]; if (!sk) return; if (l === "D") lows.push(sk[0]); if (l === "F") highs.push(sk[0]); }));
+  return `${esc(name)} has done <b>${ser.length}</b> analysed check${ser.length>1?"s":""}: <b>${met}</b> at Achieved or Flying (${cnt.F} Flying), ${cnt.D} Developing${cnt.N ? ", " + cnt.N + " without enough evidence" : ""}. ${trend}
+    ${highs.length ? `<br><br><b>Flying in:</b> ${[...new Set(highs)].slice(-4).map(esc).join(" · ")}` : ""}${lows.length ? `<br><b>Still developing:</b> ${[...new Set(lows)].slice(-4).map(esc).join(" · ")}` : ""}`;
+}
+async function progress(sid){
+  const all = await allResults(), S = cls.students;
+  if (sid) return report(sid, all);
+  const labels = all.map(r => tid(r.term, r.week));
+  const rows = all.map(r => { const c = { label: tid(r.term, r.week), D:0, A:0, F:0, N:0 }; r.students.forEach(s => c[L1(s.overall)] = (c[L1(s.overall)]||0) + 1); return c; });
+  app.innerHTML = `<div class="card"><h1>Progress</h1><p class="sub">Built from the results files Claude made. Click a student to see their graphs and the story of their progress.</p>
+    ${all.length ? `<h3>Whole class — overall levels each week</h3>${barChart(rows, Math.max(500, rows.length * 70), 240)}
+    <p class="sub" style="margin-top:.3rem"><span class="lv D">D</span> Developing · <span class="lv A">A</span> Achieved · <span class="lv F">F</span> Flying · <span class="lv N">N</span> not enough evidence</p>` : `<div class="note">No results yet. Add a results file from Claude in the "Claude & results" tab.</div>`}</div>
+    ${all.length ? `<div class="card" style="overflow-x:auto"><table><tr><th>Student</th>${labels.map(l => `<th>${l}</th>`).join("")}<th></th></tr>
+      ${S.map(s => `<tr><td><b>${esc(s.n)}</b></td>${all.map(r => { const x = r.students.find(y => y.id === s.id); return `<td>${x ? lv(x.overall) : "<span class='sub'>—</span>"}</td>`; }).join("")}
+      <td><button class="btn ghost" style="padding:.25rem .7rem" data-rep="${s.id}">Report →</button></td></tr>`).join("")}</table></div>` : ""}`;
+  app.querySelectorAll("[data-rep]").forEach(b => b.onclick = () => { location.hash = "report=" + b.dataset.rep; report(b.dataset.rep, all); });
+}
+function report(sid, all){
+  const st = cls.students.find(s => s.id === sid) || { n: sid, id: sid }, ser = studentSeries(all, sid);
+  const pts = ser.map(x => ({ label: tid(x.r.term, x.r.week), v: LVN[L1(x.s.overall)] || null }));
+  const sk = { D:0, A:0, F:0, N:0 }; ser.forEach(x => (x.s.skills||[]).forEach(k => sk[L1(k.level)] = (sk[L1(k.level)]||0) + 1));
+  const html = `<div class="card"><div class="row" style="justify-content:space-between"><div><h1>${esc(st.n)} — writing progress</h1><p class="sub">Friday Writing Checks · ${ser.length} analysed</p></div>
+      <div class="row"><button class="btn ghost" id="back">← All students</button><button class="btn ghost" id="cp">🔗 Copy link</button><button class="btn" id="pr">🖨 Print / save PDF</button></div></div>
+    <div class="grid2" style="margin-top:1rem"><div><h3>Overall level each week</h3>${pts.length ? lineChart(pts, Math.max(420, pts.length * 70), 230) : "<p class='sub'>No results yet.</p>"}</div>
+      <div><h3>Every skill assessed so far</h3><div style="max-width:240px">${barChart([{ label: "All skills", ...sk }], 220, 230)}</div><p class="sub">${sk.F} Flying · ${sk.A} Achieved · ${sk.D} Developing${sk.N ? " · " + sk.N + " not enough evidence" : ""}</p></div></div>
+    <h3 style="margin-top:1rem">What this shows</h3><p>${explain(st.n, ser)}</p></div>
+    ${ser.slice().reverse().map(x => { const r = RUB(x.r.term, x.r.week) || { r: [] };
+      return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${tid(x.r.term, x.r.week)} · ${esc(x.r.title || "")}</h2>${lv(x.s.overall)}</div>
+      <table>${r.r.map((k,i) => { const s = (x.s.skills||[])[i] || {}; return `<tr><td style="width:45%">${esc(k[0])}</td><td>${lv(s.level)}</td><td>${esc(s.comment||"")}${s.evidence ? `<div class="sub" style="font-style:italic">"${esc(s.evidence)}"</div>` : ""}</td></tr>`; }).join("")}</table>
+      ${(x.s.wellDone||[]).length ? `<p style="margin-top:.5rem">⭐ <b>Well done:</b> ${x.s.wellDone.map(esc).join(" ")}</p>` : ""}${(x.s.nextSteps||[]).length ? `<p>➜ <b>Next steps:</b> ${x.s.nextSteps.map(esc).join(" ")}</p>` : ""}${x.s.teacherNote ? `<p class="sub">Teacher note: ${esc(x.s.teacherNote)}</p>` : ""}</div>`; }).join("")}`;
+  app.innerHTML = html;
+  $("#back").onclick = () => { location.hash = ""; progress(); };
+  $("#cp").onclick = () => { const u = location.href.split("#")[0] + "#report=" + sid; navigator.clipboard && navigator.clipboard.writeText(u); alert("Link copied:\n" + u + "\n\nIt opens this report on this computer (after you log in)."); };
+  $("#pr").onclick = () => printHTML(`<div class="pa">${app.innerHTML.replace(/<button[^>]*>.*?<\/button>/g, "")}</div>`);
+}
+
+/* =====================================================================
+   MY DATA: backup / restore / where things are
+   ===================================================================== */
+async function dataView(){
+  app.innerHTML = `<div class="card"><h1>My data</h1>
+    <p>${store.kind === "folder" ? `Everything is saved as files in the folder <b>${esc(store.dir.name)}</b> on this computer:` : "Everything is saved inside this browser on this computer."}</p>
+    <ul class="qlist"><li><b>wc-key.json</b> — your password lock (scrambled)</li><li><b>class.json</b> — names, groups and PINs</li><li><b>checks/</b> — every student's answers, one file per week</li><li><b>results/</b> — the results files from Claude (these build the progress graphs)</li></ul>
+    <h3>Use it on another computer</h3><p>${store.kind === "folder" ? "Copy the whole folder across (USB, AirDrop or a school drive), open this page in Chrome there, and choose the folder." : "Download a backup below, then on the other computer choose \"Moving from another computer?\" and restore it."}</p>
+    <div class="row" style="margin-top:.8rem"><button class="btn" id="bk">⬇ Download a full backup</button><button class="btn ghost" id="sw">Change where data is kept</button></div>
+    <div class="note">Online, only the short-term drop box is used — and only while a check is open. Finishing a check deletes it from there.</div></div>`;
+  $("#bk").onclick = async () => { const files = {}; for (const n of ["wc-key.json", "class.json", "sessions.json"]) { const o = await store.read(n); if (o) files[n] = o; }
+    for (const d of ["checks/", "results/"]) for (const n of await store.list(d)) files[n] = await store.read(n);
+    download("writing-check-backup-" + new Date().toISOString().slice(0,10) + ".json", JSON.stringify({ type: "writing-check-backup", v: 1, made: new Date().toISOString(), files }, null, 1), "application/json"); };
+  $("#sw").onclick = () => { if (!confirm("Choose a different place? Your current data stays where it is (download a backup first if you want to bring it).")) return; localStorage.removeItem("wc-mode"); sessionStorage.removeItem("wc-ok"); location.reload(); };
+}
+
+window.addEventListener("hashchange", () => { const h = location.hash.match(/report=([\w-]+)/); if (h && unlocked) go("progress", h[1]); });
+boot();
+</script>
+</body>
+</html>
