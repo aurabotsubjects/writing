@@ -305,13 +305,28 @@ async function collect(){
   const name = "checks/" + tid(live.T, live.W) + ".json", c = CHECK(live.T, live.W);
   const rec = (await store.read(name)) || { type: "writing-check-record", T: live.T, W: live.W, title: c.t, codes: [], subs: {} };
   if (!rec.codes.includes(live.code)) rec.codes.push(live.code);
+  if (!rec.questions) rec.questions = snapQuestions(live.T, live.W);
   for (const [id, s] of Object.entries(live.subs)) {
     const st = cls.students.find(x => x.id === id), old = rec.subs[id];
+    if (old && old.evidence && !old.evidence.unfinished) continue;          // handed-in evidence is locked — never overwritten
     if (old && old.status === "in" && s.status !== "in") continue;
-    rec.subs[id] = { n: st ? st.n : id, g: st ? st.g : "", status: s.status, a: s.a || ["","","",""], ticks: s.ticks || [], at: s.at || null, words: (s.a || []).map(countWords) };
+    const cur = { n: st ? st.n : id, g: st ? st.g : "", status: s.status, a: s.a || ["","","",""], ticks: s.ticks || [], at: s.at || null, words: (s.a || []).map(countWords) };
+    if (s.status === "in") cur.evidence = freeze(cur, false);
+    rec.subs[id] = cur;
   }
   rec.saved = new Date().toISOString(); await store.write(name, rec);
   const el = $("#savedMsg"); if (el) el.textContent = "Saved to your " + (store.kind === "folder" ? "folder" : "browser") + " at " + new Date().toLocaleTimeString();
+}
+function snapQuestions(T, W){ const c = CHECK(T, W); if (!c) return null;
+  return { title: c.t, parts: c.q.map(q => q[1]).concat(["Writing piece (max 300 words): " + c.w.p]), tryToShow: c.w.show }; }
+function freeze(cur, unfinished){
+  return { a: cur.a.slice(), ticks: (cur.ticks||[]).slice(), words: cur.a.map(countWords), handedIn: cur.at ? new Date(cur.at).toISOString() : new Date().toISOString(),
+    unfinished: !!unfinished, saved: new Date().toISOString(), note: unfinished ? "Not handed in — unfinished work saved when the check was closed." : "Exactly as the student handed it in." };
+}
+async function freezeUnfinished(){
+  const name = "checks/" + tid(live.T, live.W) + ".json", rec = await store.read(name); if (!rec) return;
+  for (const s of Object.values(rec.subs)) if (!s.evidence && (s.a||[]).some(x => x && x.trim())) s.evidence = freeze(s, true);
+  await store.write(name, rec);
 }
 function drawLive(){
   const box = $("#liveBox"); if (!box || !live.code) return;
@@ -331,7 +346,7 @@ function drawLive(){
   $("#fin").onclick = async () => {
     const out = S.filter(s => (live.subs[s.id]||{}).status !== "in").map(s => s.n);
     if (out.length && !confirm("Not handed in yet: " + out.join(", ") + ".\n\nTheir unfinished work will still be saved. Finish now?")) return;
-    await collect(); live.unsub && live.unsub(); live.unsub = null;
+    await collect(); await freezeUnfinished(); live.unsub && live.unsub(); live.unsub = null;
     try { await db.set(db.root + live.code, null); } catch(e) { alert("Saved on your computer, but couldn't delete the online copy: " + e.message); }
     const ss = (await store.read("sessions.json")) || { open: [] }; ss.open = ss.open.filter(o => o.code !== live.code); await store.write("sessions.json", ss);
     const T = live.T, W = live.W; live.code = null; alert("Done! " + tid(T,W) + " is saved, and the online copy has been deleted.");
@@ -428,7 +443,7 @@ async function results(focus){
       return `<div class="wk"><h3>${id} · ${esc(r.title)}</h3><p class="sub">${TERMS[r.T]} · ${ins} handed in${rr ? " · <b style='color:#0f7a3a'>results added ✓</b>" : ""}</p>
         <div class="row" style="margin-top:.6rem"><button class="btn" data-pdf="${id}">📄 PDF for Claude</button><button class="btn ghost" data-txt="${id}">⬇ Text file</button></div>
         <div class="row" style="margin-top:.5rem"><button class="btn go" data-imp="${id}">📥 Add Claude's results</button>${rr ? `<button class="btn ghost" data-view="${id}">👁 View</button>` : ""}</div>
-        <div class="row" style="margin-top:.5rem"><button class="btn ghost" data-ans="${id}">📋 Answers</button></div></div>`; }).join("")}</div>`
+        <div class="row" style="margin-top:.5rem"><button class="btn ghost" data-ans="${id}">📋 What they wrote (evidence)</button></div></div>`; }).join("")}</div>`
       : `<div class="card"><p class="sub">No checks collected yet. Run one from the Friday tab.</p></div>`}
     <div id="detail"></div>`;
   const byId = id => recs.find(r => tid(r.T,r.W) === id);
@@ -475,11 +490,26 @@ function viewResults(id, rr, rec){
       <table style="margin:2mm 0">${r.r.map((x,i) => { const k = (s.skills||[])[i] || {}; return `<tr><td style="width:55%">${esc(x[0])}</td><td>${lv(k.level)}</td><td>${esc(k.comment||"")}</td></tr>`; }).join("")}</table>
       ${(s.wellDone||[]).length ? `<div><b>Well done:</b> ${s.wellDone.map(esc).join(" ")}</div>` : ""}${(s.nextSteps||[]).length ? `<div><b>Next step:</b> ${s.nextSteps.map(esc).join(" ")}</div>` : ""}</div>`).join("")}</div>`);
 }
+function evOf(s){ return s.evidence || { a: s.a || [], ticks: s.ticks || [], words: (s.a||[]).map(countWords), handedIn: s.at ? new Date(s.at).toISOString() : null, unfinished: s.status !== "in" }; }
+function qsOf(rec){ return rec.questions || snapQuestions(rec.T, rec.W) || { title: rec.title, parts: ["Part 1","Part 2","Part 3","Writing"], tryToShow: [] }; }
+function evidenceHTML(rec, s, print){
+  const e = evOf(s), q = qsOf(rec), when = e.handedIn ? new Date(e.handedIn).toLocaleString("en-NZ", { dateStyle: "medium", timeStyle: "short" }) : "—";
+  return `<div class="${print ? "slip" : ""}" style="${print ? "" : "margin-top:.5rem"}">
+    ${print ? `<div style="display:flex;justify-content:space-between;border-bottom:2px solid #000;padding-bottom:2mm;margin-bottom:3mm"><b style="font-size:14pt">${esc(s.n)}</b><span>${tid(rec.T,rec.W)} · ${esc(q.title || rec.title)}</span></div>` : ""}
+    <p class="sub" style="font-size:.85rem">${e.unfinished ? "⚠ Not handed in — unfinished work saved when the check closed" : "✓ Handed in " + esc(when)} · student's own words, unchanged</p>
+    ${(e.a||[]).map((x,i) => `<div style="margin:.5rem 0"><div style="font-weight:700;font-size:.9rem">${esc(q.parts[i] || ("Part " + (i+1)))}</div>
+      <div style="white-space:pre-wrap;border-left:4px solid #ddd;padding:.2rem .7rem;margin-top:.2rem">${x && x.trim() ? esc(x) : "<i>[left blank]</i>"}</div>
+      <div class="sub" style="font-size:.78rem">${(e.words||[])[i] || 0} words</div></div>`).join("")}
+    ${(e.ticks||[]).length ? `<p class="sub" style="font-size:.85rem">Ticked "try to show": ${e.ticks.map(k => esc((q.tryToShow||[])[k] || "")).join(" · ")}</p>` : ""}</div>`;
+}
 function viewAnswers(rec){
-  const c = CHECK(rec.T, rec.W);
-  $("#detail").innerHTML = `<div class="card"><h2>${tid(rec.T,rec.W)} answers</h2>${Object.entries(rec.subs).sort((a,b) => a[1].n.localeCompare(b[1].n)).map(([id,s]) => `
-    <details style="border-top:1.5px solid #e2ded3;padding:.5rem 0"><summary style="cursor:pointer"><b>${esc(s.n)}</b> <span class="sub">${s.status === "in" ? "handed in" : "unfinished"} · writing ${countWords((s.a||[])[3])} words</span></summary>
-    ${(s.a||[]).map((x,i) => `<p style="margin:.4rem 0"><b>${i<3 ? "Part " + (i+1) : "Writing"}:</b> <span style="white-space:pre-wrap">${esc(x||"—")}</span></p>`).join("")}</details>`).join("")}</div>`;
+  const list = Object.entries(rec.subs).sort((a,b) => a[1].n.localeCompare(b[1].n));
+  $("#detail").innerHTML = `<div class="card"><div class="row" style="justify-content:space-between"><h2>${tid(rec.T,rec.W)} · what students wrote</h2>
+      <button class="btn" id="evp">🖨 Print evidence (one page each)</button></div>
+    <p class="sub">A permanent copy of each student's own words, locked when they handed in. Use it as evidence alongside the rubric.</p>
+    ${list.map(([id,s]) => `<details style="border-top:1.5px solid #e2ded3;padding:.5rem 0"><summary style="cursor:pointer"><b>${esc(s.n)}</b> <span class="sub">${evOf(s).unfinished ? "unfinished" : "handed in"} · writing ${countWords((evOf(s).a||[])[3])} words</span></summary>
+    ${evidenceHTML(rec, s, false)}</details>`).join("")}</div>`;
+  $("#evp").onclick = () => printHTML(`<div class="pa">${list.map(([id,s], i) => `<div class="${i ? "pb" : ""}">${evidenceHTML(rec, s, true)}</div>`).join("")}</div>`);
   $("#detail").scrollIntoView({ behavior: "smooth" });
 }
 
@@ -522,7 +552,7 @@ function explain(name, ser){
 }
 async function progress(sid){
   const all = await allResults(), S = cls.students;
-  if (sid) return report(sid, all);
+  if (sid) { const recs = {}; for (const r of all) recs[tid(r.term, r.week)] = await store.read("checks/" + tid(r.term, r.week) + ".json"); return report(sid, all, recs); }
   const labels = all.map(r => tid(r.term, r.week));
   const rows = all.map(r => { const c = { label: tid(r.term, r.week), D:0, A:0, F:0, N:0 }; r.students.forEach(s => c[L1(s.overall)] = (c[L1(s.overall)]||0) + 1); return c; });
   app.innerHTML = `<div class="card"><h1>Progress</h1><p class="sub">Built from the results files Claude made. Click a student to see their graphs and the story of their progress.</p>
@@ -531,9 +561,9 @@ async function progress(sid){
     ${all.length ? `<div class="card" style="overflow-x:auto"><table><tr><th>Student</th>${labels.map(l => `<th>${l}</th>`).join("")}<th></th></tr>
       ${S.map(s => `<tr><td><b>${esc(s.n)}</b></td>${all.map(r => { const x = r.students.find(y => y.id === s.id); return `<td>${x ? lv(x.overall) : "<span class='sub'>—</span>"}</td>`; }).join("")}
       <td><button class="btn ghost" style="padding:.25rem .7rem" data-rep="${s.id}">Report →</button></td></tr>`).join("")}</table></div>` : ""}`;
-  app.querySelectorAll("[data-rep]").forEach(b => b.onclick = () => { location.hash = "report=" + b.dataset.rep; report(b.dataset.rep, all); });
+  app.querySelectorAll("[data-rep]").forEach(b => b.onclick = () => { location.hash = "report=" + b.dataset.rep; progress(b.dataset.rep); });
 }
-function report(sid, all){
+function report(sid, all, recs){ recs = recs || {};
   const st = cls.students.find(s => s.id === sid) || { n: sid, id: sid }, ser = studentSeries(all, sid);
   const pts = ser.map(x => ({ label: tid(x.r.term, x.r.week), v: LVN[L1(x.s.overall)] || null }));
   const sk = { D:0, A:0, F:0, N:0 }; ser.forEach(x => (x.s.skills||[]).forEach(k => sk[L1(k.level)] = (sk[L1(k.level)]||0) + 1));
@@ -545,11 +575,12 @@ function report(sid, all){
     ${ser.slice().reverse().map(x => { const r = RUB(x.r.term, x.r.week) || { r: [] };
       return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${tid(x.r.term, x.r.week)} · ${esc(x.r.title || "")}</h2>${lv(x.s.overall)}</div>
       <table>${r.r.map((k,i) => { const s = (x.s.skills||[])[i] || {}; return `<tr><td style="width:45%">${esc(k[0])}</td><td>${lv(s.level)}</td><td>${esc(s.comment||"")}${s.evidence ? `<div class="sub" style="font-style:italic">"${esc(s.evidence)}"</div>` : ""}</td></tr>`; }).join("")}</table>
-      ${(x.s.wellDone||[]).length ? `<p style="margin-top:.5rem">⭐ <b>Well done:</b> ${x.s.wellDone.map(esc).join(" ")}</p>` : ""}${(x.s.nextSteps||[]).length ? `<p>➜ <b>Next steps:</b> ${x.s.nextSteps.map(esc).join(" ")}</p>` : ""}${x.s.teacherNote ? `<p class="sub">Teacher note: ${esc(x.s.teacherNote)}</p>` : ""}</div>`; }).join("")}`;
+      ${(x.s.wellDone||[]).length ? `<p style="margin-top:.5rem">⭐ <b>Well done:</b> ${x.s.wellDone.map(esc).join(" ")}</p>` : ""}${(x.s.nextSteps||[]).length ? `<p>➜ <b>Next steps:</b> ${x.s.nextSteps.map(esc).join(" ")}</p>` : ""}${x.s.teacherNote ? `<p class="sub">Teacher note: ${esc(x.s.teacherNote)}</p>` : ""}
+      ${(() => { const rec = recs[tid(x.r.term, x.r.week)], s = rec && rec.subs && rec.subs[sid]; return s ? `<details class="ev" style="margin-top:.6rem"><summary style="cursor:pointer;font-weight:700">📄 What ${esc(st.n)} wrote (evidence)</summary>${evidenceHTML(rec, s, false)}</details>` : `<p class="sub" style="margin-top:.4rem">Their writing for this week isn't in this data folder.</p>`; })()}</div>`; }).join("")}`;
   app.innerHTML = html;
   $("#back").onclick = () => { location.hash = ""; progress(); };
   $("#cp").onclick = () => { const u = location.href.split("#")[0] + "#report=" + sid; navigator.clipboard && navigator.clipboard.writeText(u); alert("Link copied:\n" + u + "\n\nIt opens this report on this computer (after you log in)."); };
-  $("#pr").onclick = () => printHTML(`<div class="pa">${app.innerHTML.replace(/<button[^>]*>.*?<\/button>/g, "")}</div>`);
+  $("#pr").onclick = () => printHTML(`<div class="pa">${app.innerHTML.replace(/<button[^>]*>.*?<\/button>/g, "").replace(/<details class="ev"/g, '<details open class="ev"')}</div>`);
 }
 
 /* =====================================================================
